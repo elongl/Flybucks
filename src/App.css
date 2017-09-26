@@ -7,6 +7,10 @@
   height: 80px;
 }
 
+.App-logo:hover {
+  animation-play-state: paused;
+}
+
 .App-header {
   background-color: #222;
   height: 150px;
