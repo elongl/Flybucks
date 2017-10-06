@@ -9,8 +9,25 @@ import {
   Input,
   Label
 } from 'semantic-ui-react'
+import axios from 'axios'
 
 export default class App extends Component {
+  state = {
+    youHave: '',
+    youGet: '',
+    ILStoBTC: ''
+  }
+
+  componentDidMount() {
+    axios
+      .get(
+        'http://www.apilayer.net/api/live?access_key=acafc0bb45eef112ab535b81dfc1116b'
+      )
+      .then(({ data }) =>
+        this.setState({ ILStoBTC: 1 / data.quotes.USDILS * data.quotes.USDBTC })
+      )
+  }
+
   render() {
     return (
       <div>
@@ -38,7 +55,6 @@ export default class App extends Component {
               </Menu.Item>
             </Menu>
           </Container>
-
           <Container text>
             <Header
               as="h1"
@@ -57,7 +73,6 @@ export default class App extends Component {
               style={{ fontSize: '1.7em', fontWeight: 'normal' }}
             />
           </Container>
-
           <Container style={{ paddingTop: '2em' }}>
             <Input
               labelPosition="right"
@@ -65,9 +80,16 @@ export default class App extends Component {
               placeholder="You Have"
               size="huge"
               style={{ marginRight: '0.5em' }}
+              value={this.state.youHave}
+              onChange={event => {
+                const { ILStoBTC } = this.state
+                const have = event.target.value
+                const get = event.target.value * ILStoBTC
+                this.setState({ youHave: have, youGet: get })
+              }}
             >
               <Label basic>
-                <Icon name="dollar" />
+                <Icon name="shekel" />
               </Label>
               <input />
               <Label>.00</Label>
@@ -76,11 +98,13 @@ export default class App extends Component {
             <Icon name="exchange" size="big" />
 
             <Input
+              disabled
               labelPosition="right"
               type="text"
               placeholder="You Get"
               size="huge"
               style={{ marginLeft: '0.5em', marginRight: '1em' }}
+              value={this.state.youGet}
             >
               <Label basic>
                 <Icon name="bitcoin" />
@@ -92,6 +116,7 @@ export default class App extends Component {
               color="green"
               size="huge"
               style={{ paddingTop: '0.9em', paddingBottom: '0.9em' }}
+              onClick={() => window.alert(this.state.ILStoBTC)}
             >
               Exchange
               <Icon name="right arrow" />
