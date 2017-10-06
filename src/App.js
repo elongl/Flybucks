@@ -26,6 +26,17 @@ export default class App extends Component {
       .then(({ data }) =>
         this.setState({ ILStoBTC: 1 / data.quotes.USDILS * data.quotes.USDBTC })
       )
+    this.youHave.focus()
+  }
+
+  handleExchangeChange = event => {
+    const { ILStoBTC } = this.state
+    const have = event.target.value
+    const get = event.target.value * ILStoBTC
+    this.setState({ youHave: have, youGet: get })
+  }
+  checkIfNumber = event => {
+    if (!(event.charCode >= 48 && event.charCode <= 57)) event.preventDefault()
   }
 
   render() {
@@ -81,12 +92,9 @@ export default class App extends Component {
               size="huge"
               style={{ marginRight: '0.5em' }}
               value={this.state.youHave}
-              onChange={event => {
-                const { ILStoBTC } = this.state
-                const have = event.target.value
-                const get = event.target.value * ILStoBTC
-                this.setState({ youHave: have, youGet: get })
-              }}
+              ref={ref => (this.youHave = ref)}
+              onChange={this.handleExchangeChange}
+              onKeyPress={this.checkIfNumber}
             >
               <Label basic>
                 <Icon name="shekel" />
@@ -112,6 +120,7 @@ export default class App extends Component {
               <input />
               <Label>.00</Label>
             </Input>
+
             <Button
               color="green"
               size="huge"
