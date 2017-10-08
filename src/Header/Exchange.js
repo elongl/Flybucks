@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Container, Button, Input, Label, Icon } from 'semantic-ui-react'
-export default class App extends Component {
+export default class extends Component {
   state = {
     youHave: '',
     youGet: '',
     ILStoBTC: ''
   }
-  componentDidMount() {
-    axios
-      .get(
-        'http://www.apilayer.net/api/live?access_key=acafc0bb45eef112ab535b81dfc1116b'
-      )
-      .then(({ data }) =>
-        this.setState({ ILStoBTC: 1 / data.quotes.USDILS * data.quotes.USDBTC })
-      )
+
+  componentDidMount = () => {
+    this.getCurrentRate()
     this.youHave.focus()
+  }
+  getCurrentRate = async () => {
+    let { data: { quotes } } = await axios.get(
+      'http://www.apilayer.net/api/live?access_key=acafc0bb45eef112ab535b81dfc1116b'
+    )
+    this.setState({ ILStoBTC: 1 / quotes.USDILS * quotes.USDBTC })
   }
   handleExchangeChange = event => {
     const { ILStoBTC } = this.state
