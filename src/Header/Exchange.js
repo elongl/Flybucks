@@ -21,7 +21,7 @@ export default class extends Component {
   handleExchangeChange = event => {
     const { ILStoBTC } = this.state
     const have = event.target.value
-    const get = have !== 0 ? have * ILStoBTC : null
+    const get = have * ILStoBTC
     this.setState({ youHave: have, youGet: get })
   }
   checkIfNumber = event => {
@@ -33,7 +33,6 @@ export default class extends Component {
       <Container style={{ paddingTop: '2em' }}>
         <Input
           labelPosition="right"
-          type="text"
           placeholder="You Have"
           size="huge"
           style={{ marginRight: '0.5em' }}
@@ -54,7 +53,6 @@ export default class extends Component {
         <Input
           disabled
           labelPosition="right"
-          type="text"
           placeholder="You Get"
           size="huge"
           style={{ marginLeft: '0.5em', marginRight: '1em' }}
@@ -68,14 +66,14 @@ export default class extends Component {
         </Input>
 
         <Button
+          content="Exchange"
+          icon="right arrow"
+          labelPosition="right"
           color="green"
           size="huge"
           style={{ paddingTop: '0.9em', paddingBottom: '0.9em' }}
           onClick={() => window.alert(this.state.ILStoBTC)}
-        >
-          Exchange
-          <Icon name="right arrow" />
-        </Button>
+        />
       </Container>
     )
   }
