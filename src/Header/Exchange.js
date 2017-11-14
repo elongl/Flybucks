@@ -46,7 +46,7 @@ export default class extends Component {
           <Label icon="shekel" />
         </Input>
 
-        <Icon name="exchange" size="big" />
+        <Icon name="exchange" size="big" style={{ color: 'lightGreen' }} />
 
         <Input
           disabled
@@ -65,9 +65,12 @@ export default class extends Component {
           content="Exchange"
           icon="right arrow"
           labelPosition="right"
-          color="green"
           size="huge"
-          style={{ paddingTop: '0.9em', paddingBottom: '0.9em' }}
+          color="green"
+          style={{
+            paddingTop: '0.9em',
+            paddingBottom: '0.9em'
+          }}
           onClick={() => window.alert(this.state.ILStoBTC)}
         />
       </Container>

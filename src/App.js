@@ -5,7 +5,7 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header style={{ margin: 0 }} />
       </div>
     )
   }

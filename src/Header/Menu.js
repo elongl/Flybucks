@@ -3,12 +3,11 @@ import { Menu, Container, Button } from 'semantic-ui-react'
 export default () => {
   return (
     <Container>
-      <Menu inverted pointing secondary size="large">
+      <Menu inverted borderless secondary size="large">
         <Menu.Item as="a" active>
           Exchange
         </Menu.Item>
         <Menu.Item as="a">Elon</Menu.Item>
-        <Menu.Item as="a">Elay</Menu.Item>
         <Menu.Item as="a">Gliksberg</Menu.Item>
         <Menu.Item position="right">
           <Button as="a" inverted>
