@@ -41,11 +41,9 @@ export default class extends Component {
           onChange={this.handleExchangeChange}
           onKeyPress={this.checkIfNumber}
         >
-          <Label basic>
-            <Icon name="shekel" />
-          </Label>
+          <Label basic content="ILS" />
           <input />
-          <Label>.00</Label>
+          <Label icon="shekel" />
         </Input>
 
         <Icon name="exchange" size="big" />
@@ -58,11 +56,9 @@ export default class extends Component {
           style={{ marginLeft: '0.5em', marginRight: '1em' }}
           value={this.state.youGet}
         >
-          <Label basic>
-            <Icon name="bitcoin" />
-          </Label>
+          <Label basic content="BTC" />
           <input />
-          <Label>.00</Label>
+          <Label icon="bitcoin" />
         </Input>
 
         <Button
