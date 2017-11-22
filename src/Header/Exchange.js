@@ -33,7 +33,7 @@ export default class extends Component {
       <Container style={{ paddingTop: '2em' }}>
         <Input
           labelPosition="right"
-          placeholder="You Have"
+          placeholder="You Give"
           size="huge"
           style={{ marginRight: '0.5em' }}
           value={this.state.youHave}

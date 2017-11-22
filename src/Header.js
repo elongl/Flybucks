@@ -1,9 +1,8 @@
 import React from 'react'
 import { Segment } from 'semantic-ui-react'
-import Menu from './Menu'
-import HeaderText from './HeaderText'
-import Exchange from './Exchange'
-import './Header.css'
+import Menu from './Header/Menu'
+import HeaderText from './Header/HeaderText'
+import Exchange from './Header/Exchange'
 
 let headerStyle = {
   backgroundImage: 'url(https://image.ibb.co/cn4qqw/download.jpg)',
@@ -14,7 +13,7 @@ let headerStyle = {
 }
 export default () => {
   return (
-    <Segment vertical inverted style={headerStyle}>
+    <Segment vertical style={headerStyle}>
       <Menu />
       <HeaderText />
       <Exchange />
