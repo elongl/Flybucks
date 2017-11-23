@@ -3,14 +3,14 @@ import axios from 'axios'
 import { Container, Button, Input, Label, Icon } from 'semantic-ui-react'
 export default class extends Component {
   state = {
-    youHave: '',
+    youGive: '',
     youGet: '',
     ILStoBTC: ''
   }
 
   componentDidMount = () => {
     this.getCurrentRate()
-    this.youHave.focus()
+    this.youGive.focus()
   }
   getCurrentRate = async () => {
     let { data: { quotes } } = await axios.get(
@@ -18,11 +18,17 @@ export default class extends Component {
     )
     this.setState({ ILStoBTC: 1 / quotes.USDILS * quotes.USDBTC })
   }
-  handleExchangeChange = event => {
+  handleExchangeFromILStoBTC = event => {
     const { ILStoBTC } = this.state
-    const have = event.target.value
-    const get = have * ILStoBTC
-    this.setState({ youHave: have, youGet: get })
+    const give = event.target.value
+    const get = give * ILStoBTC
+    this.setState({ youGive: give, youGet: get })
+  }
+  handleExchangeFromBTCtoILS = event => {
+    const BTCtoILS = Math.pow(this.state.ILStoBTC, -1)
+    const get = event.target.value
+    const give = get * BTCtoILS
+    this.setState({ youGet: get, youGive: give })
   }
   checkIfNumber = event => {
     if (!(event.charCode >= 48 && event.charCode <= 57)) event.preventDefault()
@@ -35,10 +41,10 @@ export default class extends Component {
           labelPosition="right"
           placeholder="You Give"
           size="huge"
-          style={{ marginRight: '0.5em' }}
-          value={this.state.youHave}
-          ref={ref => (this.youHave = ref)}
-          onChange={this.handleExchangeChange}
+          style={{ marginRight: '0.5em', opacity: 0.9 }}
+          value={this.state.youGive}
+          ref={ref => (this.youGive = ref)}
+          onChange={this.handleExchangeFromILStoBTC}
           onKeyPress={this.checkIfNumber}
         >
           <Label basic content="ILS" />
@@ -46,15 +52,20 @@ export default class extends Component {
           <Label icon="shekel" />
         </Input>
 
-        <Icon name="exchange" size="big" style={{ color: 'lightGreen' }} />
+        <Icon
+          name="exchange"
+          size="big"
+          style={{ color: 'lightGreen', marginBottom: 10 }}
+        />
 
         <Input
-          disabled
           labelPosition="right"
           placeholder="You Get"
           size="huge"
-          style={{ marginLeft: '0.5em', marginRight: '1em' }}
+          style={{ marginLeft: '0.5em', marginRight: '1em', opacity: 0.9 }}
           value={this.state.youGet}
+          onChange={this.handleExchangeFromBTCtoILS}
+          onKeyPress={this.checkIfNumber}
         >
           <Label basic content="BTC" />
           <input />
