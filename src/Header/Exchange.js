@@ -41,7 +41,11 @@ export default class extends Component {
           labelPosition="right"
           placeholder="You Give"
           size="huge"
-          style={{ marginRight: '0.5em', opacity: 0.9 }}
+          style={{
+            marginRight: '0.5em',
+            opacity: 0.9,
+            color: '#FFFF00'
+          }}
           value={this.state.youGive}
           ref={ref => (this.youGive = ref)}
           onChange={this.handleExchangeFromILStoBTC}

@@ -7,8 +7,8 @@ export default () => {
         <Menu.Item as="a" active>
           Exchange
         </Menu.Item>
-        <Menu.Item as="a">Elon</Menu.Item>
-        <Menu.Item as="a">Gliksberg</Menu.Item>
+        <Menu.Item as="a">Market</Menu.Item>
+        <Menu.Item as="a">About Us</Menu.Item>
         <Menu.Item position="right">
           <Button as="a" inverted>
             Log in
