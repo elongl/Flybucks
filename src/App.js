@@ -1,14 +1,10 @@
-import React, { Component } from 'react'
-import Header from './Header'
-import Info from './Info'
+import React from "react";
+import Header from "./Header";
+import Info from "./Info";
 
-export default class extends Component {
-  render() {
-    return (
-      <div>
-        <Header />
-        <Info />
-      </div>
-    )
-  }
-}
+export default () => (
+  <div>
+    <Header />
+    <Info />
+  </div>
+);

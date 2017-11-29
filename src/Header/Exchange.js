@@ -81,11 +81,10 @@ export default class extends Component {
           icon="right arrow"
           labelPosition="right"
           size="huge"
+          color="green"
           style={{
             paddingTop: "0.9em",
-            paddingBottom: "0.9em",
-            backgroundColor: "#10d078",
-            color: "white"
+            paddingBottom: "0.9em"
           }}
           onClick={() => window.alert(this.state.ILStoBTC)}
         />
