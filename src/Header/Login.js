@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, Input, Icon, Button } from 'semantic-ui-react'
-import Modal from '../Modal'
+import { Segment, Input, Icon, Button, Modal, Header } from 'semantic-ui-react'
 import styled from 'react-emotion'
 
 // Stylings
@@ -42,6 +41,19 @@ const Field = props => (
     <Icon name={props.icon} />
     <input style={{ backgroundColor: '#f9f9f9' }} />
   </Input>
+)
+const Popup = props => (
+  <Modal open={props.open} onClose={props.onClose} basic size="small">
+    <Header icon="browser" content={props.headerContent} />
+    <Modal.Content>
+      <h3>{props.content}</h3>
+    </Modal.Content>
+    <Modal.Actions>
+      <Button color="green" onClick={props.onClose} inverted>
+        <Icon name="checkmark" /> Got it
+      </Button>
+    </Modal.Actions>
+  </Modal>
 )
 
 export default class extends Component {
@@ -88,13 +100,13 @@ export default class extends Component {
           alignItems: 'center'
         }}
       >
-        <Modal
+        <Popup
           open={this.state.invalidMail}
           onClose={() => this.setState({ invalidMail: false })}
           headerContent="Invalid Email Address"
           content="You entered an invalid email address. Please check your email address."
         />
-        <Modal
+        <Popup
           open={this.state.invalidPass}
           onClose={() => this.setState({ invalidPass: false })}
           headerContent="Passwords Don't Match"
