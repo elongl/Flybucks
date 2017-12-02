@@ -1,6 +1,6 @@
 import React from "react";
 import Rotating from "react-rotating-text";
-import { injectGlobal } from "emotion";
+import { injectGlobal } from "react-emotion";
 injectGlobal`
 .react-rotating-text-cursor {
   animation: blinking-cursor 0.8s cubic-bezier(0.68, 0.01, 0.01, 0.99) 0s infinite;

@@ -1,6 +1,23 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Container, Button, Input, Label, Icon } from "semantic-ui-react";
+
+// Components
+const Field = props => (
+  <Input
+    labelPosition="right"
+    placeholder={props.placeholder}
+    size="huge"
+    style={props.style}
+    value={props.value}
+    onChange={props.onChange}
+    onKeyPress={this.checkIfNumber}
+  >
+    <Label basic content={props.content} />
+    <input />
+    <Label icon={props.icon} />
+  </Input>
+);
 export default class extends Component {
   state = {
     youGive: "",
@@ -10,7 +27,6 @@ export default class extends Component {
 
   componentDidMount = () => {
     this.getCurrentRate();
-    this.youGive.focus();
   };
   getCurrentRate = async () => {
     let { data: { quotes } } = await axios.get(
@@ -37,49 +53,41 @@ export default class extends Component {
   render() {
     return (
       <Container style={{ paddingTop: "2em" }}>
-        <Input
-          labelPosition="right"
+        <Field
           placeholder="You Give"
-          size="huge"
+          value={this.state.youGive}
+          onChange={this.handleExchangeFromILStoBTC}
+          content="ILS"
+          icon="shekel"
           style={{
             marginRight: "0.5em",
             opacity: 0.9,
             color: "#FFFF00"
           }}
-          value={this.state.youGive}
-          ref={ref => (this.youGive = ref)}
-          onChange={this.handleExchangeFromILStoBTC}
-          onKeyPress={this.checkIfNumber}
-        >
-          <Label basic content="ILS" />
-          <input />
-          <Label icon="shekel" />
-        </Input>
+        />
 
         <Icon
           name="exchange"
           size="big"
           style={{ color: "lightGreen", marginBottom: 10 }}
         />
-
-        <Input
-          labelPosition="right"
+        <Field
           placeholder="You Get"
-          size="huge"
-          style={{ marginLeft: "0.5em", marginRight: "1em", opacity: 0.9 }}
           value={this.state.youGet}
           onChange={this.handleExchangeFromBTCtoILS}
-          onKeyPress={this.checkIfNumber}
-        >
-          <Label basic content="BTC" />
-          <input />
-          <Label icon="bitcoin" />
-        </Input>
+          content="BTC"
+          icon="bitcoin"
+          style={{
+            marginLeft: "0.5em",
+            marginRight: "1em",
+            opacity: 0.9
+          }}
+        />
 
         <Button
+          labelPosition="right"
           content="Exchange"
           icon="right arrow"
-          labelPosition="right"
           size="huge"
           color="green"
           style={{

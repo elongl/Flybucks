@@ -1,8 +1,8 @@
 import React from "react";
 import { Segment } from "semantic-ui-react";
-import Menu from "./Header/Menu";
-import HeaderText from "./Header/HeaderText";
-import Exchange from "./Header/Exchange";
+import Menu from "./Components/Header/Menu";
+import HeaderText from "./Components/Header/HeaderText";
+import Exchange from "./Components/Header/Exchange";
 
 const headerStyle = {
   backgroundImage: "url(https://image.ibb.co/cn4qqw/download.jpg)",
