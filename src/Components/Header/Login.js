@@ -1,27 +1,27 @@
-import React, { Component } from "react";
-import { Segment, Input, Icon, Button } from "semantic-ui-react";
-import Modal from "../Modal";
-import styled from "react-emotion";
+import React, { Component } from 'react'
+import { Segment, Input, Icon, Button } from 'semantic-ui-react'
+import Modal from '../Modal'
+import styled from 'react-emotion'
 
 // Stylings
 const columnFlex = {
-  display: "flex",
-  flexDirection: "column",
+  display: 'flex',
+  flexDirection: 'column',
 
-  justifyContent: "space-around"
-};
+  justifyContent: 'space-around'
+}
 const rowFlex = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-around"
-};
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-around'
+}
 
 // Components
-const VerticalLine = styled("div")`
+const VerticalLine = styled('div')`
   border-left: 1px solid;
   height: 230px;
   opacity: 0.25;
-`;
+`
 const SocialButton = props => (
   <Button
     style={{ ...props.style, marginBottom: 15, width: 265 }}
@@ -30,7 +30,7 @@ const SocialButton = props => (
     icon={props.icon}
     color={props.color}
   />
-);
+)
 const Field = props => (
   <Input
     iconPosition="left"
@@ -40,41 +40,42 @@ const Field = props => (
     onChange={props.onChange}
   >
     <Icon name={props.icon} />
-    <input style={{ backgroundColor: "#f9f9f9" }} />
+    <input style={{ backgroundColor: '#f9f9f9' }} />
   </Input>
-);
+)
 
 export default class extends Component {
   state = {
-    username: "",
-    email: "",
-    password: "",
-    rePassword: "",
+    username: '',
+    email: '',
+    password: '',
+    rePassword: '',
     invalidMail: false,
     invalidPass: false
-  };
+  }
   signUp = () => {
     if (this.validate) {
       // TODO: Add firebase sign up.
     }
-  };
+  }
 
   validate = () => {
-    var validMail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // eslint-disable-next-line
+    let validMail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (!validMail.test(this.state.email)) {
-      this.setState({ invalidMail: true });
-      return false;
+      this.setState({ invalidMail: true })
+      return false
     }
     if (
       this.state.password !== this.state.rePassword ||
-      this.state.password === "" ||
-      this.state.rePassword === ""
+      this.state.password === '' ||
+      this.state.rePassword === ''
     ) {
-      this.setState({ invalidPass: true });
-      return false;
+      this.setState({ invalidPass: true })
+      return false
     }
-    return true;
-  };
+    return true
+  }
 
   render() {
     return (
@@ -84,7 +85,7 @@ export default class extends Component {
           ...columnFlex,
           width: 950,
           minHeight: 600,
-          alignItems: "center"
+          alignItems: 'center'
         }}
       >
         <Modal
@@ -103,7 +104,7 @@ export default class extends Component {
           <h1
             style={{
               fontSize: 66,
-              fontFamily: "Roboto",
+              fontFamily: 'Roboto',
               fontWeight: 100,
               margin: 0
             }}
@@ -113,7 +114,7 @@ export default class extends Component {
           <h2
             style={{
               fontSize: 23,
-              fontFamily: "Roboto",
+              fontFamily: 'Roboto',
               fontWeight: 100,
               margin: 0
             }}
@@ -176,8 +177,8 @@ export default class extends Component {
               onClick={this.validate}
               size="big"
               style={{
-                color: "white",
-                backgroundColor: "#10d078",
+                color: 'white',
+                backgroundColor: '#10d078',
                 width: 250,
                 marginTop: 5
               }}
@@ -188,7 +189,7 @@ export default class extends Component {
             <SocialButton
               name="Google"
               icon="google"
-              style={{ backgroundColor: "#d95132", color: "white" }}
+              style={{ backgroundColor: '#d95132', color: 'white' }}
             />
             <SocialButton name="Facebook" icon="facebook" color="facebook" />
             <SocialButton name="Twitter" icon="twitter" color="twitter" />
@@ -198,6 +199,6 @@ export default class extends Component {
           Already a member? <a>Sign in here!</a>
         </p>
       </Segment>
-    );
+    )
   }
 }

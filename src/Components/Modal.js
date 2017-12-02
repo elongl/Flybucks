@@ -1,5 +1,5 @@
-import React from "react";
-import { Modal, Header, Icon, Button } from "semantic-ui-react";
+import React from 'react'
+import { Modal, Header, Icon, Button } from 'semantic-ui-react'
 export default props => (
   <Modal open={props.open} onClose={props.onClose} basic size="small">
     <Header icon="browser" content={props.headerContent} />
@@ -12,4 +12,4 @@ export default props => (
       </Button>
     </Modal.Actions>
   </Modal>
-);
+)

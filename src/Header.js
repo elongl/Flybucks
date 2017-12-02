@@ -1,16 +1,16 @@
-import React from "react";
-import { Segment } from "semantic-ui-react";
-import Menu from "./Components/Header/Menu";
-import HeaderText from "./Components/Header/HeaderText";
-import Exchange from "./Components/Header/Exchange";
+import React from 'react'
+import { Segment } from 'semantic-ui-react'
+import Menu from './Components/Header/Menu'
+import HeaderText from './Components/Header/HeaderText'
+import Exchange from './Components/Header/Exchange'
 
 const headerStyle = {
-  backgroundImage: "url(https://image.ibb.co/cn4qqw/download.jpg)",
-  backgroundSize: "cover",
-  backgroundPosition: "center",
+  backgroundImage: 'url(https://image.ibb.co/cn4qqw/download.jpg)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
   minHeight: 720,
-  textAlign: "center"
-};
+  textAlign: 'center'
+}
 
 export default () => {
   return (
@@ -21,5 +21,5 @@ export default () => {
         <Exchange />
       </div>
     </Segment>
-  );
-};
+  )
+}

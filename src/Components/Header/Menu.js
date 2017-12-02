@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Menu, Container, Button, Modal, Icon } from "semantic-ui-react";
-import Login from "./Login";
+import React, { Component } from 'react'
+import { Menu, Container, Button, Modal } from 'semantic-ui-react'
+import Login from './Login'
 export default class extends Component {
-  state = { showLogin: false };
+  state = { showLogin: false }
   render() {
     return (
       <Container>
@@ -27,7 +27,7 @@ export default class extends Component {
             <Button
               as="a"
               inverted
-              style={{ marginLeft: "0.5em" }}
+              style={{ marginLeft: '0.5em' }}
               onClick={() => this.setState({ showLogin: true })}
             >
               Sign Up
@@ -35,6 +35,6 @@ export default class extends Component {
           </Menu.Item>
         </Menu>
       </Container>
-    );
+    )
   }
 }
