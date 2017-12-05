@@ -1,23 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Container, Button, Input, Label, Icon } from 'semantic-ui-react'
+import { Container, Button, Icon } from 'semantic-ui-react'
+import ExchangeField from '../Components/ExchangeField'
 
-// Components
-const Field = props => (
-  <Input
-    labelPosition="right"
-    placeholder={props.placeholder}
-    size="huge"
-    style={props.style}
-    value={props.value}
-    onChange={props.onChange}
-    onKeyPress={this.checkIfNumber}
-  >
-    <Label basic content={props.content} />
-    <input />
-    <Label icon={props.icon} />
-  </Input>
-)
 export default class extends Component {
   state = {
     youGive: '',
@@ -46,15 +31,12 @@ export default class extends Component {
     const give = get * BTCtoILS
     this.setState({ youGet: get, youGive: give })
   }
-  checkIfNumber = event => {
-    if (!(event.charCode >= 48 && event.charCode <= 57)) event.preventDefault()
-  }
 
   render() {
     return (
       <Container style={{ paddingTop: '2em' }}>
-        <Field
-          placeholder="You Give"
+        <ExchangeField
+          placeholder="Deposit"
           value={this.state.youGive}
           onChange={this.handleExchangeFromILStoBTC}
           content="ILS"
@@ -71,8 +53,8 @@ export default class extends Component {
           size="big"
           style={{ color: 'lightGreen', marginBottom: 10 }}
         />
-        <Field
-          placeholder="You Get"
+        <ExchangeField
+          placeholder="Recieve"
           value={this.state.youGet}
           onChange={this.handleExchangeFromBTCtoILS}
           content="BTC"

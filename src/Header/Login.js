@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
-import { Segment, Input, Icon, Button, Modal, Header } from 'semantic-ui-react'
-import styled from 'react-emotion'
+import { Segment, Button } from 'semantic-ui-react'
+import VerticalLine from '../Components/VerticaLine'
+import SocialNetworkButton from '../Components/SocialNetworkButton'
+import firebase from '../Firebase'
+import LoginField from '../Components/LoginField'
+import Modal from '../Components/Modal'
 
 // Stylings
 const columnFlex = {
@@ -14,76 +18,53 @@ const rowFlex = {
   alignItems: 'center',
   justifyContent: 'space-around'
 }
-
-// Components
-const VerticalLine = styled('div')`
-  border-left: 1px solid;
-  height: 230px;
-  opacity: 0.25;
-`
-const SocialButton = props => (
-  <Button
-    style={{ ...props.style, marginBottom: 15, width: 265 }}
-    size="big"
-    content={`Sign up with ${props.name}`}
-    icon={props.icon}
-    color={props.color}
-  />
-)
-const Field = props => (
-  <Input
-    iconPosition="left"
-    placeholder={props.placeholder}
-    type={props.type}
-    style={{ marginBottom: 5, width: 250 }}
-    onChange={props.onChange}
-  >
-    <Icon name={props.icon} />
-    <input style={{ backgroundColor: '#f9f9f9' }} />
-  </Input>
-)
-const Popup = props => (
-  <Modal open={props.open} onClose={props.onClose} basic size="small">
-    <Header icon="browser" content={props.headerContent} />
-    <Modal.Content>
-      <h3>{props.content}</h3>
-    </Modal.Content>
-    <Modal.Actions>
-      <Button color="green" onClick={props.onClose} inverted>
-        <Icon name="checkmark" /> Got it
-      </Button>
-    </Modal.Actions>
-  </Modal>
-)
-
 export default class extends Component {
   state = {
     username: '',
     email: '',
-    password: '',
-    rePassword: '',
-    invalidMail: false,
-    invalidPass: false
+    pass: '',
+    repass: '',
+    invalidForm: false,
+    invalidFormHeader: '',
+    invalidFormContent: ''
   }
-  signUp = () => {
-    if (this.validate) {
-      // TODO: Add firebase sign up.
+  signUp = (email, pass, repass) => {
+    if (this.validate(email, pass, repass)) {
+      const response = firebase.createUserWithEmailAndPassword(email, pass)
+      response.catch(error =>
+        this.setState({
+          invalidForm: true,
+          invalidFormHeader: 'Error',
+          invalidFormContent: error.message
+        })
+      )
+      // TODO: Congratulations Component
     }
   }
 
-  validate = () => {
+  validate = (email, pass, repass) => {
     // eslint-disable-next-line
     let validMail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (!validMail.test(this.state.email)) {
-      this.setState({ invalidMail: true })
+      this.setState({
+        invalidForm: true,
+        invalidFormHeader: 'Invalid Email Address',
+        invalidFormContent:
+          'Please make sure you entered a valid email address.'
+      })
       return false
     }
     if (
-      this.state.password !== this.state.rePassword ||
-      this.state.password === '' ||
-      this.state.rePassword === ''
+      this.state.pass !== this.state.repass ||
+      this.state.pass === '' ||
+      this.state.repass === ''
     ) {
-      this.setState({ invalidPass: true })
+      this.setState({
+        invalidForm: true,
+        invalidFormHeader: 'Invalid Passwords',
+        invalidFormContent:
+          'Please make sure your passwords match and consist of 6 letters at least.'
+      })
       return false
     }
     return true
@@ -100,17 +81,11 @@ export default class extends Component {
           alignItems: 'center'
         }}
       >
-        <Popup
-          open={this.state.invalidMail}
-          onClose={() => this.setState({ invalidMail: false })}
-          headerContent="Invalid Email Address"
-          content="You entered an invalid email address. Please check your email address."
-        />
-        <Popup
-          open={this.state.invalidPass}
-          onClose={() => this.setState({ invalidPass: false })}
-          headerContent="Passwords Don't Match"
-          content="You entered passwords that don't match or empty passwords. Please check your passwords."
+        <Modal
+          open={this.state.invalidForm}
+          onClose={() => this.setState({ invalidForm: false })}
+          header={this.state.invalidFormHeader}
+          content={this.state.invalidFormContent}
         />
         <div>
           <h1
@@ -141,7 +116,7 @@ export default class extends Component {
           }}
         >
           <div style={{ ...columnFlex }}>
-            <Field
+            <LoginField
               type="text"
               placeholder="Email Address"
               icon="mail"
@@ -151,7 +126,7 @@ export default class extends Component {
                 })
               }
             />
-            <Field
+            <LoginField
               type="text"
               placeholder="Username"
               icon="user"
@@ -162,23 +137,23 @@ export default class extends Component {
               }
             />
 
-            <Field
+            <LoginField
               type="password"
               placeholder="Password"
               icon="lock"
               onChange={event =>
                 this.setState({
-                  password: event.target.value
+                  pass: event.target.value
                 })
               }
             />
-            <Field
+            <LoginField
               type="password"
               placeholder="Retype Password"
               icon="repeat"
               onChange={event =>
                 this.setState({
-                  rePassword: event.target.value
+                  repass: event.target.value
                 })
               }
             />
@@ -186,7 +161,13 @@ export default class extends Component {
               content="Sign Up!"
               icon="check"
               labelPosition="right"
-              onClick={this.validate}
+              onClick={() =>
+                this.signUp(
+                  this.state.email,
+                  this.state.pass,
+                  this.state.repass
+                )
+              }
               size="big"
               style={{
                 color: 'white',
@@ -198,13 +179,21 @@ export default class extends Component {
           </div>
           <VerticalLine />
           <div style={columnFlex}>
-            <SocialButton
+            <SocialNetworkButton
               name="Google"
               icon="google"
               style={{ backgroundColor: '#d95132', color: 'white' }}
             />
-            <SocialButton name="Facebook" icon="facebook" color="facebook" />
-            <SocialButton name="Twitter" icon="twitter" color="twitter" />
+            <SocialNetworkButton
+              name="Facebook"
+              icon="facebook"
+              color="facebook"
+            />
+            <SocialNetworkButton
+              name="Twitter"
+              icon="twitter"
+              color="twitter"
+            />
           </div>
         </div>
         <p style={{ fontSize: 18, marginRight: 50 }}>
