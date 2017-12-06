@@ -1,6 +1,5 @@
 import React from 'react'
 import { Input, Icon } from 'semantic-ui-react'
-
 export default props => (
   <Input
     iconPosition="left"

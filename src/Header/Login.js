@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Segment, Button } from 'semantic-ui-react'
+import firebase from '../Firebase'
 import VerticalLine from '../Components/VerticaLine'
 import SocialNetworkButton from '../Components/SocialNetworkButton'
-import firebase from '../Firebase'
 import LoginField from '../Components/LoginField'
 import Modal from '../Components/Modal'
 
@@ -38,7 +38,6 @@ export default class extends Component {
           invalidFormContent: error.message
         })
       )
-      // TODO: Congratulations Component
     }
   }
 

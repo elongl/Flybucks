@@ -26,7 +26,7 @@ export default () => {
       <h1
         style={{
           color: 'white',
-          fontSize: '4em',
+          fontSize: '3.75em',
           fontFamily: 'Montserrat',
           fontWeight: 700,
           marginTop: '3em',
@@ -47,7 +47,8 @@ export default () => {
           fontSize: '1.9em',
           fontWeight: 'normal',
           fontFamily: 'Montserrat',
-          color: 'white'
+          color: 'white',
+          letterSpacing: -1
         }}
       >
         The world's local currency within your reach.
