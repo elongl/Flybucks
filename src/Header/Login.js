@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import { Segment, Button } from 'semantic-ui-react'
 import firebase from '../Firebase'
-import VerticalLine from '../Components/VerticaLine'
 import SocialNetworkButton from '../Components/SocialNetworkButton'
 import LoginField from '../Components/LoginField'
 import Modal from '../Components/Modal'
+import HorizonalLine from '../Components/HorizontalLine'
 
 // Stylings
 const columnFlex = {
   display: 'flex',
   flexDirection: 'column',
-
   justifyContent: 'space-around'
 }
 const rowFlex = {
@@ -18,57 +17,24 @@ const rowFlex = {
   alignItems: 'center',
   justifyContent: 'space-around'
 }
+
 export default class extends Component {
   state = {
-    username: '',
     email: '',
     pass: '',
-    repass: '',
     invalidForm: false,
-    invalidFormHeader: '',
     invalidFormContent: ''
   }
-  signUp = (email, pass, repass) => {
-    if (this.validate(email, pass, repass)) {
-      const response = firebase.createUserWithEmailAndPassword(email, pass)
-      response.catch(error =>
-        this.setState({
-          invalidForm: true,
-          invalidFormHeader: 'Error',
-          invalidFormContent: error.message
-        })
-      )
-    }
-  }
-
-  validate = (email, pass, repass) => {
-    // eslint-disable-next-line
-    let validMail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    if (!validMail.test(this.state.email)) {
+  signIn = () => {
+    const { email, pass } = this.state
+    const response = firebase.signInWithEmailAndPassword(email, pass)
+    response.catch(error =>
       this.setState({
         invalidForm: true,
-        invalidFormHeader: 'Invalid Email Address',
-        invalidFormContent:
-          'Please make sure you entered a valid email address.'
+        invalidFormContent: error.message
       })
-      return false
-    }
-    if (
-      this.state.pass !== this.state.repass ||
-      this.state.pass === '' ||
-      this.state.repass === ''
-    ) {
-      this.setState({
-        invalidForm: true,
-        invalidFormHeader: 'Invalid Passwords',
-        invalidFormContent:
-          'Please make sure your passwords match and consist of 6 letters at least.'
-      })
-      return false
-    }
-    return true
+    )
   }
-
   render() {
     return (
       <Segment
@@ -83,39 +49,30 @@ export default class extends Component {
         <Modal
           open={this.state.invalidForm}
           onClose={() => this.setState({ invalidForm: false })}
-          header={this.state.invalidFormHeader}
+          header="Error"
           content={this.state.invalidFormContent}
         />
-        <div>
-          <h1
-            style={{
-              fontSize: 66,
-              fontFamily: 'Roboto',
-              fontWeight: 100,
-              margin: 0
-            }}
-          >
-            Join for free
-          </h1>
-          <h2
-            style={{
-              fontSize: 23,
-              fontFamily: 'Roboto',
-              fontWeight: 100,
-              margin: 0
-            }}
-          >
-            to exchange crypto instantly now
-          </h2>
-        </div>
+        <h1
+          style={{
+            fontSize: 66,
+            fontFamily: 'Roboto',
+            fontWeight: 100,
+            margin: 0,
+            marginRight: 10,
+            textAlign: 'center'
+          }}
+        >
+          Welcome back!
+        </h1>
         <div
           style={{
-            ...rowFlex,
+            ...columnFlex,
             width: 600
           }}
         >
-          <div style={{ ...columnFlex }}>
+          <div style={{ ...columnFlex, alignItems: 'center' }}>
             <LoginField
+              label="Enter your email address"
               type="text"
               placeholder="Email Address"
               icon="mail"
@@ -126,17 +83,7 @@ export default class extends Component {
               }
             />
             <LoginField
-              type="text"
-              placeholder="Username"
-              icon="user"
-              onChange={event =>
-                this.setState({
-                  username: event.target.value
-                })
-              }
-            />
-
-            <LoginField
+              label="Enter your password"
               type="password"
               placeholder="Password"
               icon="lock"
@@ -146,57 +93,30 @@ export default class extends Component {
                 })
               }
             />
-            <LoginField
-              type="password"
-              placeholder="Retype Password"
-              icon="repeat"
-              onChange={event =>
-                this.setState({
-                  repass: event.target.value
-                })
-              }
-            />
             <Button
-              content="Sign Up!"
+              content="Sign in!"
               icon="check"
               labelPosition="right"
-              onClick={() =>
-                this.signUp(
-                  this.state.email,
-                  this.state.pass,
-                  this.state.repass
-                )
-              }
+              onClick={this.signIn}
               size="big"
               style={{
                 color: 'white',
                 backgroundColor: '#10d078',
-                width: 250,
-                marginTop: 5
+                width: 320,
+                marginTop: 5,
+                marginBottom: 10
               }}
             />
           </div>
-          <VerticalLine />
-          <div style={columnFlex}>
-            <SocialNetworkButton
-              name="Google"
-              icon="google"
-              style={{ backgroundColor: '#d95132', color: 'white' }}
-            />
-            <SocialNetworkButton
-              name="Facebook"
-              icon="facebook"
-              color="facebook"
-            />
-            <SocialNetworkButton
-              name="Twitter"
-              icon="twitter"
-              color="twitter"
-            />
+          <HorizonalLine text="or login with" style={{ marginRight: 35 }} />
+          <div style={{ ...rowFlex, marginTop: 25 }}>
+            <SocialNetworkButton name="Google" />
+            <SocialNetworkButton name="Facebook" />
+            <SocialNetworkButton name="Twitter" />
           </div>
         </div>
-        <p style={{ fontSize: 18, marginRight: 50 }}>
-          Already a member? <a>Sign in here!</a>
+        <p style={{ fontSize: 20, marginRight: 50 }}>
+          Not a member? <a>Sign up here!</a>
         </p>
       </Segment>
     )

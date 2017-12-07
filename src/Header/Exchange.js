@@ -76,7 +76,7 @@ export default class extends Component {
             paddingTop: '0.9em',
             paddingBottom: '0.9em'
           }}
-          onClick={() => window.alert(this.state.ILStoBTC)}
+          onClick={() => alert(this.state.ILStoBTC)}
         />
       </Container>
     )

@@ -40,7 +40,7 @@ export default () => {
         />
         <span> With Cryptoknight!</span>
       </h1>
-      <hr width="1000" color="##98FB98" style={{ border: 'none', height: 1 }} />
+      <hr width="1000" color="#FFF" style={{ border: 'none', height: 1 }} />
 
       <h2
         style={{
