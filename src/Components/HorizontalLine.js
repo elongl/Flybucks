@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'react-emotion'
-const Line = styled('div')`
+const Line = styled('div')` 
 line-height: 1em;
 position: relative;
 outline: 0;

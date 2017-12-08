@@ -24,7 +24,6 @@ export default class extends Component {
     pass: '',
     repass: '',
     invalidForm: false,
-    invalidFormHeader: '',
     invalidFormContent: ''
   }
   signUp = () => {
@@ -34,7 +33,6 @@ export default class extends Component {
       response.catch(error =>
         this.setState({
           invalidForm: true,
-          invalidFormHeader: 'Error',
           invalidFormContent: error.message
         })
       )
@@ -48,7 +46,6 @@ export default class extends Component {
     if (!validMail.test(email)) {
       this.setState({
         invalidForm: true,
-        invalidFormHeader: 'Invalid Email Address',
         invalidFormContent:
           'Please make sure you entered a valid email address.'
       })
@@ -57,7 +54,6 @@ export default class extends Component {
     if (pass !== repass || pass === '' || repass === '') {
       this.setState({
         invalidForm: true,
-        invalidFormHeader: 'Invalid Passwords',
         invalidFormContent:
           'Please make sure your passwords match and consist of 6 letters at least.'
       })
@@ -80,7 +76,7 @@ export default class extends Component {
         <Modal
           open={this.state.invalidForm}
           onClose={() => this.setState({ invalidForm: false })}
-          header={this.state.invalidFormHeader}
+          header="Error"
           content={this.state.invalidFormContent}
         />
         <div>
@@ -179,7 +175,10 @@ export default class extends Component {
           </div>
         </div>
         <p style={{ fontSize: 20 }}>
-          Already a member? <a>Sign in here!</a>
+          Already a member?{' '}
+          <a style={{ cursor: 'pointer' }} onClick={this.props.switch}>
+            Sign in here!
+          </a>
         </p>
       </Segment>
     )

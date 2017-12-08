@@ -116,7 +116,10 @@ export default class extends Component {
           </div>
         </div>
         <p style={{ fontSize: 20, marginRight: 50 }}>
-          Not a member? <a>Sign up here!</a>
+          Not a member?
+          <a style={{ cursor: 'pointer' }} onClick={this.props.switch}>
+            Sign up here!
+          </a>
         </p>
       </Segment>
     )

@@ -7,16 +7,21 @@ export default class extends Component {
     showSignup: false,
     showLogin: false
   }
+  switchModal = () => {
+    this.setState(prevState => ({
+      showLogin: !prevState.showLogin,
+      showSignup: !prevState.showSignup
+    }))
+  }
   render() {
     return (
       <Container>
         <Modal
-          dimmer="blurring"
           open={this.state.showSignup || this.state.showLogin}
           onClose={() => this.setState({ showSignup: false, showLogin: false })}
         >
-          {this.state.showSignup && <Signup />}
-          {this.state.showLogin && <Login />}
+          {this.state.showSignup && <Signup switch={this.switchModal} />}
+          {this.state.showLogin && <Login switch={this.switchModal} />}
         </Modal>
 
         <Menu inverted borderless secondary size="large">
@@ -24,7 +29,7 @@ export default class extends Component {
             Exchange
           </Menu.Item>
           <Menu.Item as="a">Market</Menu.Item>
-          <Menu.Item as="a">About Us</Menu.Item>
+          <Menu.Item as="a">About</Menu.Item>
           <Menu.Item position="right">
             <Button
               as="a"
