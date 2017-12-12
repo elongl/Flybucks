@@ -1,5 +1,6 @@
 import * as firebase from 'firebase'
 class Firebase {
+  // Add Responses On Promises.
   initializeApp = () => {
     const config = {
       apiKey: 'AIzaSyADdETym8W1dE0Bzz0XW2j5qyDtJo0qx6U',
@@ -11,11 +12,21 @@ class Firebase {
     }
     firebase.initializeApp(config)
   }
-  signInWithEmailAndPassword = async (email, pass) => {
-    return await firebase.auth().signInWithEmailAndPassword(email, pass)
+  signInWithEmailAndPassword = (email, pass) => {
+    return firebase.auth().signInWithEmailAndPassword(email, pass)
   }
-  createUserWithEmailAndPassword = async (email, pass) => {
-    return await firebase.auth().createUserWithEmailAndPassword(email, pass)
+  createUserWithEmailAndPassword = (email, pass) => {
+    return firebase.auth().createUserWithEmailAndPassword(email, pass)
   }
+  authenticationState = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) console.log(user)
+      else console.log('No user logged in')
+    })
+  }
+  isLoggedIn = () => firebase.auth().currentUser
+  updateProfile = profileObject =>
+    firebase.auth().currentUser.updateProfile(profileObject)
+  signOut = () => firebase.auth().signOut()
 }
 export default new Firebase()

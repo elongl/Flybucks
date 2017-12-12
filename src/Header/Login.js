@@ -28,14 +28,22 @@ export default class extends Component {
   signIn = () => {
     const { email, pass } = this.state
     const response = firebase.signInWithEmailAndPassword(email, pass)
-    response.catch(error =>
-      this.setState({
-        invalidForm: true,
-        invalidFormContent: error.message
-      })
+    response.then(
+      () => {
+        this.props.hide()
+      },
+      response.catch(error =>
+        this.setState({
+          invalidForm: true,
+          invalidFormContent: error.message
+        })
+      )
     )
   }
   render() {
+    const socialNetworks = ['Google', 'Facebook', 'Twitter'].map(name => (
+      <SocialNetworkButton name={name} key={name} />
+    ))
     return (
       <Segment
         raised
@@ -95,7 +103,7 @@ export default class extends Component {
             />
             <Button
               content="Sign in!"
-              icon="check"
+              icon="sign in"
               labelPosition="right"
               onClick={this.signIn}
               size="big"
@@ -109,15 +117,14 @@ export default class extends Component {
             />
           </div>
           <HorizonalLine text="or login with" style={{ marginRight: 35 }} />
-          <div style={{ ...rowFlex, marginTop: 25 }}>
-            <SocialNetworkButton name="Google" />
-            <SocialNetworkButton name="Facebook" />
-            <SocialNetworkButton name="Twitter" />
-          </div>
+          <div style={{ ...rowFlex, marginTop: 25 }}>{socialNetworks}</div>
         </div>
-        <p style={{ fontSize: 20, marginRight: 50 }}>
-          Not a member?
-          <a style={{ cursor: 'pointer' }} onClick={this.props.switch}>
+        <p style={{ fontSize: 20 }}>
+          Not a member?{' '}
+          <a
+            style={{ cursor: 'pointer', color: '#10d078' }}
+            onClick={this.props.switch}
+          >
             Sign up here!
           </a>
         </p>

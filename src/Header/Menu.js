@@ -2,28 +2,44 @@ import React, { Component } from 'react'
 import { Menu, Container, Button, Modal } from 'semantic-ui-react'
 import Signup from './Signup'
 import Login from './Login'
+import firebase from '../Firebase'
 export default class extends Component {
   state = {
-    showSignup: false,
-    showLogin: false
+    displaySignupModal: false,
+    displayLoginModal: false,
+    userSignedIn: false
+  }
+  componentDidMount = () => {
+    console.log(firebase.isLoggedIn())
   }
   switchModal = () => {
     this.setState(prevState => ({
-      showLogin: !prevState.showLogin,
-      showSignup: !prevState.showSignup
+      displayLoginModal: !prevState.displayLoginModal,
+      displaySignupModal: !prevState.displaySignupModal
     }))
   }
+  hideModals = () => {
+    if (this.state.displayLoginModal)
+      this.setState({ displayLoginModal: false })
+    else if (this.state.displaySignupModal)
+      this.setState({ displaySignupModal: false })
+  }
   render() {
+    const login = this.state.displayLoginModal && (
+      <Login switch={this.switchModal} hide={this.hideModals} />
+    )
+    const signup = this.state.displaySignupModal && (
+      <Signup switch={this.switchModal} hide={this.hideModals} />
+    )
     return (
       <Container>
         <Modal
-          open={this.state.showSignup || this.state.showLogin}
-          onClose={() => this.setState({ showSignup: false, showLogin: false })}
+          open={this.state.displaySignupModal || this.state.displayLoginModal}
+          onClose={this.hideModals}
         >
-          {this.state.showSignup && <Signup switch={this.switchModal} />}
-          {this.state.showLogin && <Login switch={this.switchModal} />}
+          {login}
+          {signup}
         </Modal>
-
         <Menu inverted borderless secondary size="large">
           <Menu.Item as="a" active>
             Exchange
@@ -34,18 +50,16 @@ export default class extends Component {
             <Button
               as="a"
               inverted
-              onClick={() => this.setState({ showLogin: true })}
-            >
-              Log in
-            </Button>
+              content="Log In"
+              onClick={() => this.setState({ displayLoginModal: true })}
+            />
             <Button
               as="a"
               inverted
+              content="Sign Up"
               style={{ marginLeft: '0.5em' }}
-              onClick={() => this.setState({ showSignup: true })}
-            >
-              Sign Up
-            </Button>
+              onClick={() => this.setState({ displaySignupModal: true })}
+            />
           </Menu.Item>
         </Menu>
       </Container>

@@ -17,5 +17,13 @@ export default props => (
   </Input>
 )
 const checkIfNumber = event => {
-  if (!(event.charCode >= 48 && event.charCode <= 57)) event.preventDefault()
+  const { charCode } = event
+  const { value } = event.target
+  if (
+    !(
+      (charCode >= 48 && charCode <= 57) ||
+      (charCode === 46 && value.includes('.') === false)
+    )
+  )
+    event.preventDefault()
 }

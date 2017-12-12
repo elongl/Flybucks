@@ -22,8 +22,7 @@ opacity: .5;
 }
 &:after {
   content: '${props => props.text}';
-  font-size: ${props =>
-    props.size !== undefined ? `${props.size}px;` : '16px;'}
+  font-size: ${props => `${props.size || 16}px;`}
   position: relative;
   display: inline-block;
   color: black;

@@ -30,11 +30,16 @@ export default class extends Component {
     const { email, pass, repass } = this.state
     if (this.validate(email, pass, repass)) {
       const response = firebase.createUserWithEmailAndPassword(email, pass)
-      response.catch(error =>
-        this.setState({
-          invalidForm: true,
-          invalidFormContent: error.message
-        })
+      response.then(
+        () => {
+          this.props.hide()
+        },
+        response.catch(error =>
+          this.setState({
+            invalidForm: true,
+            invalidFormContent: error.message
+          })
+        )
       )
     }
   }
@@ -63,6 +68,15 @@ export default class extends Component {
   }
 
   render() {
+    const socialNetworks = ['Google', 'Facebook', 'Twitter'].map(
+      socialNetwork => (
+        <SocialNetworkButton
+          name={socialNetwork}
+          key={socialNetwork}
+          type="signup"
+        />
+      )
+    )
     return (
       <Segment
         raised
@@ -151,7 +165,7 @@ export default class extends Component {
             />
             <Button
               content="Sign Up!"
-              icon="check"
+              icon="signup"
               labelPosition="right"
               onClick={this.signUp}
               size="big"
@@ -164,19 +178,14 @@ export default class extends Component {
             />
           </div>
           <VerticalLine />
-          <div style={columnFlex}>
-            <SocialNetworkButton
-              name="Google"
-              type="signup"
-              style={{ backgroundColor: '#d95132', color: 'white' }}
-            />
-            <SocialNetworkButton name="Facebook" type="signup" />
-            <SocialNetworkButton name="Twitter" type="signup" />
-          </div>
+          <div style={columnFlex}>{socialNetworks}</div>
         </div>
         <p style={{ fontSize: 20 }}>
           Already a member?{' '}
-          <a style={{ cursor: 'pointer' }} onClick={this.props.switch}>
+          <a
+            style={{ cursor: 'pointer', color: '#10d078' }}
+            onClick={this.props.switch}
+          >
             Sign in here!
           </a>
         </p>

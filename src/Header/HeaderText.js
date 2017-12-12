@@ -28,19 +28,22 @@ export default () => {
           color: 'white',
           fontSize: '3.75em',
           fontFamily: 'Montserrat',
-          fontWeight: 700,
+          fontWeight: 100,
           marginTop: '3em',
           letterSpacing: -1
         }}
       >
         <span>Exchange </span>
-        <Rotating
-          pause={3000}
-          items={['Bitcoin', 'Ethereum', 'Litecoin', 'Dashcoin']}
-        />
+        <span style={{ fontWeight: 700 }}>
+          <Rotating
+            pause={3000}
+            style={{ color: '#98fb98' }}
+            items={['Bitcoin', 'Ethereum', 'Litecoin', 'Dashcoin']}
+          />
+        </span>
         <span> With Cryptoknight!</span>
       </h1>
-      <hr width="1000" color="#FFF" style={{ border: 'none', height: 1 }} />
+      <hr width="1000" />
 
       <h2
         style={{

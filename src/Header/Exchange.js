@@ -14,7 +14,7 @@ export default class extends Component {
     this.getCurrentRate()
   }
   getCurrentRate = async () => {
-    let { data: { quotes } } = await axios.get(
+    const { data: { quotes } } = await axios.get(
       'http://www.apilayer.net/api/live?access_key=acafc0bb45eef112ab535b81dfc1116b'
     )
     this.setState({ ILStoBTC: 1 / quotes.USDILS * quotes.USDBTC })
@@ -23,13 +23,13 @@ export default class extends Component {
     const { ILStoBTC } = this.state
     const give = event.target.value
     const get = give * ILStoBTC
-    this.setState({ youGive: give, youGet: get })
+    this.setState({ youGive: give, youGet: get || 0 })
   }
   handleExchangeFromBTCtoILS = event => {
-    const BTCtoILS = Math.pow(this.state.ILStoBTC, -1)
+    const BTCtoILS = 1 / this.state.ILStoBTC
     const get = event.target.value
     const give = get * BTCtoILS
-    this.setState({ youGet: get, youGive: give })
+    this.setState({ youGet: get, youGive: give || 0 })
   }
 
   render() {
