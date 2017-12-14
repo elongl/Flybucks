@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Segment, Button } from 'semantic-ui-react'
 import firebase from '../Firebase'
 import VerticalLine from '../Components/VerticaLine'
-import SocialNetworkButton from '../Components/SocialNetworkButton'
-import SignupField from '../Components/SignupField'
-import Modal from '../Components/Modal'
+import SocialNetworkButton from './SocialNetworkButton'
+import SignupField from '../AuthenticationModal/SignupField'
+import Modal from '../AuthenticationModal/Modal'
 
 // Stylings
 const columnFlex = {
@@ -17,6 +17,9 @@ const rowFlex = {
   alignItems: 'center',
   justifyContent: 'space-around'
 }
+// Props:
+// switch
+// hide
 export default class extends Component {
   state = {
     username: '',

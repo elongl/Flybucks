@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Container, Button, Icon } from 'semantic-ui-react'
-import ExchangeField from '../Components/ExchangeField'
+import ExchangeField from '../Exchange/ExchangeField'
 
 export default class extends Component {
   state = {

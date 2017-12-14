@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Segment, Button } from 'semantic-ui-react'
 import firebase from '../Firebase'
-import SocialNetworkButton from '../Components/SocialNetworkButton'
-import LoginField from '../Components/LoginField'
-import Modal from '../Components/Modal'
+import SocialNetworkButton from './SocialNetworkButton'
+import SigninField from '../AuthenticationModal/SigninField'
+import Modal from '../AuthenticationModal/Modal'
 import HorizonalLine from '../Components/HorizontalLine'
 
 // Stylings
@@ -17,7 +17,9 @@ const rowFlex = {
   alignItems: 'center',
   justifyContent: 'space-around'
 }
-
+// Props:
+// switch
+// hide
 export default class extends Component {
   state = {
     email: '',
@@ -25,6 +27,7 @@ export default class extends Component {
     invalidForm: false,
     invalidFormContent: ''
   }
+
   signIn = () => {
     const { email, pass } = this.state
     const response = firebase.signInWithEmailAndPassword(email, pass)
@@ -40,6 +43,7 @@ export default class extends Component {
       )
     )
   }
+
   render() {
     const socialNetworks = ['Google', 'Facebook', 'Twitter'].map(name => (
       <SocialNetworkButton name={name} key={name} />
@@ -79,7 +83,7 @@ export default class extends Component {
           }}
         >
           <div style={{ ...columnFlex, alignItems: 'center' }}>
-            <LoginField
+            <SigninField
               label="Enter your email address"
               type="text"
               placeholder="Email Address"
@@ -90,7 +94,7 @@ export default class extends Component {
                 })
               }
             />
-            <LoginField
+            <SigninField
               label="Enter your password"
               type="password"
               placeholder="Password"

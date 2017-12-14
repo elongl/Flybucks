@@ -34,6 +34,10 @@ opacity: .5;
 }
 }
 `
+// Props:
+// text
+// size
+// style
 export default ({ text, size, style }) => (
   <Line text={text} size={size} style={style} />
 )

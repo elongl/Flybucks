@@ -1,5 +1,9 @@
 import React from 'react'
 import { Button } from 'semantic-ui-react'
+
+// Props:
+// name
+// type
 export default props => (
   <Button
     icon={props.name.toLowerCase()}
@@ -8,7 +12,7 @@ export default props => (
         ? props.name.toLowerCase()
         : 'google plus'
     }
-    style={{ ...props.style, marginBottom: 15, width: 265 }}
+    style={{ marginBottom: 15, width: 265 }}
     size="big"
     content={
       props.type === 'signup' ? `Sign up with ${props.name}` : props.name

@@ -20,6 +20,7 @@ injectGlobal`
   }
 }
 `
+
 export default () => {
   return (
     <Container>
@@ -41,7 +42,7 @@ export default () => {
             items={['Bitcoin', 'Ethereum', 'Litecoin', 'Dashcoin']}
           />
         </span>
-        <span> With Cryptoknight!</span>
+        <span> With Moneyfood!</span>
       </h1>
       <hr width="1000" />
 

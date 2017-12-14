@@ -12,21 +12,25 @@ class Firebase {
     }
     firebase.initializeApp(config)
   }
+
   signInWithEmailAndPassword = (email, pass) => {
     return firebase.auth().signInWithEmailAndPassword(email, pass)
   }
+
   createUserWithEmailAndPassword = (email, pass) => {
     return firebase.auth().createUserWithEmailAndPassword(email, pass)
   }
-  authenticationState = () => {
+
+  authenticationState = (signedIn, signedOut) => {
     firebase.auth().onAuthStateChanged(user => {
-      if (user) console.log(user)
-      else console.log('No user logged in')
+      if (user) signedIn()
+      else signedOut()
     })
   }
-  isLoggedIn = () => firebase.auth().currentUser
+
   updateProfile = profileObject =>
     firebase.auth().currentUser.updateProfile(profileObject)
+
   signOut = () => firebase.auth().signOut()
 }
 export default new Firebase()

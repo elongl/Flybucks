@@ -5,6 +5,12 @@ const columnFlex = {
   flexDirection: 'column',
   justifyContent: 'space-around'
 }
+// Props:
+// label
+// type
+// placeholder
+// onChange
+// icon
 export default props => (
   <div style={columnFlex}>
     {props.type !== 'password' ? (

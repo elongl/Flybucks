@@ -1,5 +1,11 @@
 import React from 'react'
 import { Modal, Header, Button, Icon } from 'semantic-ui-react'
+
+// Props:
+// onClose
+// open
+// header
+// content
 export default props => (
   <Modal open={props.open} onClose={props.onClose} basic size="small">
     <Header icon="browser" content={props.header} />
