@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
-import Header from './Header'
-import Info from './Info'
+import Header from './App/Header'
+import Information from './App/Information'
+import Reviews from './App/Reviews'
+import Segment3 from './App/Segment3'
+import Footer from './App/Footer'
 import firebase from './Firebase'
+import './InjectGlobal'
+
 export default class extends Component {
   state = { authenticated: undefined }
   componentDidMount = () => {
@@ -16,7 +21,10 @@ export default class extends Component {
     return (
       <div>
         <Header authenticated={this.state.authenticated} />
-        <Info />
+        <Information />
+        <Reviews />
+        <Segment3 />
+        <Footer />
       </div>
     )
   }

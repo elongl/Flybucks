@@ -27,7 +27,7 @@ class Firebase {
       else signedOut()
     })
   }
-
+  getCurrentUser = () => firebase.auth().currentUser
   updateProfile = profileObject =>
     firebase.auth().currentUser.updateProfile(profileObject)
 

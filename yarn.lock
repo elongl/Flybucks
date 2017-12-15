@@ -3978,10 +3978,6 @@ jest@20.0.4:
   dependencies:
     jest-cli "^20.0.4"
 
-jquery@x.*:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
-
 js-base64@^2.1.9:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.3.2.tgz#a79a923666372b580f8e27f51845c6f7e8fbfbaf"
@@ -6062,12 +6058,6 @@ selfsigned@^1.9.1:
   dependencies:
     node-forge "0.6.33"
 
-semantic-ui-css@^2.2.12:
-  version "2.2.12"
-  resolved "https://registry.yarnpkg.com/semantic-ui-css/-/semantic-ui-css-2.2.12.tgz#afc462e5bb4f8a0dcfe3dca11274499a997490dd"
-  dependencies:
-    jquery x.*
-
 semantic-ui-react@^0.74.2:
   version "0.74.2"
   resolved "https://registry.yarnpkg.com/semantic-ui-react/-/semantic-ui-react-0.74.2.tgz#0a55f6f22dd61780600664931813f302262c330d"
@@ -6509,6 +6499,10 @@ sw-toolbox@^3.4.0:
   dependencies:
     path-to-regexp "^1.0.1"
     serviceworker-cache-polyfill "^4.0.0"
+
+sweetalert2@^7.0.10:
+  version "7.0.10"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-7.0.10.tgz#15c76b80fb68e987e007a585dd387a9b0558ec1a"
 
 symbol-observable@^1.0.1:
   version "1.0.4"

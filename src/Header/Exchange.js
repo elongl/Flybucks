@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Container, Button, Icon } from 'semantic-ui-react'
 import ExchangeField from '../Exchange/ExchangeField'
+import Alert from 'sweetalert2'
 
+// Props:
+// authenticated
 export default class extends Component {
   state = {
     youGive: '',
@@ -71,12 +74,21 @@ export default class extends Component {
           content="Exchange"
           icon="right arrow"
           size="huge"
-          color="green"
           style={{
             paddingTop: '0.9em',
-            paddingBottom: '0.9em'
+            paddingBottom: '0.9em',
+            color: 'white',
+            backgroundColor: '#faa61a'
           }}
-          onClick={() => alert(this.state.ILStoBTC)}
+          onClick={() =>
+            this.props.authenticated
+              ? Alert('Elon has not built an exchange function yet')
+              : Alert(
+                  'Who are you?',
+                  'Please make sure you are logged in before exchanging.',
+                  'question'
+                )
+          }
         />
       </Container>
     )

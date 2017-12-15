@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Segment, Button } from 'semantic-ui-react'
 import firebase from '../Firebase'
 import VerticalLine from '../Components/VerticaLine'
-import SocialNetworkButton from './SocialNetworkButton'
+import SocialNetworkButton from '../AuthenticationModal/SocialNetworkButton'
 import SignupField from '../AuthenticationModal/SignupField'
-import Modal from '../AuthenticationModal/Modal'
+import Alert from 'sweetalert2'
+import { Segment, Button, Message } from 'semantic-ui-react'
 
 // Stylings
 const columnFlex = {
@@ -22,54 +22,69 @@ const rowFlex = {
 // hide
 export default class extends Component {
   state = {
-    username: '',
+    displayName: '',
     email: '',
     pass: '',
     repass: '',
-    invalidForm: false,
-    invalidFormContent: ''
+    errorList: []
   }
   signUp = () => {
-    const { email, pass, repass } = this.state
+    const { email, pass, repass, displayName } = this.state
     if (this.validate(email, pass, repass)) {
       const response = firebase.createUserWithEmailAndPassword(email, pass)
       response.then(
-        () => {
-          this.props.hide()
-        },
-        response.catch(error =>
-          this.setState({
-            invalidForm: true,
-            invalidFormContent: error.message
-          })
-        )
+        () =>
+          firebase.updateProfile({ displayName }).then(() => {
+            Alert({
+              position: 'top-right',
+              type: 'success',
+              title: 'Your are now logged in',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.props.hide()
+          }),
+        response.catch(error => Alert('Oops...', error.message, 'error'))
       )
     }
   }
 
   validate = () => {
-    const { email, pass, repass } = this.state
     // eslint-disable-next-line
-    let validMail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const validMail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const { email, pass, repass, displayName, errorList } = this.state
+    if (errorList.length !== 0) this.setState({ errorList: [] })
+    let succeed = true
     if (!validMail.test(email)) {
-      this.setState({
-        invalidForm: true,
-        invalidFormContent:
-          'Please make sure you entered a valid email address.'
-      })
-      return false
+      this.setState(prevState => ({
+        errorList: [
+          ...prevState.errorList,
+          'Please make sure your entered a valid email address.'
+        ]
+      }))
+      succeed = false
     }
-    if (pass !== repass || pass === '' || repass === '') {
-      this.setState({
-        invalidForm: true,
-        invalidFormContent:
+    if (pass !== repass || pass.length < 6) {
+      this.setState(prevState => ({
+        errorList: [
+          ...prevState.errorList,
           'Please make sure your passwords match and consist of 6 letters at least.'
-      })
-      return false
+        ]
+      }))
+      succeed = false
     }
-    return true
+    if (!displayName) {
+      this.setState(prevState => ({
+        errorList: [
+          ...prevState.errorList,
+          'Please make sure your entered a display name.'
+        ]
+      }))
+      succeed = false
+    }
+    console.log(errorList)
+    return succeed
   }
-
   render() {
     const socialNetworks = ['Google', 'Facebook', 'Twitter'].map(
       socialNetwork => (
@@ -80,6 +95,40 @@ export default class extends Component {
         />
       )
     )
+    const fields = [
+      {
+        type: 'text',
+        placeholder: 'Email Address',
+        icon: 'mail',
+        onChange: event => this.setState({ email: event.target.value })
+      },
+      {
+        type: 'text',
+        placeholder: 'Display Name',
+        icon: 'user',
+        onChange: event => this.setState({ displayName: event.target.value })
+      },
+      {
+        type: 'password',
+        placeholder: 'Password',
+        icon: 'lock',
+        onChange: event => this.setState({ pass: event.target.value })
+      },
+      {
+        type: 'password',
+        placeholder: 'Retype Password',
+        icon: 'repeat',
+        onChange: event => this.setState({ repass: event.target.value })
+      }
+    ].map(({ type, placeholder, icon, onChange }) => (
+      <SignupField
+        type={type}
+        placeholder={placeholder}
+        icon={icon}
+        onChange={onChange}
+      />
+    ))
+
     return (
       <Segment
         raised
@@ -90,12 +139,6 @@ export default class extends Component {
           alignItems: 'center'
         }}
       >
-        <Modal
-          open={this.state.invalidForm}
-          onClose={() => this.setState({ invalidForm: false })}
-          header="Error"
-          content={this.state.invalidFormContent}
-        />
         <div>
           <h1
             style={{
@@ -118,6 +161,12 @@ export default class extends Component {
             to exchange crypto instantly now
           </h2>
         </div>
+        <Message
+          error
+          hidden={this.state.errorList.length === 0}
+          header="There was some errors with your submission"
+          list={this.state.errorList}
+        />
         <div
           style={{
             ...rowFlex,
@@ -125,47 +174,8 @@ export default class extends Component {
           }}
         >
           <div style={{ ...columnFlex }}>
-            <SignupField
-              type="text"
-              placeholder="Email Address"
-              icon="mail"
-              onChange={event =>
-                this.setState({
-                  email: event.target.value
-                })
-              }
-            />
-            <SignupField
-              type="text"
-              placeholder="Username"
-              icon="user"
-              onChange={event =>
-                this.setState({
-                  username: event.target.value
-                })
-              }
-            />
+            {fields}
 
-            <SignupField
-              type="password"
-              placeholder="Password"
-              icon="lock"
-              onChange={event =>
-                this.setState({
-                  pass: event.target.value
-                })
-              }
-            />
-            <SignupField
-              type="password"
-              placeholder="Retype Password"
-              icon="repeat"
-              onChange={event =>
-                this.setState({
-                  repass: event.target.value
-                })
-              }
-            />
             <Button
               content="Sign Up!"
               icon="signup"
@@ -174,7 +184,7 @@ export default class extends Component {
               size="big"
               style={{
                 color: 'white',
-                backgroundColor: '#10d078',
+                backgroundColor: '#faa61a',
                 width: 250,
                 marginTop: 5
               }}
@@ -186,7 +196,7 @@ export default class extends Component {
         <p style={{ fontSize: 20 }}>
           Already a member?{' '}
           <a
-            style={{ cursor: 'pointer', color: '#10d078' }}
+            style={{ cursor: 'pointer', color: '#faa61a' }}
             onClick={this.props.switch}
           >
             Sign in here!

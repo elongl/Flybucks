@@ -4,49 +4,62 @@ import MenuButton from '../Menu/MenuButton'
 import SignupModal from '../Menu/SignupModal'
 import SigninModal from '../Menu/SigninModal'
 import firebase from '../Firebase'
+import Alert from 'sweetalert2'
+import UserDropDown from '../Menu/UserDropDown'
 
 // Props:
 // authenticated
 export default class extends Component {
   state = {
     displaySignupModal: false,
-    displayLoginModal: false
+    displaySigninModal: false
   }
 
   switchModal = () => {
     this.setState(prevState => ({
-      displayLoginModal: !prevState.displayLoginModal,
+      displaySigninModal: !prevState.displaySigninModal,
       displaySignupModal: !prevState.displaySignupModal
     }))
   }
   hideModals = () => {
-    if (this.state.displayLoginModal)
-      this.setState({ displayLoginModal: false })
+    if (this.state.displaySigninModal)
+      this.setState({ displaySigninModal: false })
     else if (this.state.displaySignupModal)
       this.setState({ displaySignupModal: false })
   }
-
   render() {
-    const loginModal = this.state.displayLoginModal && (
+    const signinModal = this.state.displaySigninModal && (
       <SigninModal switch={this.switchModal} hide={this.hideModals} />
     )
     const signupModal = this.state.displaySignupModal && (
       <SignupModal switch={this.switchModal} hide={this.hideModals} />
     )
-    const authenticationButton = this.props.authenticated ? (
+    const authenticationButtons = this.props.authenticated ? (
       <Menu.Item position="right">
-        <MenuButton content="Profile" />
+        <UserDropDown displayName={firebase.getCurrentUser().displayName} />
         <MenuButton
           content="Log Out"
           style={{ marginLeft: '0.5em' }}
-          onClick={() => firebase.signOut()}
+          onClick={() => {
+            Alert({
+              title: 'Are you sure?',
+              text: 'You will be logged out.',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Log out!'
+            }).then(result => {
+              if (result.value) firebase.signOut()
+            })
+          }}
         />
       </Menu.Item>
     ) : (
       <Menu.Item position="right">
         <MenuButton
           content="Log In"
-          onClick={() => this.setState({ displayLoginModal: true })}
+          onClick={() => this.setState({ displaySigninModal: true })}
         />
         <MenuButton
           content="Sign Up"
@@ -55,24 +68,25 @@ export default class extends Component {
         />
       </Menu.Item>
     )
-
+    const routerButtons = [
+      { active: true, content: 'Exchange' },
+      { content: 'Market' },
+      { content: 'About' }
+    ].map(({ content, active }) => (
+      <Menu.Item as="a" content={content} key={content} active={active} />
+    ))
     return (
       <Container>
         <Modal
-          open={this.state.displaySignupModal || this.state.displayLoginModal}
+          open={this.state.displaySignupModal || this.state.displaySigninModal}
           onClose={this.hideModals}
         >
-          {loginModal}
+          {signinModal}
           {signupModal}
         </Modal>
-
-        <Menu inverted secondary size="large">
-          <Menu.Item as="a" active>
-            Exchange
-          </Menu.Item>
-          <Menu.Item as="a">Market</Menu.Item>
-          <Menu.Item as="a">About</Menu.Item>
-          {authenticationButton}
+        <Menu inverted secondary size="huge">
+          {routerButtons}
+          {authenticationButtons}
         </Menu>
       </Container>
     )

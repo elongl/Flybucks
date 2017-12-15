@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Segment, Button } from 'semantic-ui-react'
 import firebase from '../Firebase'
-import SocialNetworkButton from './SocialNetworkButton'
+import SocialNetworkButton from '../AuthenticationModal/SocialNetworkButton'
 import SigninField from '../AuthenticationModal/SigninField'
-import Modal from '../AuthenticationModal/Modal'
 import HorizonalLine from '../Components/HorizontalLine'
+import Alert from 'sweetalert2'
 
 // Stylings
 const columnFlex = {
@@ -23,25 +23,22 @@ const rowFlex = {
 export default class extends Component {
   state = {
     email: '',
-    pass: '',
-    invalidForm: false,
-    invalidFormContent: ''
+    pass: ''
   }
 
   signIn = () => {
     const { email, pass } = this.state
     const response = firebase.signInWithEmailAndPassword(email, pass)
-    response.then(
-      () => {
-        this.props.hide()
-      },
-      response.catch(error =>
-        this.setState({
-          invalidForm: true,
-          invalidFormContent: error.message
-        })
-      )
-    )
+    response.then(() => {
+      this.props.hide()
+      Alert({
+        position: 'top-right',
+        type: 'success',
+        title: 'Your are now logged in',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }, response.catch(error => Alert('Oops...', error.message, 'error')))
   }
 
   render() {
@@ -58,12 +55,6 @@ export default class extends Component {
           alignItems: 'center'
         }}
       >
-        <Modal
-          open={this.state.invalidForm}
-          onClose={() => this.setState({ invalidForm: false })}
-          header="Error"
-          content={this.state.invalidFormContent}
-        />
         <h1
           style={{
             fontSize: 66,
@@ -113,7 +104,7 @@ export default class extends Component {
               size="big"
               style={{
                 color: 'white',
-                backgroundColor: '#10d078',
+                backgroundColor: '#faa61a',
                 width: 320,
                 marginTop: 5,
                 marginBottom: 10
@@ -126,7 +117,7 @@ export default class extends Component {
         <p style={{ fontSize: 20 }}>
           Not a member?{' '}
           <a
-            style={{ cursor: 'pointer', color: '#10d078' }}
+            style={{ cursor: 'pointer', color: '#faa61a' }}
             onClick={this.props.switch}
           >
             Sign up here!

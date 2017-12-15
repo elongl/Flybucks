@@ -18,7 +18,9 @@ export default props => (
     ) : (
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <label style={{ fontSize: 16 }}>{props.label}</label>
-        <a style={{ fontSize: 16, color: '#10d078' }}>Forgot password</a>
+        <a style={{ cursor: 'pointer', fontSize: 16, color: '#faa61a' }}>
+          Forgot password
+        </a>
       </div>
     )}
     <Input
