@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Grid, Header, Image } from 'semantic-ui-react'
+import { Segment, Grid, Header } from 'semantic-ui-react'
 export default () => (
   <Segment style={{ padding: '0em' }} vertical>
     <Grid celled="internally" columns="equal" stackable>
@@ -15,8 +15,7 @@ export default () => (
             "I shouldn't have gone with their competitor."
           </Header>
           <p style={{ fontSize: '1.33em' }}>
-            <Image avatar src="/assets/images/avatar/large/nan.jpg" />
-            <b>Nan</b> Chief Fun Officer Acme Toys
+            - <b>Steve Jobs</b> Chief Executive Officer at Apple
           </p>
         </Grid.Column>
       </Grid.Row>

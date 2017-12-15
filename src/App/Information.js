@@ -14,7 +14,7 @@ export default () => (
             a Checkout with Bitcoin service for stores and online stores.
           </p>
           <Header as="h3" style={{ fontSize: '2em' }}>
-            We Support Our Customers At All Times
+            Customer Support At All Times
           </Header>
           <p style={{ fontSize: '1.33em' }}>
             Our rates are the most competitive in Israel. We support same day

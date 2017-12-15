@@ -17,11 +17,15 @@ export default () => (
       </Button>
       <Divider
         as="h4"
-        className="header"
         horizontal
-        style={{ margin: '3em 0em', textTransform: 'uppercase' }}
+        style={{
+          margin: '3em 0em',
+          textTransform: 'uppercase'
+        }}
       >
-        <a href="#header">Case Studies</a>
+        <a style={{ color: '#faa61a' }} href="#header">
+          Case Studies
+        </a>
       </Divider>
       <Header as="h3" style={{ fontSize: '2em' }}>
         Did We Tell You About Our Bananas?

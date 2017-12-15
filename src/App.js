@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Header from './App/Header'
 import Information from './App/Information'
 import Reviews from './App/Reviews'
-import Segment3 from './App/Segment3'
+import Novelty from './App/Novelty'
 import Footer from './App/Footer'
 import firebase from './Firebase'
 import './InjectGlobal'
@@ -23,7 +23,7 @@ export default class extends Component {
         <Header authenticated={this.state.authenticated} />
         <Information />
         <Reviews />
-        <Segment3 />
+        <Novelty />
         <Footer />
       </div>
     )

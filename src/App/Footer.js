@@ -35,7 +35,7 @@ export default () => (
           </Grid.Column>
           <Grid.Column width={7}>
             <Header as="h4" inverted>
-              About
+              Freaking Developers
             </Header>
             <p>Website Created by the almighty Elon Gliksberg</p>
           </Grid.Column>
