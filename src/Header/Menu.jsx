@@ -73,7 +73,13 @@ export default class extends Component {
       { content: 'Market' },
       { content: 'Tools' }
     ].map(({ content, active }) => (
-      <Menu.Item as="a" content={content} key={content} active={active} />
+      <Menu.Item
+        as="a"
+        content={content}
+        key={content}
+        active={active}
+        header={active}
+      />
     ))
     return (
       <Container>

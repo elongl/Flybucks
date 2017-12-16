@@ -30,7 +30,6 @@ export default () => (
               <List.Item as="a">Instagram</List.Item>
               <List.Item as="a">Twitter</List.Item>
               <List.Item as="a">Github</List.Item>
-              <List.Item as="a">Reddit</List.Item>
             </List>
           </Grid.Column>
           <Grid.Column width={7}>

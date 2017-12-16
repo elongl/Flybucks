@@ -4,7 +4,9 @@ import { Dropdown } from 'semantic-ui-react'
 // displayName
 export default ({ displayName }) => (
   <Dropdown
+    item
     icon={null}
+    text="Account Management"
     style={{
       borderStyle: 'solid',
       borderWidth: 2,
@@ -12,8 +14,6 @@ export default ({ displayName }) => (
       color: '#FFF',
       height: 38.5625
     }}
-    item
-    text="Account Management"
   >
     <Dropdown.Menu>
       <Dropdown.Header icon="tags" content={'Signed in as ' + displayName} />
