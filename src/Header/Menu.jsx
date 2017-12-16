@@ -1,40 +1,51 @@
 import React, { Component } from 'react'
-import { Menu, Container, Modal } from 'semantic-ui-react'
+import { Menu, Container, Modal, Visibility } from 'semantic-ui-react'
 import MenuButton from '../Menu/MenuButton'
 import SignupModal from '../Menu/SignupModal'
 import SigninModal from '../Menu/SigninModal'
 import firebase from '../Firebase'
 import Alert from 'sweetalert2'
 import UserDropDown from '../Menu/UserDropDown'
+import FloatingButtons from '../Menu/FloatingButtons'
 
 // Props:
 // authenticated
 export default class extends Component {
   state = {
-    displaySignupModal: false,
-    displaySigninModal: false
+    showSignupModal: false,
+    showSigninModal: false,
+    floatingButtonsVisible: false
   }
+
+  showFloatingButtons = () => this.setState({ floatingButtonsVisible: false })
+  hideFloatingButtons = () => this.setState({ floatingButtonsVisible: true })
+  toggleSignupModal = toggle => this.setState({ showSignupModal: toggle })
+  toggleSigninModal = toggle => this.setState({ showSigninModal: toggle })
 
   switchModal = () => {
     this.setState(prevState => ({
-      displaySigninModal: !prevState.displaySigninModal,
-      displaySignupModal: !prevState.displaySignupModal
+      showSigninModal: !prevState.showSigninModal,
+      showSignupModal: !prevState.showSignupModal
     }))
   }
   hideModals = () => {
-    if (this.state.displaySigninModal)
-      this.setState({ displaySigninModal: false })
-    else if (this.state.displaySignupModal)
-      this.setState({ displaySignupModal: false })
+    if (this.state.showSigninModal) this.toggleSigninModal(false)
+    else if (this.state.showSignupModal) this.toggleSignupModal(false)
   }
   render() {
-    const signinModal = this.state.displaySigninModal && (
+    const {
+      showSigninModal,
+      showSignupModal,
+      floatingButtonsVisible
+    } = this.state
+    const { authenticated } = this.props
+    const signinModal = showSigninModal && (
       <SigninModal switch={this.switchModal} hide={this.hideModals} />
     )
-    const signupModal = this.state.displaySignupModal && (
+    const signupModal = showSignupModal && (
       <SignupModal switch={this.switchModal} hide={this.hideModals} />
     )
-    const authenticationButtons = this.props.authenticated ? (
+    const authenticationButtons = authenticated ? (
       <Menu.Item position="right">
         <UserDropDown displayName={firebase.getCurrentUser().displayName} />
         <MenuButton
@@ -59,12 +70,12 @@ export default class extends Component {
       <Menu.Item position="right">
         <MenuButton
           content="Log In"
-          onClick={() => this.setState({ displaySigninModal: true })}
+          onClick={() => this.toggleSigninModal(true)}
         />
         <MenuButton
           content="Sign Up"
           style={{ marginLeft: '0.5em' }}
-          onClick={() => this.setState({ displaySignupModal: true })}
+          onClick={() => this.toggleSignupModal(true)}
         />
       </Menu.Item>
     )
@@ -83,17 +94,31 @@ export default class extends Component {
     ))
     return (
       <Container>
+        {floatingButtonsVisible && (
+          <FloatingButtons
+            authenticated={authenticated}
+            toggleSigninModal={this.toggleSigninModal}
+            toggleSignupModal={this.toggleSignupModal}
+          />
+        )}
         <Modal
-          open={this.state.displaySignupModal || this.state.displaySigninModal}
+          open={this.state.showSignupModal || this.state.showSigninModal}
           onClose={this.hideModals}
         >
           {signinModal}
           {signupModal}
         </Modal>
-        <Menu inverted secondary size="huge">
-          {routerButtons}
-          {authenticationButtons}
-        </Menu>
+
+        <Visibility
+          onBottomPassed={this.hideFloatingButtons}
+          onBottomVisible={this.showFloatingButtons}
+          once={false}
+        >
+          <Menu inverted secondary size="huge">
+            {routerButtons}
+            {authenticationButtons}
+          </Menu>
+        </Visibility>
       </Container>
     )
   }

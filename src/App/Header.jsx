@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { Segment, Visibility } from 'semantic-ui-react'
+import { Segment } from 'semantic-ui-react'
 import Menu from '../Header/Menu'
 import HeaderText from '../Header/HeaderText'
 import Exchange from '../Header/Exchange'
-import FloatingContainer from '../Components/FloatingContainer'
 
 const headerStyle = {
   backgroundImage:
@@ -13,25 +12,18 @@ const headerStyle = {
   minHeight: '100vh',
   textAlign: 'center'
 }
-// Props:
-// authenticated
+
 export default class extends Component {
   render() {
     const { authenticated } = this.props
     return (
-      <Visibility
-        onBottomPassed={() => this.props.headerIsShown()}
-        onBottomVisible={() => this.props.headerIsHidden()}
-        once={false}
-      >
-        <Segment id="header" vertical style={headerStyle}>
-          <Menu authenticated={authenticated} />
-          <div style={{ marginTop: 300 }}>
-            <HeaderText />
-            <Exchange authenticated={authenticated} />
-          </div>
-        </Segment>
-      </Visibility>
+      <Segment id="header" vertical style={headerStyle}>
+        <Menu authenticated={authenticated} />
+        <div style={{ marginTop: 300 }}>
+          <HeaderText />
+          <Exchange authenticated={authenticated} />
+        </div>
+      </Segment>
     )
   }
 }
