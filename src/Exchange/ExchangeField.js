@@ -19,7 +19,7 @@ export default props => (
     onKeyPress={checkIfNumber}
   >
     <Label basic content={props.content} />
-    <input />
+    <input style={{ fontWeight: 700, textAlign: 'center' }} />
     <Label icon={props.icon} />
   </Input>
 )

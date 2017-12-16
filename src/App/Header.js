@@ -16,7 +16,7 @@ const headerStyle = {
 // authenticated
 export default ({ authenticated }) => {
   return (
-    <Segment vertical style={headerStyle}>
+    <Segment id="header" vertical style={headerStyle}>
       <Menu authenticated={authenticated} />
       <div style={{ marginTop: 300 }}>
         <HeaderText />

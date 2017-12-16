@@ -26,13 +26,27 @@ export default class extends Component {
     const { ILStoBTC } = this.state
     const give = event.target.value
     const get = give * ILStoBTC
-    this.setState({ youGive: give, youGet: get || 0 })
+    const displayGet = get
+      .toString()
+      .substring(0, get.toString().indexOf('.') + 7)
+
+    this.setState({
+      youGive: give,
+      youGet: displayGet || 0
+    })
   }
   handleExchangeFromBTCtoILS = event => {
     const BTCtoILS = 1 / this.state.ILStoBTC
     const get = event.target.value
     const give = get * BTCtoILS
-    this.setState({ youGet: get, youGive: give || 0 })
+    const displayGive = give
+      .toString()
+      .substring(0, give.toString().indexOf('.') + 6)
+
+    this.setState({
+      youGive: displayGive,
+      youGet: get || 0
+    })
   }
 
   render() {
@@ -54,7 +68,8 @@ export default class extends Component {
         <Icon
           name="exchange"
           size="big"
-          style={{ color: 'lightGreen', marginBottom: 10 }}
+          color="yellow"
+          style={{ marginBottom: 10 }}
         />
         <ExchangeField
           placeholder="Recieve"
