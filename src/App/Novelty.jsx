@@ -7,14 +7,14 @@ export default () => (
       <Grid.Row>
         <Grid.Column width={5}>
           <Header as="h3" style={{ fontSize: '2rem' }}>
-            Why Moneyfood?
+            Why Flybucks?
           </Header>
           <p style={{ fontSize: '1.33rem' }}>
             We provide individuals and businesses a world class experience to
-            exchange cryptos and digital tokens. Moneyfood is the go-to spot for
+            exchange cryptos and digital tokens. Flybucks is the go-to spot for
             traders who demand lightning fast exchange execution, and best
             security practices. Whether you are new to cryptocurrencies, or a
-            veteran, Moneyfood was created for you!
+            veteran, Flybucks was created for you!
           </p>
         </Grid.Column>
         <Grid.Column width={4}>

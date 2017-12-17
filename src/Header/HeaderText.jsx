@@ -25,7 +25,7 @@ export default () => (
       <span style={{ fontWeight: 700, color: '#faa61a' }}>
         <Rotating pause={3000} items={coins} />
       </span>
-      <span> With Moneyfood!</span>
+      <span> With Flybucks!</span>
     </h1>
     <hr width="1000" />
 

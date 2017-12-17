@@ -58,8 +58,7 @@ export default class extends Component {
           icon="shekel"
           style={{
             marginRight: '0.5em',
-            opacity: 0.9,
-            color: '#FFFF00'
+            opacity: 0.95
           }}
         />
 
@@ -78,7 +77,7 @@ export default class extends Component {
           style={{
             marginLeft: '0.5em',
             marginRight: '1em',
-            opacity: 0.9
+            opacity: 0.95
           }}
         />
 

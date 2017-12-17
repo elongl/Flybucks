@@ -4,7 +4,7 @@ const team = [
   {
     header: 'Elon Gliksberg',
     meta: 'Fullstack Developer',
-    description: 'Elon is the creator of Moneyfood.',
+    description: 'Elon is the creator of Flybucks.',
     exchangeCount: 159,
     image: 'https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg'
   },
@@ -18,13 +18,13 @@ const team = [
   {
     header: 'Pattrick Stewart',
     meta: 'Product Designer',
-    description: 'Pattrick is head of design at Moneyfood.',
+    description: 'Pattrick is head of design at Flybucks.',
     exchangeCount: 213,
     image: 'https://semantic-ui.com/images/avatar2/large/patrick.png'
   },
   {
     header: 'Steve Jobs',
-    meta: 'Apple Co-Founder',
+    meta: 'Secretary',
     description: 'Steve founded Apple and now works for us.',
     exchangeCount: 59,
     image: 'http://1.semantic-ui.com/images/home-avatar.png'
@@ -58,7 +58,8 @@ export default () => (
         width: 1300,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        flexWrap: 'wrap'
       }}
     >
       {team.map(employee => (
