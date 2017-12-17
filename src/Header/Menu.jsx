@@ -7,9 +7,6 @@ import firebase from '../Firebase'
 import Alert from 'sweetalert2'
 import UserDropDown from '../Menu/UserDropDown'
 import FloatingButtons from '../Menu/FloatingButtons'
-
-// Props:
-// authenticated
 export default class extends Component {
   state = {
     showSignupModal: false,
@@ -17,10 +14,10 @@ export default class extends Component {
     floatingButtonsVisible: false
   }
 
-  showFloatingButtons = () => this.setState({ floatingButtonsVisible: false })
-  hideFloatingButtons = () => this.setState({ floatingButtonsVisible: true })
   toggleSignupModal = toggle => this.setState({ showSignupModal: toggle })
   toggleSigninModal = toggle => this.setState({ showSigninModal: toggle })
+  toggleFloatingButtons = toggle =>
+    this.setState({ floatingButtonsVisible: toggle })
 
   switchModal = () => {
     this.setState(prevState => ({
@@ -38,7 +35,9 @@ export default class extends Component {
       showSignupModal,
       floatingButtonsVisible
     } = this.state
+
     const { authenticated } = this.props
+
     const signinModal = showSigninModal && (
       <SigninModal switch={this.switchModal} hide={this.hideModals} />
     )
@@ -92,15 +91,18 @@ export default class extends Component {
         header={active}
       />
     ))
+
+    const floatingButtons = floatingButtonsVisible && (
+      <FloatingButtons
+        authenticated={authenticated}
+        toggleSigninModal={this.toggleSigninModal}
+        toggleSignupModal={this.toggleSignupModal}
+      />
+    )
+
     return (
       <Container>
-        {floatingButtonsVisible && (
-          <FloatingButtons
-            authenticated={authenticated}
-            toggleSigninModal={this.toggleSigninModal}
-            toggleSignupModal={this.toggleSignupModal}
-          />
-        )}
+        {floatingButtons}
         <Modal
           open={this.state.showSignupModal || this.state.showSigninModal}
           onClose={this.hideModals}
@@ -110,8 +112,8 @@ export default class extends Component {
         </Modal>
 
         <Visibility
-          onBottomPassed={this.hideFloatingButtons}
-          onBottomVisible={this.showFloatingButtons}
+          onBottomPassed={() => this.toggleFloatingButtons(true)}
+          onBottomVisible={() => this.toggleFloatingButtons(false)}
           once={false}
         >
           <Menu inverted secondary size="huge">

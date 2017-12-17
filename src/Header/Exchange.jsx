@@ -4,8 +4,6 @@ import { Container, Button, Icon } from 'semantic-ui-react'
 import ExchangeField from '../Exchange/ExchangeField'
 import Alert from 'sweetalert2'
 
-// Props:
-// authenticated
 export default class extends Component {
   state = {
     youGive: '',

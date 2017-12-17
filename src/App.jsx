@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Header from './App/Header'
 import Information from './App/Information'
-import Reviews from './App/Reviews'
+import Team from './App/Team'
 import Novelty from './App/Novelty'
 import Footer from './App/Footer'
 import firebase from './Firebase'
@@ -9,7 +9,7 @@ import './InjectGlobal'
 
 export default class extends Component {
   state = { authenticated: undefined }
-  componentDidMount = () => {
+  componentWillMount = () => {
     firebase.initializeApp()
     firebase.authenticationState(
       () => this.setState({ authenticated: true }),
@@ -23,7 +23,7 @@ export default class extends Component {
       <div>
         <Header authenticated={this.state.authenticated} />
         <Information />
-        <Reviews />
+        <Team />
         <Novelty />
         <Footer />
       </div>

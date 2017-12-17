@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Segment, Button } from 'semantic-ui-react'
 import firebase from '../Firebase'
 import SocialNetworkButton from '../AuthenticationModal/SocialNetworkButton'
-import SigninField from '../AuthenticationModal/SigninField'
+import Field from '../AuthenticationModal/SigninField'
 import HorizonalLine from '../Components/HorizontalLine'
 import Alert from 'sweetalert2'
 
@@ -74,27 +74,21 @@ export default class extends Component {
           }}
         >
           <div style={{ ...columnFlex, alignItems: 'center' }}>
-            <SigninField
+            <Field
               label="Enter your email address"
               type="text"
               placeholder="Email Address"
               icon="mail"
-              onChange={event =>
-                this.setState({
-                  email: event.target.value
-                })
-              }
+              onChange={event => this.setState({ email: event.target.value })}
+              signIn={this.signIn}
             />
-            <SigninField
+            <Field
               label="Enter your password"
               type="password"
               placeholder="Password"
               icon="lock"
-              onChange={event =>
-                this.setState({
-                  pass: event.target.value
-                })
-              }
+              onChange={event => this.setState({ pass: event.target.value })}
+              signIn={this.signIn}
             />
             <Button
               content="Sign in!"

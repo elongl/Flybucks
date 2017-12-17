@@ -1,7 +1,11 @@
 import React from 'react'
 import { Segment, Grid, Header, List, Container } from 'semantic-ui-react'
 export default () => (
-  <Segment inverted vertical style={{ padding: '5em 0em' }}>
+  <Segment
+    inverted
+    vertical
+    style={{ padding: '5rem', backgroundColor: '#394247' }}
+  >
     <Container>
       <Grid divided inverted stackable>
         <Grid.Row>
@@ -10,6 +14,7 @@ export default () => (
             <List link inverted>
               <List.Item as="a">Exchange</List.Item>
               <List.Item as="a">Market</List.Item>
+              <List.Item as="a">Cross Platform</List.Item>
               <List.Item as="a">Cryptocurrencies</List.Item>
               <List.Item as="a">Affiliate Programs</List.Item>
             </List>
@@ -26,7 +31,6 @@ export default () => (
           <Grid.Column width={3}>
             <Header inverted as="h4" content="About" />
             <List link inverted>
-              <List.Item as="a">Sitemap</List.Item>
               <List.Item as="a">Contact Us</List.Item>
               <List.Item as="a">EGK Partnership</List.Item>
             </List>
@@ -35,7 +39,7 @@ export default () => (
             <Header as="h4" inverted>
               Freaking Developers
             </Header>
-            <p>Website Created by the almighty Elon Gliksberg</p>
+            <p>Website Created by the almighty Elon Gliksberg.</p>
           </Grid.Column>
         </Grid.Row>
       </Grid>

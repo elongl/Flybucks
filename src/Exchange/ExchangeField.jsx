@@ -1,13 +1,5 @@
 import React from 'react'
 import { Input, Label } from 'semantic-ui-react'
-
-// Props:
-// placeholder
-// value
-// onChange
-// content
-// icon
-// style
 export default props => (
   <Input
     labelPosition="right"

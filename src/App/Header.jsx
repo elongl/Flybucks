@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Segment } from 'semantic-ui-react'
 import Menu from '../Header/Menu'
 import HeaderText from '../Header/HeaderText'
@@ -13,17 +13,19 @@ const headerStyle = {
   textAlign: 'center'
 }
 
-export default class extends Component {
-  render() {
-    const { authenticated } = this.props
-    return (
-      <Segment id="header" vertical style={headerStyle}>
-        <Menu authenticated={authenticated} />
-        <div style={{ marginTop: 300 }}>
-          <HeaderText />
-          <Exchange authenticated={authenticated} />
-        </div>
-      </Segment>
-    )
-  }
-}
+export default ({ authenticated }) => (
+  <Segment vertical style={headerStyle}>
+    <Menu authenticated={authenticated} />
+    <div
+      style={{
+        position: 'absolute',
+        top: '40%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)'
+      }}
+    >
+      <HeaderText />
+      <Exchange authenticated={authenticated} />
+    </div>
+  </Segment>
+)

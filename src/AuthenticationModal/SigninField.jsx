@@ -5,12 +5,6 @@ const columnFlex = {
   flexDirection: 'column',
   justifyContent: 'space-around'
 }
-// Props:
-// label
-// type
-// placeholder
-// onChange
-// icon
 export default props => (
   <div style={columnFlex}>
     {props.type !== 'password' ? (
@@ -34,6 +28,9 @@ export default props => (
         marginBottom: 20
       }}
       onChange={props.onChange}
+      onKeyPress={({ charCode }) => {
+        if (charCode === 13) props.signIn()
+      }}
     >
       <Icon name={props.icon} />
       <input style={{ backgroundColor: '#f9f9f9' }} />

@@ -12,7 +12,7 @@ export default ({ displayName }) => (
       borderWidth: 2,
       fontWeight: 700,
       color: '#FFF',
-      height: 38.5625
+      height: 41.13
     }}
   >
     <Dropdown.Menu>

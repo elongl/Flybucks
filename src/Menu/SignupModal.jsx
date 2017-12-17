@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import firebase from '../Firebase'
 import VerticalLine from '../Components/VerticaLine'
 import SocialNetworkButton from '../AuthenticationModal/SocialNetworkButton'
-import SignupField from '../AuthenticationModal/SignupField'
+import Field from '../AuthenticationModal/SignupField'
 import Alert from 'sweetalert2'
 import { Segment, Button, Message } from 'semantic-ui-react'
 
@@ -121,11 +121,12 @@ export default class extends Component {
         onChange: event => this.setState({ repass: event.target.value })
       }
     ].map(({ type, placeholder, icon, onChange }) => (
-      <SignupField
+      <Field
         type={type}
         placeholder={placeholder}
         icon={icon}
         onChange={onChange}
+        signUp={this.signUp}
       />
     ))
 

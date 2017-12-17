@@ -12,7 +12,12 @@ export default ({ authenticated, toggleSigninModal, toggleSignupModal }) =>
         zIndex: 1
       }}
     >
-      <Button href="#header" secondary size="big" circular>
+      <Button
+        onClick={() => window.scroll({ top: 0, left: 0, behavior: 'smooth' })}
+        secondary
+        size="big"
+        circular
+      >
         Start Exchanging
         <Icon name="right arrow" />
       </Button>
