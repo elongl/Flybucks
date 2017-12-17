@@ -80,8 +80,8 @@ export default class extends Component {
     )
     const routerButtons = [
       { active: true, content: 'Exchange' },
-      { content: 'Market' },
-      { content: 'Tools' }
+      { content: 'Charts' },
+      { content: 'Affiliate' }
     ].map(({ content, active }) => (
       <Menu.Item
         as="a"

@@ -36,7 +36,8 @@ export default () => (
     style={{
       background: 'linear-gradient(-45deg,#ff9966,#ff5e62)',
       minHeight: 656,
-      paddingBottom: '10rem'
+      paddingBottom: '10rem',
+      paddingTop: '2rem'
     }}
     vertical
   >
