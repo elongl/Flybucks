@@ -8,16 +8,14 @@ export default class extends Component {
     visible: true
   }
   componentDidMount = async () => {
-    this.setState({ rates: await exchangeRates.getTickers() })
+    this.setState({ rates: await exchangeRates.getRates() })
+    console.log(this.state.rates)
     this.handleVisibleRates()
   }
   handleVisibleRates = () => {
     setInterval(() => {
       this.setState({ visible: false })
-      setTimeout(() => {
-        this.rotateRates()
-        this.setState({ visible: true })
-      }, 1000)
+      setTimeout(() => this.rotateRates(), 1000)
     }, 8000)
   }
 
@@ -27,19 +25,16 @@ export default class extends Component {
       const current = rates.shift()
       rates.push(current)
     }
-    this.setState({ rates })
+    this.setState({ rates }, () => this.setState({ visible: true }))
   }
 
   render() {
+    console.log(this.state.rates)
     const currencies = this.state.rates ? (
       this.state.rates
         .slice(0, 6)
-        .map(ticker => (
-          <Currency
-            key={ticker.base}
-            ticker={ticker}
-            visible={this.state.visible}
-          />
+        .map(rate => (
+          <Currency key={rate.name} rate={rate} visible={this.state.visible} />
         ))
     ) : (
       <Loading />
@@ -66,9 +61,9 @@ const Loading = () => (
     <Loader />
   </Dimmer>
 )
-const Currency = ({ ticker, visible }) => {
-  const color = ticker.change > 0 ? 'green' : 'red'
-  const icon = ticker.change > 0 ? 'up arrow' : 'down arrow'
+const Currency = ({ rate, visible }) => {
+  const color = rate.percent_change_24h > 0 ? 'green' : 'red'
+  const icon = rate.percent_change_24h > 0 ? 'up arrow' : 'down arrow'
   return (
     <Transition visible={visible} animation="fade down" duration={500}>
       <div>
@@ -79,27 +74,18 @@ const Currency = ({ ticker, visible }) => {
           }}
         >
           <h2 style={{ margin: 0 }}>
-            {ticker.base} <Icon name={icon} color={color} />{' '}
+            {rate.symbol} <Icon name={icon} color={color} />{' '}
           </h2>
           <h3 style={{ margin: 0 }}>
-            {digitsAfterPoint(
-              ticker.price / (ticker.price - ticker.change) * 100 - 100,
-              2
-            )}%
+            {digitsAfterPoint(rate.percent_change_24h, 2)}%
           </h3>
         </div>
-        <h3 style={{ margin: 0 }}>
-          {digitsAfterPoint(ticker.price, 2)} <Icon name="shekel" />
-        </h3>
-        <h4 style={{ margin: 0 }}>
-          Volume: {digitsAfterPoint(ticker.volume || 0, 2)}
-        </h4>
+        <h3 style={{ margin: 0 }}>{digitsAfterPoint(rate.price_ils, 2)} ILS</h3>
+        <h4 style={{ margin: 0 }}>Ranking: {rate.rank}</h4>
       </div>
     </Transition>
   )
 }
 
 const digitsAfterPoint = (number, digitsAfterPoint) =>
-  number
-    .toString()
-    .substring(0, number.toString().indexOf('.') + digitsAfterPoint + 1)
+  number.substring(0, number.indexOf('.') + digitsAfterPoint + 1)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import * as exchangeRates from '../ExchangeRates'
 import { Container, Button, Icon } from 'semantic-ui-react'
 import ExchangeField from '../Exchange/ExchangeField'
 import Alert from 'sweetalert2'
@@ -11,15 +11,12 @@ export default class extends Component {
     ILStoBTC: ''
   }
 
-  componentDidMount = () => {
-    this.getCurrentRate()
+  componentDidMount = async () => {
+    const rates = await exchangeRates.getRates()
+    const ILStoBTC = 1 / rates[0].price_ils
+    this.setState({ ILStoBTC })
   }
-  getCurrentRate = async () => {
-    const { data: { quotes } } = await axios.get(
-      'http://www.apilayer.net/api/live?access_key=acafc0bb45eef112ab535b81dfc1116b'
-    )
-    this.setState({ ILStoBTC: 1 / quotes.USDILS * quotes.USDBTC })
-  }
+
   handleExchangeFromILStoBTC = event => {
     const { ILStoBTC } = this.state
     const give = event.target.value

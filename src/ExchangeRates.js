@@ -1,34 +1,19 @@
 import axios from 'axios'
-const defaultCurrencies = [
-  'BTC',
-  'ETH',
-  'DASH',
-  'XMR',
-  'XRP',
-  'LTC',
-  'DOGE',
-  'ZEC'
-]
-
-export const getTickers = async (currencies = defaultCurrencies) => {
+export const getRates = async () => {
   const USDtoILSRate = await getUSDtoILSRate()
-  let tickers = await Promise.all(
-    currencies.map(currency =>
-      axios.get(`https://api.cryptonator.com/api/ticker/${currency}-USD`)
-    )
+  let { data: rates } = await axios.get(
+    'https://api.coinmarketcap.com/v1/ticker/?limit=15'
   )
-  tickers = tickers.map(ticker => ticker.data.ticker)
-  tickers = tickers.map(ticker => ({
-    ...ticker,
-    target: 'ILS',
-    price: ticker.price * USDtoILSRate,
-    change: ticker.change * USDtoILSRate
+  rates = rates.map(rate => ({
+    ...rate,
+    price_ils: (rate.price_usd * USDtoILSRate).toString()
   }))
-  return tickers
+  return rates
 }
 const getUSDtoILSRate = async () => {
-  const { data: { quotes: { USDILS } } } = await axios.get(
-    'http://www.apilayer.net/api/live?access_key=acafc0bb45eef112ab535b81dfc1116b'
+  const { data: { rates: { ILS } } } = await axios.get(
+    'https://api.fixer.io/latest?base=USD'
   )
-  return USDILS
+  return ILS
 }
+//RECHECK
