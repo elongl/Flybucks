@@ -1,6 +1,5 @@
 import * as firebase from 'firebase'
 class Firebase {
-  // Add Responses On Promises.
   initializeApp = () => {
     const config = {
       apiKey: 'AIzaSyADdETym8W1dE0Bzz0XW2j5qyDtJo0qx6U',
@@ -12,7 +11,6 @@ class Firebase {
     }
     firebase.initializeApp(config)
   }
-
   signInWithEmailAndPassword = (email, pass) => {
     return firebase.auth().signInWithEmailAndPassword(email, pass)
   }
@@ -20,7 +18,6 @@ class Firebase {
   createUserWithEmailAndPassword = (email, pass) => {
     return firebase.auth().createUserWithEmailAndPassword(email, pass)
   }
-
   authenticationState = (signedIn, signedOut) => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) signedIn()
