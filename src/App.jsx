@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import Header from './App/Header'
 import Information from './App/Information'
 import Team from './App/Team'
-import Currencies from './App/Currencies'
+import CryptoRates from './App/CryptoRates'
 import Novelty from './App/Novelty'
 import Footer from './App/Footer'
 import firebase from './Firebase'
+import * as exchangeRates from './ExchangeRates'
 import './InjectGlobal'
 
 export default class extends Component {
@@ -18,6 +19,7 @@ export default class extends Component {
       () => this.setState({ authenticated: true }),
       () => this.setState({ authenticated: false })
     )
+    console.log(await exchangeRates.getRate('Bitcoin', 'ILS'))
   }
 
   render() {
@@ -25,7 +27,7 @@ export default class extends Component {
     return (
       <div>
         <Header authenticated={this.state.authenticated} />
-        <Currencies />
+        <CryptoRates />
         <Information />
         <Team />
         <Novelty />
