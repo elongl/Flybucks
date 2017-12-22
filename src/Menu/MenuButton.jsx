@@ -9,8 +9,8 @@ export default props => (
   <Button
     as="a"
     inverted
-    content={props.content}
-    style={props.style}
+    content={props.content || props.children}
+    style={{ ...props.style, zIndex: 1 }}
     onClick={props.onClick}
   />
 )

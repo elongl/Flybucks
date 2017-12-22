@@ -83,13 +83,7 @@ export default class extends Component {
       { content: 'Charts' },
       { content: 'Affiliate' }
     ].map(({ content, active }) => (
-      <Menu.Item
-        as="a"
-        content={content}
-        key={content}
-        active={active}
-        header={active}
-      />
+      <Menu.Item as="a" content={content} key={content} active={active} />
     ))
 
     const floatingButtons = floatingButtonsVisible && (

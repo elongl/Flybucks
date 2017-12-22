@@ -44,11 +44,12 @@ export default class extends Component {
         vertical
         inverted
         style={{
+          minHeight: '12rem',
           backgroundColor: '#0d141d',
-          minHeight: '11rem',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-around'
+          justifyContent: 'space-around',
+          flexWrap: 'wrap'
         }}
       >
         {currencies}

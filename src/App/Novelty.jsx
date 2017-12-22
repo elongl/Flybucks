@@ -28,7 +28,7 @@ export default () => (
           horizontal
           section
           style={{
-            width: '80rem',
+            width: '60%',
             textTransform: 'uppercase',
             height: 0
           }}

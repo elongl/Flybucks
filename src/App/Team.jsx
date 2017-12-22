@@ -33,9 +33,9 @@ const team = [
 
 export default () => (
   <Segment
+    textAlign="center"
     style={{
       background: 'linear-gradient(-45deg,#ff9966,#ff5e62)',
-      minHeight: 656,
       paddingBottom: '10rem',
       paddingTop: '2rem'
     }}
@@ -43,9 +43,7 @@ export default () => (
   >
     <h2
       style={{
-        textAlign: 'center',
-        paddingTop: '2.5rem',
-        paddingBottom: '2.5rem',
+        padding: '2.5rem 0',
         fontFamily: 'Montserrat',
         color: 'white',
         fontSize: 33
@@ -57,14 +55,13 @@ export default () => (
       style={{
         width: 1300,
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        justifyContent: 'space-around'
       }}
     >
       {team.map(employee => (
         <Card
-          style={{ margin: 0, padding: 0 }}
+          style={{ margin: '1rem 1rem', padding: 0 }}
           key={employee.header}
           header={employee.header}
           meta={employee.meta}

@@ -1,19 +1,12 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
-// Props:
-// displayName
+
 export default ({ displayName }) => (
   <Dropdown
-    item
     icon={null}
     text="Account Management"
-    style={{
-      borderStyle: 'solid',
-      borderWidth: 2,
-      fontWeight: 700,
-      color: '#FFF',
-      height: 41.13
-    }}
+    style={{ color: 'white', fontWeight: 700 }}
+    className="ui inverted item button"
   >
     <Dropdown.Menu>
       <Dropdown.Header icon="tags" content={'Signed in as ' + displayName} />

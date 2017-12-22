@@ -9,5 +9,5 @@ export const getRate = async (currencyName, convertSymbol) => {
     `https://api.coinmarketcap.com/v1/ticker/${currencyName}/?convert=${
       convertSymbol
     }`
-  )).data
+  )).data[0]
 }

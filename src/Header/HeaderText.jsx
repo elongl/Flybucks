@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container } from 'semantic-ui-react'
+import { Container, Header } from 'semantic-ui-react'
 import Rotating from 'react-rotating-text'
 const coins = [
   'Bitcoin',
@@ -11,7 +11,8 @@ const coins = [
 ]
 export default () => (
   <Container>
-    <h1
+    <Header
+      as="h1"
       style={{
         color: 'white',
         fontSize: '3.75em',
@@ -26,8 +27,8 @@ export default () => (
         <Rotating pause={3000} items={coins} />
       </span>
       <span> With Flybucks!</span>
-    </h1>
-    <hr width="1000" />
+    </Header>
+    <hr width="90%" />
 
     <h2
       style={{

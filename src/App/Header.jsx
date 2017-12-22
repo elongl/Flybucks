@@ -9,7 +9,7 @@ const headerStyle = {
     'url(https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2560x1707/b708ce3208d6f981862e4f4d849ca7e1/photo-1513265124772-931ff24cef0b)',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  minHeight: '100vh',
+  minHeight: '83.5vh',
   textAlign: 'center'
 }
 
@@ -18,6 +18,7 @@ export default ({ authenticated }) => (
     <Menu authenticated={authenticated} />
     <div
       style={{
+        width: '100%',
         position: 'absolute',
         top: '40%',
         left: '50%',

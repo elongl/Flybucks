@@ -5,7 +5,7 @@ export default ({ rate, visible }) => {
   const icon = rate.percent_change_24h > 0 ? 'up arrow' : 'down arrow'
   return (
     <Transition visible={visible} animation="fade down" duration={500}>
-      <div>
+      <div style={{ margin: '1rem' }}>
         <div
           style={{
             display: 'flex',
