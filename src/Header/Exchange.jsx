@@ -11,50 +11,30 @@ const digitsAfterDot = (numString, digitsAfterDot) =>
 
 export default class extends Component {
   state = {
-    depositValue: '',
+    depositValue: '...',
     depositCurrency: undefined,
-    receiveValue: '',
+    depositCurrencies: undefined,
+    receiveValue: '...',
     receiveCurrency: undefined,
-    rate: undefined,
-    currencies: undefined
+    receiveCurrencies: undefined,
+    rate: undefined
   }
+
   componentDidMount = async () => {
     await this.setOptions()
-    this.setState(
-      {
-        depositCurrency: this.state.currencies.find(
-          currency => currency.key === 'ILS'
-        ),
-        receiveCurrency: this.state.currencies.find(
-          currency => currency.key === 'BTC'
-        )
-      },
-      async () => await this.updateRate()
-    )
+    await this.updateRate()
   }
+
   depositValueChanged = event => {
     this.setState({
       depositValue: event.target.value,
       receiveValue: digitsAfterDot(event.target.value / this.state.rate, 5)
     })
   }
-  depositCurrencyChanged = currencyObject => {
-    this.setState({ receiveValue: '...' })
-    this.setState({ depositCurrency: currencyObject }, () =>
-      this.updateRate().then(() =>
-        this.setState({
-          receiveValue: digitsAfterDot(
-            this.state.depositValue / this.state.rate,
-            5
-          )
-        })
-      )
-    )
-  }
 
-  receiveCurrencyChanged = currencyObject => {
+  currencyChanged = (currencyObject, type) => {
     this.setState({ receiveValue: '...' })
-    this.setState({ receiveCurrency: currencyObject }, () =>
+    this.setState({ [`${type}Currency`]: currencyObject }, () =>
       this.updateRate().then(() =>
         this.setState({
           receiveValue: digitsAfterDot(
@@ -74,9 +54,10 @@ export default class extends Component {
     )
     this.setState({ rate: rate[`price_${depositCurrency.key.toLowerCase()}`] })
   }
+
   setOptions = async () => {
-    const rates = await exchangeRates.getRates()
     const currencies = [{ key: 'ILS', text: 'ILS', value: 'shekel' }]
+    const rates = await exchangeRates.getRates()
     rates.map(rate =>
       currencies.push({
         key: rate.symbol,
@@ -84,7 +65,16 @@ export default class extends Component {
         value: rate.id
       })
     )
-    this.setState({ currencies })
+    const depositCurrencies = currencies.slice(0)
+    const receiveCurrencies = currencies.slice(1)
+    this.setState({
+      depositValue: '',
+      depositCurrency: currencies[0],
+      depositCurrencies,
+      receiveValue: '',
+      receiveCurrency: currencies[1],
+      receiveCurrencies
+    })
   }
 
   render() {
@@ -96,37 +86,29 @@ export default class extends Component {
         }}
       >
         <ExchangeField
+          type="deposit"
           placeholder="have"
           value={this.state.depositValue}
-          currencies={this.state.currencies}
+          chosenCurrency={this.state.depositCurrency}
+          currencies={this.state.depositCurrencies}
           onChangeValue={this.depositValueChanged}
-          onChangeCurrency={this.depositCurrencyChanged}
-          defaultCurrency="shekel"
+          onChangeCurrency={this.currencyChanged}
         />
 
         <Icon
           name="exchange"
           size="big"
           color="yellow"
-          onClick={() => {
-            this.setState({
-              receiveCurrency: this.state.depositCurrency,
-              depositCurrency: this.state.receiveCurrency
-            })
-          }}
-          style={{
-            margin: '0 1rem',
-            marginBottom: '0.5rem',
-            cursor: 'pointer'
-          }}
+          style={{ margin: '0 1rem', marginBottom: '0.6rem' }}
         />
+
         <ExchangeField
-          disabled
+          type="receive"
           placeholder="get"
           value={this.state.receiveValue}
-          currencies={this.state.currencies}
-          onChangeCurrency={this.receiveCurrencyChanged}
-          defaultCurrency="bitcoin"
+          chosenCurrency={this.state.receiveCurrency}
+          currencies={this.state.receiveCurrencies}
+          onChangeCurrency={this.currencyChanged}
         />
 
         <Button

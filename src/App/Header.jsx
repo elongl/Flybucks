@@ -3,10 +3,10 @@ import { Segment } from 'semantic-ui-react'
 import Menu from '../Header/Menu'
 import HeaderText from '../Header/HeaderText'
 import Exchange from '../Header/Exchange'
+import header_background from '../assets/header-background.png'
 
 const headerStyle = {
-  backgroundImage:
-    'url(https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2560x1707/b708ce3208d6f981862e4f4d849ca7e1/photo-1513265124772-931ff24cef0b)',
+  backgroundImage: `url(${header_background})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   minHeight: '83.5vh',
