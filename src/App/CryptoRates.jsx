@@ -30,11 +30,12 @@ export default class extends Component {
   }
 
   render() {
-    const currencies = this.state.rates ? (
-      this.state.rates
+    const { state } = this
+    const currencies = state.rates ? (
+      state.rates
         .slice(0, 6)
         .map(rate => (
-          <Currency key={rate.name} rate={rate} visible={this.state.visible} />
+          <Currency key={rate.name} rate={rate} visible={state.visible} />
         ))
     ) : (
       <Loader />

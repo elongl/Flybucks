@@ -5,9 +5,11 @@ import ExchangeField from '../Exchange/ExchangeField'
 import Alert from 'sweetalert2'
 
 const digitsAfterDot = (numString, digitsAfterDot) =>
-  numString
-    .toString()
-    .substring(0, numString.toString().indexOf('.') + digitsAfterDot + 1)
+  !numString.toString().includes('.')
+    ? numString
+    : numString
+        .toString()
+        .substring(0, numString.toString().indexOf('.') + digitsAfterDot + 1)
 
 export default class extends Component {
   state = {
@@ -28,7 +30,7 @@ export default class extends Component {
   depositValueChanged = event => {
     this.setState({
       depositValue: event.target.value,
-      receiveValue: digitsAfterDot(event.target.value / this.state.rate, 5)
+      receiveValue: digitsAfterDot(event.target.value / this.state.rate, 6)
     })
   }
 
@@ -39,7 +41,7 @@ export default class extends Component {
         this.setState({
           receiveValue: digitsAfterDot(
             this.state.depositValue / this.state.rate,
-            5
+            6
           )
         })
       )

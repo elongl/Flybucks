@@ -1,5 +1,6 @@
 import React from 'react'
-import { Input, Dropdown, Icon, Label } from 'semantic-ui-react'
+import { Input, Label } from 'semantic-ui-react'
+import SearchDropdown from './ExchangeDropdown'
 
 export default props => {
   const isReceive = props.type === 'receive'
@@ -12,10 +13,9 @@ export default props => {
       onKeyPress={checkIfNumber}
     >
       <Label
-        basic
         style={{
-          color: isReceive && '#FFF',
-          backgroundColor: isReceive && 'rgba(0, 0, 0, 0.35)',
+          color: isReceive ? 'white' : 'black',
+          backgroundColor: isReceive ? 'rgba(0, 0, 0, 0.35)' : 'white',
           textTransform: 'uppercase'
         }}
       >
@@ -33,23 +33,12 @@ export default props => {
           cursor: isReceive ? 'default' : 'auto'
         }}
       />
-      <Label>
-        <Dropdown
-          value={props.chosenCurrency && props.chosenCurrency.value}
-          options={props.currencies}
-          scrolling
-          onChange={(event, data) => {
-            props.onChangeCurrency(
-              props.currencies.find(rate => rate.value === data.value),
-              props.type
-            )
-          }}
-          icon={
-            <Icon
-              style={{ marginLeft: '0.5rem', color: '#faa61a' }}
-              name="angle down"
-            />
-          }
+      <Label style={{ color: 'black' }}>
+        <SearchDropdown
+          currencies={props.currencies}
+          chosenCurrency={props.chosenCurrency}
+          onChangeCurrency={props.onChangeCurrency}
+          type={props.type}
         />
       </Label>
     </Input>
