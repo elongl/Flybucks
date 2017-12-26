@@ -1,6 +1,5 @@
 import React from 'react'
 import { Dropdown, Input, Image, Icon } from 'semantic-ui-react'
-import bitcoin from '../assets/bitcoin.svg'
 
 const capitalizeFirstLetter = word =>
   word.charAt(0).toUpperCase() + word.slice(1)
@@ -37,7 +36,7 @@ export default class extends React.Component {
       >
         <Dropdown.Menu style={{ marginTop: '1.5rem' }}>
           <Input
-            value={this.state.filter}
+            value={state.filter}
             ref={ref => (this.inputRef = ref)}
             style={{ margin: 0, padding: 0, width: 250 }}
             placeholder="Search..."
@@ -46,7 +45,7 @@ export default class extends React.Component {
             onChange={event => this.setState({ filter: event.target.value })}
             onClick={event => event.stopPropagation()}
           />
-          <Dropdown.Menu scrolling style={{ height: 250 }}>
+          <Dropdown.Menu scrolling fluid>
             {currencies !== undefined &&
               currencies
                 .filter(
@@ -72,7 +71,7 @@ export default class extends React.Component {
                     }}
                   >
                     <b style={{ width: 70, fontSize: 18 }}>{currency.text}</b>
-                    <Image src={bitcoin} />
+                    <Image src={`/assets/cryptoicons/${currency.key}.svg`} />
                     <span
                       style={{
                         color: 'gray',

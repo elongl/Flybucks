@@ -17,9 +17,6 @@ const rowFlex = {
   alignItems: 'center',
   justifyContent: 'space-around'
 }
-// Props:
-// switch
-// hide
 export default class extends Component {
   state = {
     email: '',

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Segment, Grid, Header, Image } from 'semantic-ui-react'
 import FloatingContainer from '../Components/FloatingContainer'
-import globe from '../assets/globe.svg'
 
 export default () => (
   <Segment style={{ padding: '5rem' }} vertical>
@@ -28,7 +27,7 @@ export default () => (
         </Grid.Column>
         <Grid.Column>
           <FloatingContainer>
-            <Image src={globe} />
+            <Image src="/assets/images/globe.svg" />
           </FloatingContainer>
         </Grid.Column>
       </Grid.Row>

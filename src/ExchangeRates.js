@@ -1,7 +1,7 @@
 import axios from 'axios'
-export const getRates = async () => {
+export const getRatesLimit = async limit => {
   return (await axios.get(
-    'https://api.coinmarketcap.com/v1/ticker/?convert=ILS&limit=22'
+    `https://api.coinmarketcap.com/v1/ticker/?convert=ILS&limit=${limit}`
   )).data
 }
 export const getRate = async (currencyName, convertSymbol) => {

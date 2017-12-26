@@ -1,7 +1,5 @@
 import React from 'react'
 import { Segment, Grid, Header, Image, Divider } from 'semantic-ui-react'
-import notifications from '../assets/notifications.svg'
-import cryptocurrencies from '../assets/cryptocurrencies.svg'
 
 export default () => (
   <Segment style={{ padding: '2rem' }} vertical>
@@ -20,7 +18,7 @@ export default () => (
           </p>
         </Grid.Column>
         <Grid.Column width={4}>
-          <Image src={notifications} />
+          <Image src="/assets/images/notifications.svg" />
         </Grid.Column>
       </Grid.Row>
 
@@ -48,7 +46,7 @@ export default () => (
 
       <Grid.Row>
         <Grid.Column width={4}>
-          <Image src={cryptocurrencies} />
+          <Image src="/assets/images/cryptocurrencies.svg" />
         </Grid.Column>
         <Grid.Column width={5}>
           <Header as="h3" style={{ fontSize: '2rem', paddingTop: '1.5rem' }}>

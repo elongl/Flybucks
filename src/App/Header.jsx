@@ -3,10 +3,9 @@ import { Segment } from 'semantic-ui-react'
 import Menu from '../Header/Menu'
 import HeaderText from '../Header/HeaderText'
 import Exchange from '../Header/Exchange'
-import header_background from '../assets/header-background.png'
 
 const headerStyle = {
-  backgroundImage: `url(${header_background})`,
+  backgroundImage: `url(/assets/images/header-background.png)`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   minHeight: '83.5vh',

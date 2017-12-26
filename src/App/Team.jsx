@@ -1,38 +1,33 @@
 import React from 'react'
 import { Segment, Card, Icon, Container } from 'semantic-ui-react'
-import elon_gliksberg from '../assets/elon-gliksberg.jpg'
-import tom_henking from '../assets/tom-henkins.jpg'
-import pattrick_stewart from '../assets/pattrick-stewart.png'
-import steve_jobs from '../assets/steve-jobs.png'
-
 const team = [
   {
     header: 'Elon Gliksberg',
     meta: 'Fullstack Developer',
     description: 'Elon is the creator of Flybucks.',
     exchangeCount: 159,
-    image: elon_gliksberg
+    image: '/assets/images/elon-gliksberg.jpg'
   },
   {
     header: 'Tom Henkins',
     meta: 'Financial Advisor',
     description: 'Tom is the financial advisor of the company.',
     exchangeCount: 232,
-    image: tom_henking
+    image: '/assets/images/tom-henkins.jpg'
   },
   {
     header: 'Pattrick Stewart',
     meta: 'Product Designer',
     description: 'Pattrick is head of design at Flybucks.',
     exchangeCount: 213,
-    image: pattrick_stewart
+    image: '/assets/images/pattrick-stewart.png'
   },
   {
     header: 'Steve Jobs',
     meta: 'Secretary',
     description: 'Steve founded Apple and now works for us.',
     exchangeCount: 59,
-    image: steve_jobs
+    image: '/assets/images/steve-jobs.png'
   }
 ]
 

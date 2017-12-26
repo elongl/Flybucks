@@ -10,7 +10,7 @@ export default class extends Component {
     visible: true
   }
   componentDidMount = async () => {
-    this.setState({ rates: await exchangeRates.getRates() })
+    this.setState({ rates: await exchangeRates.getRatesLimit(16) })
     this.handleVisibleRates()
   }
   handleVisibleRates = () => {
@@ -45,6 +45,7 @@ export default class extends Component {
         vertical
         inverted
         style={{
+          zIndex: -1,
           minHeight: '12rem',
           backgroundColor: '#0d141d',
           display: 'flex',

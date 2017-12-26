@@ -6,7 +6,6 @@ import Field from '../AuthenticationModal/SignupField'
 import Alert from 'sweetalert2'
 import { Segment, Button, Message } from 'semantic-ui-react'
 
-// Stylings
 const columnFlex = {
   display: 'flex',
   flexDirection: 'column',
@@ -17,9 +16,7 @@ const rowFlex = {
   alignItems: 'center',
   justifyContent: 'space-around'
 }
-// Props:
-// switch
-// hide
+
 export default class extends Component {
   state = {
     displayName: '',
