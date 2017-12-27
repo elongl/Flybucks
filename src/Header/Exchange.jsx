@@ -59,7 +59,7 @@ export default class extends Component {
 
   setOptions = async () => {
     const currencies = [{ key: 'ILS', text: 'ILS', value: 'shekel' }]
-    const rates = await exchangeRates.getRatesLimit(18)
+    const rates = await exchangeRates.getRatesLimit(17)
     rates.map(rate =>
       currencies.push({
         key: rate.symbol,

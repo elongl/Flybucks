@@ -15,15 +15,7 @@ const headerStyle = {
 export default ({ authenticated }) => (
   <Segment vertical style={headerStyle}>
     <Menu authenticated={authenticated} />
-    <div
-      style={{
-        width: '100%',
-        position: 'absolute',
-        top: '40%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)'
-      }}
-    >
+    <div style={{ marginTop: '16rem' }}>
       <HeaderText />
       <Exchange authenticated={authenticated} />
     </div>

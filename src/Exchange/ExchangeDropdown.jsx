@@ -21,6 +21,7 @@ export default class extends React.Component {
     const { currencies } = props
     return (
       <Dropdown
+        fluid
         pointing="top right"
         text={props.chosenCurrency && props.chosenCurrency.key}
         icon={
@@ -45,7 +46,7 @@ export default class extends React.Component {
             onChange={event => this.setState({ filter: event.target.value })}
             onClick={event => event.stopPropagation()}
           />
-          <Dropdown.Menu scrolling fluid>
+          <Dropdown.Menu scrolling>
             {currencies !== undefined &&
               currencies
                 .filter(

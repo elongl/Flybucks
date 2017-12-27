@@ -14,7 +14,10 @@ export default props => {
     >
       <Label
         style={{
-          color: isReceive ? 'white' : 'black',
+          fontSize: 17,
+          display: 'flex',
+          alignItems: 'center',
+          color: isReceive ? 'white' : '#faa61a',
           backgroundColor: isReceive ? 'rgba(0, 0, 0, 0.35)' : 'white',
           textTransform: 'uppercase'
         }}

@@ -12,13 +12,11 @@ const coins = [
 export default () => (
   <Container>
     <Header
-      as="h1"
       style={{
         color: 'white',
         fontSize: '3.75em',
         fontFamily: 'Montserrat',
         fontWeight: 100,
-        marginTop: '3em',
         letterSpacing: -1
       }}
     >
