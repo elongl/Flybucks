@@ -9,15 +9,19 @@ const headerStyle = {
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   minHeight: '83.5vh',
-  textAlign: 'center'
+  textAlign: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between'
 }
 
 export default ({ authenticated }) => (
   <Segment vertical style={headerStyle}>
     <Menu authenticated={authenticated} />
-    <div style={{ marginTop: '16rem' }}>
+    <div>
       <HeaderText />
       <Exchange authenticated={authenticated} />
     </div>
+    <div style={{ height: '4rem' }} />
   </Segment>
 )

@@ -39,7 +39,7 @@ export default () => (
             <Header as="h4" inverted>
               Freaking Developers
             </Header>
-            <p>Website Created by the almighty Elon Gliksberg.</p>
+            <p>Website Created by the Legendary Elon Gliksberg.</p>
           </Grid.Column>
         </Grid.Row>
       </Grid>
