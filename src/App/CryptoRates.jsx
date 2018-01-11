@@ -10,7 +10,7 @@ export default class extends Component {
     visible: true
   }
   componentDidMount = async () => {
-    this.setState({ rates: await exchangeRates.getRatesLimit(16) })
+    this.setState({ rates: await exchangeRates.getRatesLimit(18) })
     this.handleVisibleRates()
   }
   handleVisibleRates = () => {

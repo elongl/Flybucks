@@ -13,10 +13,10 @@ const digitsAfterDot = (numString, digitsAfterDot) =>
 
 export default class extends Component {
   state = {
-    depositValue: '...',
+    depositValue: undefined,
     depositCurrency: undefined,
     depositCurrencies: undefined,
-    receiveValue: '...',
+    receiveValue: undefined,
     receiveCurrency: undefined,
     receiveCurrencies: undefined,
     rate: undefined
@@ -26,14 +26,15 @@ export default class extends Component {
     await this.setOptions()
     await this.updateRate()
   }
-
   depositValueChanged = event => {
-    this.setState({
-      depositValue: event.target.value,
-      receiveValue: digitsAfterDot(event.target.value / this.state.rate, 6)
-    })
+    const { value } = event.target
+    const validator = /^\d*\.?\d*$/
+    if (validator.test(value) && value !== '.')
+      this.setState({
+        depositValue: value,
+        receiveValue: digitsAfterDot(value / this.state.rate, 6)
+      })
   }
-
   currencyChanged = (currencyObject, type) => {
     this.setState({ receiveValue: '...' })
     this.setState({ [`${type}Currency`]: currencyObject }, () =>
@@ -59,7 +60,7 @@ export default class extends Component {
 
   setOptions = async () => {
     const currencies = [{ key: 'ILS', text: 'ILS', value: 'shekel' }]
-    const rates = await exchangeRates.getRatesLimit(17)
+    const rates = await exchangeRates.getRatesLimit(16)
     rates.map(rate =>
       currencies.push({
         key: rate.symbol,

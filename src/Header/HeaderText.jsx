@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Header } from 'semantic-ui-react'
-import Rotating from 'react-rotating-text'
+import Typewriter from 'react-rotating-text'
 const coins = [
   'Bitcoin',
   'Ethereum',
@@ -22,7 +22,7 @@ export default () => (
     >
       <span>Exchange </span>
       <span style={{ fontWeight: 700, color: '#faa61a' }}>
-        <Rotating pause={3000} items={coins} />
+        <Typewriter pause={4000} items={coins} />
       </span>
       <span> With Flybucks!</span>
     </Header>

@@ -10,7 +10,7 @@ export default props => {
       labelPosition="right"
       value={props.value}
       onChange={props.onChangeValue}
-      onKeyPress={checkIfNumber}
+      disabled={props.value === undefined}
     >
       <Label
         style={{
@@ -26,6 +26,7 @@ export default props => {
       </Label>
       <input
         readOnly={isReceive}
+        maxLength={18}
         style={{
           width: '18rem',
           backgroundColor: isReceive && 'rgba(0, 0, 0, 0.35)',
@@ -46,16 +47,4 @@ export default props => {
       </Label>
     </Input>
   )
-}
-
-const checkIfNumber = event => {
-  const { charCode } = event
-  const { value } = event.target
-  if (
-    !(
-      (charCode >= 48 && charCode <= 57) ||
-      (charCode === 46 && value.includes('.') === false)
-    )
-  )
-    event.preventDefault()
 }

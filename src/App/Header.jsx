@@ -5,7 +5,7 @@ import HeaderText from '../Header/HeaderText'
 import Exchange from '../Header/Exchange'
 
 const headerStyle = {
-  backgroundImage: `url(/assets/images/header-background.png)`,
+  backgroundImage: `url(https://cdn.dribbble.com/users/13449/screenshots/1828176/attachments/304147/Lakeside_Sunset_1920x1080.jpg)`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   minHeight: '83.5vh',
