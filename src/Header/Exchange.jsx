@@ -13,10 +13,10 @@ const digitsAfterDot = (numString, digitsAfterDot) =>
 
 export default class extends Component {
   state = {
-    depositValue: undefined,
+    depositValue: '...',
     depositCurrency: undefined,
     depositCurrencies: undefined,
-    receiveValue: undefined,
+    receiveValue: '...',
     receiveCurrency: undefined,
     receiveCurrencies: undefined,
     rate: undefined

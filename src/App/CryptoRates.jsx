@@ -11,10 +11,11 @@ export default class extends Component {
   }
   componentDidMount = async () => {
     this.setState({ rates: await exchangeRates.getRatesLimit(18) })
-    this.handleVisibleRates()
+    this.rotateRatesInterval()
   }
-  handleVisibleRates = () => {
-    setInterval(() => {
+  componentWillUnmount = () => clearInterval(this.ticker)
+  rotateRatesInterval = () => {
+    this.ticker = setInterval(() => {
       this.setState({ visible: false })
       setTimeout(() => this.rotateRates(), 1000)
     }, 8000)

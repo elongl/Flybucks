@@ -14,4 +14,7 @@ injectGlobal`
     opacity: 0;
   }
 }
+body {
+  padding-right: 0 !important;
+}
 `

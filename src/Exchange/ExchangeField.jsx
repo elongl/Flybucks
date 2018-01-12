@@ -10,7 +10,7 @@ export default props => {
       labelPosition="right"
       value={props.value}
       onChange={props.onChangeValue}
-      disabled={props.value === undefined}
+      disabled={props.value === '...'}
     >
       <Label
         style={{

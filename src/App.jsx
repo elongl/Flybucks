@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Header from './App/Header'
 import Information from './App/Information'
-import Team from './App/Team'
+import Reviews from './App/Reviews'
 import CryptoRates from './App/CryptoRates'
 import Novelty from './App/Novelty'
 import Footer from './App/Footer'
@@ -26,7 +26,7 @@ export default class extends Component {
         <Header authenticated={this.state.authenticated} />
         <CryptoRates />
         <Information />
-        <Team />
+        <Reviews />
         <Novelty />
         <Footer />
       </div>

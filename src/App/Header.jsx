@@ -22,6 +22,6 @@ export default ({ authenticated }) => (
       <HeaderText />
       <Exchange authenticated={authenticated} />
     </div>
-    <div style={{ height: '4rem' }} />
+    <div style={{ height: '2.5rem' }} />
   </Segment>
 )
