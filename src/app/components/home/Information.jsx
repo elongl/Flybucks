@@ -1,6 +1,6 @@
 import React from 'react'
 import { Segment, Grid, Header, Image } from 'semantic-ui-react'
-import FloatingContainer from '../Components/FloatingContainer'
+import FloatingContainer from '../common/FloatingContainer'
 
 export default () => (
   <Segment style={{ padding: '5rem' }} vertical>

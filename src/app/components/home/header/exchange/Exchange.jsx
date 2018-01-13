@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import * as exchangeRates from '../ExchangeRates'
 import { Container, Button, Icon } from 'semantic-ui-react'
-import ExchangeField from '../Exchange/ExchangeField'
 import Alert from 'sweetalert2'
+import * as exchangeRates from '../../../api/exchangeRates'
+import ExchangeField from './ExchangeField'
 
 const digitsAfterDot = (numString, digitsAfterDot) =>
   !numString.toString().includes('.')
@@ -50,12 +50,18 @@ export default class extends Component {
   }
 
   updateRate = async () => {
-    const { receiveCurrency, depositCurrency } = this.state
-    const rate = await exchangeRates.getRate(
-      receiveCurrency.value,
-      depositCurrency.key
-    )
-    this.setState({ rate: rate[`price_${depositCurrency.key.toLowerCase()}`] })
+    try {
+      const { receiveCurrency, depositCurrency } = this.state
+      const rate = await exchangeRates.getRate(
+        receiveCurrency.value,
+        depositCurrency.key
+      )
+      this.setState({
+        rate: rate[`price_${depositCurrency.key.toLowerCase()}`]
+      })
+    } catch (err) {
+      Alert(err.message)
+    }
   }
 
   setOptions = async () => {

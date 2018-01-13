@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import * as exchangeRates from '../ExchangeRates'
 import { Segment } from 'semantic-ui-react'
-import Loader from '../Components/Loader'
-import Currency from '../CryptoRates/Currency'
+import * as exchangeRates from '../../../api/exchangeRates'
+import Loader from '../common/Loader'
+import Currency from './Currency'
 
 export default class extends Component {
   state = {

@@ -4,7 +4,7 @@ export default () => (
   <Segment
     inverted
     vertical
-    style={{ padding: '5rem', backgroundColor: '#394247' }}
+    style={{ padding: '5rem', backgroundColor: '#0d141d' }}
   >
     <Container>
       <Grid divided inverted stackable>
@@ -13,10 +13,9 @@ export default () => (
             <Header inverted as="h4" content="Services" />
             <List link inverted>
               <List.Item as="a">Exchange</List.Item>
-              <List.Item as="a">Market</List.Item>
-              <List.Item as="a">Cross Platform</List.Item>
-              <List.Item as="a">Cryptocurrencies</List.Item>
-              <List.Item as="a">Affiliate Programs</List.Item>
+              <List.Item as="a">Charts</List.Item>
+              <List.Item as="a">Mobile App</List.Item>
+              <List.Item as="a">Affiliate Program</List.Item>
             </List>
           </Grid.Column>
           <Grid.Column width={3}>

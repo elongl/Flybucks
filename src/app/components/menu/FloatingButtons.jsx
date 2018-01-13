@@ -1,6 +1,8 @@
 import React from 'react'
-import FloatingContainer from '../Components/FloatingContainer'
+import { Link } from 'react-router-dom'
 import { Button, Icon } from 'semantic-ui-react'
+import FloatingContainer from '../common/FloatingContainer'
+
 export default ({ authenticated, toggleSigninModal, toggleSignupModal }) => (
   <FloatingContainer
     style={{
@@ -25,18 +27,16 @@ export default ({ authenticated, toggleSigninModal, toggleSignupModal }) => (
       </div>
     ) : (
       <div>
-        <Button
-          size="big"
-          style={{ backgroundColor: '#faa61a', color: 'white' }}
-          onClick={() => toggleSigninModal(true)}
-          content="Log In"
-        />
-        <Button
-          size="big"
-          onClick={() => toggleSignupModal(true)}
-          secondary
-          content="Sign Up"
-        />
+        <Link to="/signin">
+          <Button
+            size="big"
+            style={{ backgroundColor: '#faa61a', color: 'white' }}
+            content="Log In"
+          />
+        </Link>
+        <Link to="/signup">
+          <Button size="big" secondary content="Sign Up" />
+        </Link>
       </div>
     )}
   </FloatingContainer>

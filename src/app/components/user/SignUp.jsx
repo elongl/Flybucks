@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import firebase from '../Firebase'
-import VerticalLine from '../Components/VerticaLine'
-import SocialNetworkButton from '../AuthenticationModal/SocialNetworkButton'
-import Field from '../AuthenticationModal/SignupField'
-import Alert from 'sweetalert2'
+import { Link } from 'react-router-dom'
 import { Segment, Button, Message } from 'semantic-ui-react'
+import Alert from 'sweetalert2'
+import firebase from '../../../api/firebase'
+import FullPageContainer from '../common/FullPageContainer'
+import VerticalLine from '../common/VerticaLine'
+import SocialNetworkButton from './SocialNetworkButton'
+import Field from './SignupField'
 
 const columnFlex = {
   display: 'flex',
@@ -119,6 +121,7 @@ export default class extends Component {
       }
     ].map(({ type, placeholder, icon, onChange }) => (
       <Field
+        key={placeholder}
         type={type}
         placeholder={placeholder}
         icon={icon}
@@ -128,79 +131,78 @@ export default class extends Component {
     ))
 
     return (
-      <Segment
-        raised
-        style={{
-          ...columnFlex,
-          width: 950,
-          minHeight: 600,
-          alignItems: 'center'
-        }}
-      >
-        <div>
-          <h1
-            style={{
-              fontSize: 66,
-              fontFamily: 'Roboto',
-              fontWeight: 100,
-              margin: 0
-            }}
-          >
-            Join for free
-          </h1>
-          <h2
-            style={{
-              fontSize: 23,
-              fontFamily: 'Roboto',
-              fontWeight: 100,
-              margin: 0
-            }}
-          >
-            to exchange crypto instantly now
-          </h2>
-        </div>
-        <Message
-          error
-          hidden={this.state.errorList.length === 0}
-          header="There was some errors with your submission"
-          list={this.state.errorList}
-        />
-        <div
+      <FullPageContainer>
+        <Segment
+          raised
           style={{
-            ...rowFlex,
-            width: 600
+            ...columnFlex,
+            width: 950,
+            minHeight: 600,
+            alignItems: 'center'
           }}
         >
-          <div style={{ ...columnFlex }}>
-            {fields}
-
-            <Button
-              content="Sign Up!"
-              icon="signup"
-              labelPosition="right"
-              onClick={this.signUp}
-              size="big"
+          <div>
+            <h1
               style={{
-                color: 'white',
-                backgroundColor: '#faa61a',
-                width: 250,
-                marginTop: 5
+                fontSize: 66,
+                fontFamily: 'Roboto',
+                fontWeight: 100,
+                margin: 0
               }}
-            />
+            >
+              Join for free
+            </h1>
+            <h2
+              style={{
+                fontSize: 23,
+                fontFamily: 'Roboto',
+                fontWeight: 100,
+                margin: 0
+              }}
+            >
+              to exchange crypto instantly now
+            </h2>
           </div>
-          <VerticalLine />
-          <div style={columnFlex}>{socialNetworks}</div>
-        </div>
-        <p style={{ fontSize: 20 }}>
-          Already a member?{' '}
-          <a
-            style={{ cursor: 'pointer', color: '#faa61a' }}
-            onClick={this.props.switch}
+          <Message
+            error
+            hidden={this.state.errorList.length === 0}
+            header="There was some errors with your submission"
+            list={this.state.errorList}
+          />
+          <div
+            style={{
+              ...rowFlex,
+              width: 600
+            }}
           >
-            Sign in here!
-          </a>
-        </p>
-      </Segment>
+            <div style={{ ...columnFlex }}>
+              {fields}
+
+              <Button
+                content="Sign Up!"
+                icon="signup"
+                labelPosition="right"
+                onClick={this.signUp}
+                size="big"
+                style={{
+                  color: 'white',
+                  backgroundColor: '#faa61a',
+                  width: 250,
+                  marginTop: 5
+                }}
+              />
+            </div>
+            <VerticalLine />
+            <div style={columnFlex}>{socialNetworks}</div>
+          </div>
+          <p style={{ fontSize: 20 }}>
+            Already a member?{' '}
+            <Link to="/signin" style={{ cursor: 'pointer', color: '#faa61a' }}>
+              Sign in here!
+            </Link>
+          </p>
+        </Segment>
+      </FullPageContainer>
     )
   }
 }
