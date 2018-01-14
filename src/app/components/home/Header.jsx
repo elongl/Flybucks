@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment } from 'semantic-ui-react'
-import HeaderText from './HeaderText'
-import Exchange from './Exchange'
+import HeaderText from './header/HeaderText'
+import Exchange from './header/Exchange'
 
 const headerStyle = {
   backgroundImage: `url(/assets/images/background.jpg)`,

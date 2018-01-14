@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input, Label } from 'semantic-ui-react'
-import SearchDropdown from './ExchangeDropdown'
+import ExchangeDropdown from './ExchangeDropdown'
 
 export default props => {
   const isReceive = props.type === 'receive'
@@ -38,7 +38,7 @@ export default props => {
         }}
       />
       <Label style={{ color: 'black' }}>
-        <SearchDropdown
+        <ExchangeDropdown
           currencies={props.currencies}
           chosenCurrency={props.chosenCurrency}
           onChangeCurrency={props.onChangeCurrency}

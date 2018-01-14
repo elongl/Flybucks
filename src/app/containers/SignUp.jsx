@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Segment, Button, Message } from 'semantic-ui-react'
 import Alert from 'sweetalert2'
-import firebase from '../../../api/firebase'
-import FullPageContainer from '../common/FullPageContainer'
-import VerticalLine from '../common/VerticaLine'
-import SocialNetworkButton from './SocialNetworkButton'
-import Field from './SignupField'
+import firebase from '../../api/firebase'
+import FullPageContainer from '../components/common/FullPageContainer'
+import VerticalLine from '../components/common/VerticaLine'
+import SocialNetworkButton from '../components/user/SocialNetworkButton'
+import Field from '../components/user/SignupField'
 
 const columnFlex = {
   display: 'flex',

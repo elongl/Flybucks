@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Container, Button, Icon } from 'semantic-ui-react'
 import Alert from 'sweetalert2'
-import * as exchangeRates from '../../../api/exchangeRates'
-import ExchangeField from './ExchangeField'
+import * as exchangeRates from '../../../../api/exchangeRates'
+import ExchangeField from './exchange/ExchangeField'
 
 const digitsAfterDot = (numString, digitsAfterDot) =>
   !numString.toString().includes('.')

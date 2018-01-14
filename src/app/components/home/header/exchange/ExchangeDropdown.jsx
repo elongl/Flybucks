@@ -10,12 +10,11 @@ export default class extends React.Component {
   eventListener = event => {
     this.setState({ open: false })
   }
-  componentDidMount = () => {
+  componentWillMount = () =>
     window.addEventListener('click', this.eventListener)
-  }
-  componentWillUnmount = () => {
+  componentWillUnmount = () =>
     window.removeEventListener('click', this.eventListener)
-  }
+
   render() {
     const { props, state } = this
     const { currencies } = props

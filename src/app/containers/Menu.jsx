@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Menu, Container, Visibility } from 'semantic-ui-react'
 import Alert from 'sweetalert2'
 import { Link } from 'react-router-dom'
-import firebase from '../../../api/firebase'
-import MenuButton from './MenuButton'
-import UserDropDown from './UserDropDown'
-import FloatingButtons from './FloatingButtons'
+import firebase from '../../api/firebase'
+import MenuButton from '../components/menu/MenuButton'
+import UserDropDown from '../components/menu/UserDropDown'
+import FloatingButtons from '../components/menu/FloatingButtons'
 export default class extends Component {
   state = { floatingButtonsVisible: false }
 
