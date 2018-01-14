@@ -18,6 +18,7 @@ export default class extends Component {
     )
   }
   render() {
+    if (this.state.authenticated === undefined) return null
     return (
       <div>
         <Menu authenticated={this.state.authenticated} />
