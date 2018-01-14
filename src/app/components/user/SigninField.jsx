@@ -27,10 +27,8 @@ export default props => (
         marginTop: 5,
         marginBottom: 20
       }}
-      onChange={props.onChange}
-      onKeyPress={({ charCode }) => {
-        if (charCode === 13) props.signIn()
-      }}
+      name={props.name}
+      required={props.required}
     >
       <Icon name={props.icon} />
       <input style={{ backgroundColor: '#f9f9f9' }} />
