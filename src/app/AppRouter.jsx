@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import firebase from '../api/firebase'
-import Menu from './containers/Menu'
-import Footer from './containers/Footer'
-import Home from './containers/Home'
-import SignIn from './containers/SignIn'
-import SignUp from './containers/SignUp'
+import Menu from './pages/Menu'
+import Footer from './pages/Footer'
+import Home from './pages/Home'
+import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
 import '../InjectGlobal'
 
 export default class extends Component {
