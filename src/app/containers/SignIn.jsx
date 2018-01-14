@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Segment, Button } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import { Segment, Button, Form } from 'semantic-ui-react'
+import { Link, withRouter } from 'react-router-dom'
 import Alert from 'sweetalert2'
 import firebase from '../../api/firebase'
 import FullPageContainer from '../components/common/FullPageContainer'
@@ -18,14 +18,16 @@ const rowFlex = {
   alignItems: 'center',
   justifyContent: 'space-around'
 }
-export default class extends Component {
+export default withRouter(class extends Component {
   state = {
     email: '',
     pass: ''
   }
 
-  signIn = () => {
-    const { email, pass } = this.state
+  signIn = event => {
+    const formData = new window.FormData(event.target)
+    const email = formData.get('email')
+    const pass = formData.get('pass')
     const response = firebase.signInWithEmailAndPassword(email, pass)
     response.then(() => {
       Alert({
@@ -35,6 +37,7 @@ export default class extends Component {
         showConfirmButton: false,
         timer: 1500
       })
+      this.props.history.push('/')
     }, response.catch(error => Alert('Oops...', error.message, 'error')))
   }
 
@@ -66,7 +69,7 @@ export default class extends Component {
           >
             Welcome back!
           </h1>
-          <div
+          <Form onSubmit={this.signIn}
             style={{
               ...columnFlex,
               width: 600
@@ -75,25 +78,22 @@ export default class extends Component {
             <div style={{ ...columnFlex, alignItems: 'center' }}>
               <Field
                 label="Enter your email address"
-                type="text"
+                type="email"
                 placeholder="Email Address"
                 icon="mail"
-                onChange={event => this.setState({ email: event.target.value })}
-                signIn={this.signIn}
+                name="email" required
               />
               <Field
                 label="Enter your password"
                 type="password"
                 placeholder="Password"
                 icon="lock"
-                onChange={event => this.setState({ pass: event.target.value })}
-                signIn={this.signIn}
+                name="pass" required
               />
               <Button
                 content="Sign in!"
                 icon="sign in"
                 labelPosition="right"
-                onClick={this.signIn}
                 size="big"
                 style={{
                   color: 'white',
@@ -102,11 +102,12 @@ export default class extends Component {
                   marginTop: 5,
                   marginBottom: 10
                 }}
+                type="submit"
               />
             </div>
             <HorizonalLine text="or login with" style={{ marginRight: 35 }} />
             <div style={{ ...rowFlex, marginTop: 25 }}>{socialNetworks}</div>
-          </div>
+          </Form>
           <p style={{ fontSize: 20 }}>
             Not a member?{' '}
             <Link to="/signup" style={{ cursor: 'pointer', color: '#faa61a' }}>
@@ -117,4 +118,4 @@ export default class extends Component {
       </FullPageContainer>
     )
   }
-}
+})

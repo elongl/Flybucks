@@ -6,7 +6,7 @@ import Footer from './containers/Footer'
 import Home from './containers/Home'
 import SignIn from './containers/SignIn'
 import SignUp from './containers/SignUp'
-import '../injectGlobal'
+import '../InjectGlobal'
 
 export default class extends Component {
   state = { authenticated: undefined }
