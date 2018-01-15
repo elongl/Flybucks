@@ -11,13 +11,12 @@ class Firebase {
     }
     firebase.initializeApp(config)
   }
-  signInWithEmailAndPassword = (email, pass) => {
-    return firebase.auth().signInWithEmailAndPassword(email, pass)
-  }
+  signInWithEmailAndPassword = (email, pass) =>
+    firebase.auth().signInWithEmailAndPassword(email, pass)
 
-  createUserWithEmailAndPassword = (email, pass) => {
-    return firebase.auth().createUserWithEmailAndPassword(email, pass)
-  }
+  createUserWithEmailAndPassword = (email, pass) =>
+    firebase.auth().createUserWithEmailAndPassword(email, pass)
+
   authenticationState = (signedIn, signedOut) => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) signedIn()

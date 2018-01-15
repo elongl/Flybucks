@@ -6,6 +6,7 @@ import Footer from './pages/Footer'
 import Home from './pages/Home'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
+import AlreadyAuthenticated from './components/user/AlreadyAuthenticated'
 import '../InjectGlobal'
 
 export default class extends Component {
@@ -18,19 +19,30 @@ export default class extends Component {
     )
   }
   render() {
-    if (this.state.authenticated === undefined) return null
+    const { authenticated } = this.state
+    if (authenticated === undefined) return null
     return (
       <div>
-        <Menu authenticated={this.state.authenticated} />
+        <Menu authenticated={authenticated} />
         <Switch>
           <Route
             exact
             path="/"
-            render={() => <Home authenticated={this.state.authenticated} />}
+            render={() => <Home authenticated={authenticated} />}
           />
-          <Route path="/login" render={() => <Redirect to="signin" />} />
-          <Route path="/signin" component={SignIn} />
-          <Route path="/signup" component={SignUp} />
+          <Route path="/login" render={() => <Redirect to="/signin" />} />
+          <Route
+            path="/signin"
+            render={() =>
+              authenticated ? <AlreadyAuthenticated /> : <SignIn />
+            }
+          />
+          <Route
+            path="/signup"
+            render={() =>
+              authenticated ? <AlreadyAuthenticated /> : <SignUp />
+            }
+          />
         </Switch>
         <Footer />
       </div>

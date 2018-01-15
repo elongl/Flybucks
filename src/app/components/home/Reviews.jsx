@@ -4,28 +4,32 @@ const reviews = [
   {
     header: 'Elon Gliksberg',
     meta: 'Fullstack Developer',
-    description: 'Elon is the creator of Flybucks.',
+    description:
+      'Flybucks is very attractive to the user. It is simple and plays its part in the industry.',
     exchangeCount: 159,
     image: '/assets/images/elon-gliksberg.jpg'
   },
   {
     header: 'Tom Henkins',
     meta: 'Financial Advisor',
-    description: 'Henkins knows his job around money.',
+    description:
+      'With this trustworthy website, I’m exchanging with confidence all the time.',
     exchangeCount: 232,
     image: '/assets/images/tom-henkins.jpg'
   },
   {
     header: 'Pattrick Stewart',
     meta: 'Product Designer',
-    description: 'Pattrick is head of design at Flybucks.',
+    description:
+      'The User experience really feels like magic. Now I can finally exchange simply.',
     exchangeCount: 213,
     image: '/assets/images/pattrick-stewart.png'
   },
   {
     header: 'Steve Jobs',
-    meta: 'Secretary',
-    description: 'Steve founded Apple and now works for us.',
+    meta: 'CEO at Apple',
+    description:
+      'Why do I only hear about Flybucks now? I would have invested earlier.',
     exchangeCount: 59,
     image: '/assets/images/steve-jobs.png'
   }
@@ -52,7 +56,7 @@ export default class extends Component {
             fontSize: 33
           }}
         >
-          Our clients love us
+          What people are saying
         </h2>
         <Container
           style={{
