@@ -22,7 +22,7 @@ export default props => {
           textTransform: 'uppercase'
         }}
       >
-        {props.placeholder}
+        {isReceive ? 'get' : 'have'}
       </Label>
       <input
         readOnly={isReceive}

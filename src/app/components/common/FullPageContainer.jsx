@@ -1,5 +1,5 @@
 import React from 'react'
-export default ({ children }) => (
+export default ({ children, style, ...props }) => (
   <div
     style={{
       backgroundImage: `url(/assets/images/background.jpg)`,
@@ -8,8 +8,10 @@ export default ({ children }) => (
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      ...style
     }}
+    {...props}
   >
     {children}
   </div>

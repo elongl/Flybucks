@@ -7,13 +7,14 @@ const capitalizeFirstLetter = word =>
 export default class extends React.Component {
   state = { filter: '', open: false }
 
-  eventListener = event => {
-    this.setState({ open: false })
-  }
+  closeDropdownListener = event => this.setState({ open: false })
+
   componentWillMount = () =>
-    window.addEventListener('click', this.eventListener)
-  componentWillUnmount = () =>
-    window.removeEventListener('click', this.eventListener)
+    window.addEventListener('click', this.closeDropdownListener)
+
+  componentWillUnmount = () => {
+    window.removeEventListener('click', this.closeDropdownListener)
+  }
 
   render() {
     const { props, state } = this

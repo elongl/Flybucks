@@ -6,7 +6,8 @@ import Footer from './pages/Footer'
 import Home from './pages/Home'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
-import AlreadyAuthenticated from './components/user/AlreadyAuthenticated'
+import Exchanging from './pages/Exchanging'
+import Authenticate from './pages/Authenticate'
 import '../InjectGlobal'
 
 export default class extends Component {
@@ -32,16 +33,16 @@ export default class extends Component {
           />
           <Route path="/login" render={() => <Redirect to="/signin" />} />
           <Route
+            path="/exchange"
+            render={() => (authenticated ? <Exchanging /> : <Authenticate />)}
+          />
+          <Route
             path="/signin"
-            render={() =>
-              authenticated ? <AlreadyAuthenticated /> : <SignIn />
-            }
+            render={() => (authenticated ? <Redirect to="/" /> : <SignIn />)}
           />
           <Route
             path="/signup"
-            render={() =>
-              authenticated ? <AlreadyAuthenticated /> : <SignUp />
-            }
+            render={() => (authenticated ? <Redirect to="/" /> : <SignUp />)}
           />
         </Switch>
         <Footer />
