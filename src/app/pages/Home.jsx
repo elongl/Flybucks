@@ -5,9 +5,9 @@ import Reviews from '../components/home/Reviews'
 import Rates from '../components/home/Rates'
 import Novelty from '../components/home/Novelty'
 
-export default props => (
+export default ({ authenticated }) => (
   <div>
-    <Header authenticated={props.authenticated} />
+    <Header authenticated={authenticated} />
     <Rates />
     <Information />
     <Reviews />

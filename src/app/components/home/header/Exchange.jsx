@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Container, Button, Icon } from 'semantic-ui-react'
+import { Icon, Button } from 'semantic-ui-react'
 import Alert from 'sweetalert2'
 import * as exchangeRates from '../../../../api/exchangeRates'
 import ExchangeField from './exchange/ExchangeField'
 import { withRouter } from 'react-router-dom'
+import Transition from 'semantic-ui-react/dist/commonjs/modules/Transition/Transition'
 
 const digitsAfterDot = (numString, digitsAfterDot) =>
   !numString.toString().includes('.')
@@ -14,19 +15,27 @@ const digitsAfterDot = (numString, digitsAfterDot) =>
 
 export default withRouter(
   class extends Component {
-    state = {
-      depositValue: '...',
-      depositCurrency: undefined,
-      depositCurrencies: undefined,
-      receiveValue: '...',
-      receiveCurrency: undefined,
-      receiveCurrencies: undefined,
-      rate: undefined
+    constructor(props) {
+      super(props)
+      if (props.loadedFromExchanging) this.state = props.state
+      else
+        this.state = {
+          depositValue: '...',
+          depositCurrency: undefined,
+          depositCurrencies: undefined,
+          receiveValue: '...',
+          receiveCurrency: undefined,
+          receiveCurrencies: undefined,
+          rate: undefined,
+          animVisible: true
+        }
     }
 
     componentDidMount = async () => {
-      await this.setOptions()
-      await this.updateRate()
+      if (this.props.location.pathname === '/') {
+        await this.setOptions()
+        await this.updateRate()
+      }
     }
     depositValueChanged = event => {
       const { value } = event.target
@@ -64,6 +73,8 @@ export default withRouter(
       } catch (err) {
         Alert(err.message)
       }
+      if (this.props.loadedFromExchanging)
+        this.props.updateRate(this.state.rate)
     }
 
     setOptions = async () => {
@@ -88,54 +99,77 @@ export default withRouter(
       })
     }
 
+    gotoExchanging = () => {
+      this.setState({ animVisible: false }, () =>
+        setTimeout(
+          () =>
+            this.props.history.push('/exchange', {
+              ...this.state,
+              animVisible: undefined
+            }),
+          500
+        )
+      )
+    }
+
     render() {
       return (
-        <Container
-          style={{
-            marginTop: '1.5rem',
-            width: '100%'
-          }}
+        <Transition
+          visible={this.state.animVisible}
+          animation="fly left"
+          duration={800}
         >
-          <ExchangeField
-            type="deposit"
-            placeholder="have"
-            value={this.state.depositValue}
-            chosenCurrency={this.state.depositCurrency}
-            currencies={this.state.depositCurrencies}
-            onChangeValue={this.depositValueChanged}
-            onChangeCurrency={this.currencyChanged}
-          />
-
-          <Icon
-            name="exchange"
-            size="big"
-            color="yellow"
-            style={{ margin: '0 1rem', marginBottom: '0.6rem' }}
-          />
-
-          <ExchangeField
-            type="receive"
-            placeholder="get"
-            value={this.state.receiveValue}
-            chosenCurrency={this.state.receiveCurrency}
-            currencies={this.state.receiveCurrencies}
-            onChangeCurrency={this.currencyChanged}
-          />
-
-          <Button
-            labelPosition="right"
-            content="Exchange"
-            icon="right arrow"
-            size="huge"
+          <div
             style={{
-              padding: '0.9em 0',
-              margin: '1.5rem',
-              color: 'white',
-              backgroundColor: '#faa61a'
+              marginTop: '1.5rem',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexWrap: 'wrap'
             }}
-            onClick={() => this.props.history.push('/exchange')}
-          />
-        </Container>
+          >
+            <ExchangeField
+              type="deposit"
+              style={this.props.style}
+              value={this.state.depositValue}
+              chosenCurrency={this.state.depositCurrency}
+              currencies={this.state.depositCurrencies}
+              onChangeValue={this.depositValueChanged}
+              onChangeCurrency={this.currencyChanged}
+            />
+
+            <Icon
+              name="exchange"
+              size="big"
+              color="yellow"
+              style={{ margin: '0rem 1rem', marginBottom: '0.5rem' }}
+            />
+
+            <ExchangeField
+              type="receive"
+              style={this.props.style}
+              value={this.state.receiveValue}
+              chosenCurrency={this.state.receiveCurrency}
+              currencies={this.state.receiveCurrencies}
+              onChangeCurrency={this.currencyChanged}
+            />
+            {!this.props.loadedFromExchanging && (
+              <Button
+                labelPosition="right"
+                content="Exchange"
+                icon="right arrow"
+                size="huge"
+                style={{
+                  padding: '0.9em 0',
+                  margin: '1.5rem',
+                  color: 'white',
+                  backgroundColor: '#faa61a'
+                }}
+                onClick={this.gotoExchanging}
+              />
+            )}
+          </div>
+        </Transition>
       )
     }
   }

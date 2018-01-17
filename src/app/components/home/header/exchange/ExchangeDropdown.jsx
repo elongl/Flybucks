@@ -21,7 +21,6 @@ export default class extends React.Component {
     const { currencies } = props
     return (
       <Dropdown
-        fluid
         pointing="top right"
         text={props.chosenCurrency && props.chosenCurrency.key}
         icon={

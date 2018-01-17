@@ -6,6 +6,7 @@ export default props => {
   const isReceive = props.type === 'receive'
   return (
     <Input
+      style={props.style}
       size="huge"
       labelPosition="right"
       value={props.value}
