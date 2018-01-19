@@ -5,14 +5,9 @@ import Reviews from '../components/home/Reviews'
 import Rates from '../components/home/Rates'
 import Novelty from '../components/home/Novelty'
 
-// check if possible to remove prop equals
-export default ({ state, changeValue, changeCurrency }) => (
+export default () => (
   <div>
-    <Header
-      changeValue={changeValue}
-      changeCurrency={changeCurrency}
-      state={state}
-    />
+    <Header />
     <Rates />
     <Information />
     <Reviews />
