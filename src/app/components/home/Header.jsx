@@ -14,9 +14,13 @@ const headerStyle = {
   justifyContent: 'center'
 }
 
-export default ({ authenticated }) => (
+export default ({ changeValue, changeCurrency, state }) => (
   <Segment vertical style={headerStyle}>
     <HeaderText />
-    <Exchange authenticated={authenticated} />
+    <Exchange
+      state={state}
+      changeValue={changeValue}
+      changeCurrency={changeCurrency}
+    />
   </Segment>
 )

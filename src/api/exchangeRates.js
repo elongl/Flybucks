@@ -6,8 +6,6 @@ export const getRatesLimit = async limit => {
 }
 export const getRate = async (currencyName, convertSymbol) => {
   return (await axios.get(
-    `https://api.coinmarketcap.com/v1/ticker/${currencyName}/?convert=${
-      convertSymbol
-    }`
+    `https://api.coinmarketcap.com/v1/ticker/${currencyName}/?convert=${convertSymbol}`
   )).data[0]
 }

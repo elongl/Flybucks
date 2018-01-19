@@ -5,9 +5,14 @@ import Reviews from '../components/home/Reviews'
 import Rates from '../components/home/Rates'
 import Novelty from '../components/home/Novelty'
 
-export default ({ authenticated }) => (
+// check if possible to remove prop equals
+export default ({ state, changeValue, changeCurrency }) => (
   <div>
-    <Header authenticated={authenticated} />
+    <Header
+      changeValue={changeValue}
+      changeCurrency={changeCurrency}
+      state={state}
+    />
     <Rates />
     <Information />
     <Reviews />
