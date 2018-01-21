@@ -1,6 +1,7 @@
 import React from 'react'
 import { Segment, Grid, Header, Image } from 'semantic-ui-react'
 import BackToTopDivider from './BackToTopDivider'
+import EntryAnimation from '../common/EntryAnimation'
 
 export default () => (
   <Segment style={{ padding: '2rem' }} vertical>
@@ -19,17 +20,21 @@ export default () => (
           </p>
         </Grid.Column>
         <Grid.Column width={4}>
-          <Image src="/assets/images/notifications.svg" />
+          <EntryAnimation animation="fade left">
+            <Image src="/assets/images/notifications.svg" />
+          </EntryAnimation>
         </Grid.Column>
       </Grid.Row>
 
       <Grid.Row style={{ padding: 0 }}>
-        <BackToTopDivider />
+        <BackToTopDivider text={'where do i start'} />
       </Grid.Row>
 
       <Grid.Row>
         <Grid.Column width={4}>
-          <Image src="/assets/images/cryptocurrencies.svg" />
+          <EntryAnimation animation="fade right">
+            <Image src="/assets/images/cryptocurrencies.svg" />
+          </EntryAnimation>
         </Grid.Column>
         <Grid.Column width={5}>
           <Header as="h3" style={{ fontSize: '2rem', paddingTop: '1.5rem' }}>

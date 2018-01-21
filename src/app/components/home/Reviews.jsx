@@ -21,7 +21,7 @@ const reviews = [
     header: 'Pattrick Stewart',
     meta: 'Product Designer',
     description:
-      'The User experience really feels like magic. Now I can finally exchange simply.',
+      'The user experience really feels like magic. Now I can finally exchange simply.',
     exchangeCount: 213,
     image: '/assets/images/pattrick-stewart.png'
   },

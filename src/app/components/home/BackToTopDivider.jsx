@@ -1,6 +1,6 @@
 import React from 'react'
 import { Divider } from 'semantic-ui-react'
-export default () => (
+export default ({ text }) => (
   <Divider
     as="h4"
     horizontal
@@ -15,7 +15,7 @@ export default () => (
       style={{ color: '#faa61a', cursor: 'pointer' }}
       onClick={() => window.scroll({ top: 0, left: 0, behavior: 'smooth' })}
     >
-      where do I start
+      {text}
     </a>
   </Divider>
 )

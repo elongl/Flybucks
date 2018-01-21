@@ -1,13 +1,10 @@
 import React from 'react'
 import { Dropdown, Input, Image, Icon } from 'semantic-ui-react'
 
-const capitalizeFirstLetter = word =>
-  word.charAt(0).toUpperCase() + word.slice(1)
-
 export default class extends React.Component {
   state = { filter: '', open: false }
 
-  closeDropdownListener = event => this.setState({ open: false })
+  closeDropdownListener = () => this.setState({ open: false })
 
   componentWillMount = () =>
     window.addEventListener('click', this.closeDropdownListener)
@@ -22,7 +19,7 @@ export default class extends React.Component {
     return (
       <Dropdown
         pointing="top right"
-        text={props.chosenCurrency && props.chosenCurrency.key}
+        text={props.chosenCurrency && props.chosenCurrency.symbol}
         icon={
           <Icon
             style={{ marginLeft: '0.5rem', color: '#faa61a' }}
@@ -50,17 +47,17 @@ export default class extends React.Component {
               currencies
                 .filter(
                   currency =>
-                    currency.value
+                    currency.symbol
                       .toUpperCase()
                       .includes(state.filter.toUpperCase()) ||
-                    currency.text
+                    currency.name
                       .toUpperCase()
                       .includes(state.filter.toUpperCase())
                 )
                 .map(currency => (
                   <Dropdown.Item
                     currency={currency}
-                    key={currency.key}
+                    key={currency.id}
                     onClick={(event, data) => {
                       props.onChangeCurrency(data.currency, props.type)
                       this.setState({ filter: '' })
@@ -70,8 +67,8 @@ export default class extends React.Component {
                       alignItems: 'center'
                     }}
                   >
-                    <b style={{ width: 70, fontSize: 18 }}>{currency.text}</b>
-                    <Image src={`/assets/cryptoicons/${currency.key}.svg`} />
+                    <b style={{ width: 70, fontSize: 18 }}>{currency.symbol}</b>
+                    <Image src={`/assets/cryptoicons/${currency.symbol}.svg`} />
                     <span
                       style={{
                         color: 'gray',
@@ -79,7 +76,7 @@ export default class extends React.Component {
                         width: 90
                       }}
                     >
-                      {capitalizeFirstLetter(currency.value)}
+                      {currency.name}
                     </span>
                   </Dropdown.Item>
                 ))}
