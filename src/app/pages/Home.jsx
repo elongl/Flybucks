@@ -11,8 +11,8 @@ export default () => (
     <Header />
     <Rates />
     <Information />
-    <Features />
     <Reviews />
+    <Features />
     <Novelty />
   </div>
 )

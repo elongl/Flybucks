@@ -1,6 +1,6 @@
 import React from 'react'
 import { Segment, Grid, Header, Image } from 'semantic-ui-react'
-import BackToTopDivider from './BackToTopDivider'
+import BackToTopDivider from '../common/BackToTopDivider'
 import EntryAnimation from '../common/EntryAnimation'
 
 export default () => (
@@ -20,7 +20,7 @@ export default () => (
           </p>
         </Grid.Column>
         <Grid.Column width={4}>
-          <EntryAnimation animation="fade left">
+          <EntryAnimation animation="fly left" duration={1500}>
             <Image src="/assets/images/notifications.svg" />
           </EntryAnimation>
         </Grid.Column>
@@ -32,7 +32,7 @@ export default () => (
 
       <Grid.Row>
         <Grid.Column width={4}>
-          <EntryAnimation animation="fade right">
+          <EntryAnimation animation="fly right" duration={1500}>
             <Image src="/assets/images/cryptocurrencies.svg" />
           </EntryAnimation>
         </Grid.Column>

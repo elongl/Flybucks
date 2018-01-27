@@ -22,6 +22,7 @@ export default class extends Component {
   }
 
   rotateRates = () => {
+    if (this.state.rates === undefined) return
     const rates = this.state.rates.slice()
     for (let i = 0; i < 6; i++) {
       const current = rates.shift()

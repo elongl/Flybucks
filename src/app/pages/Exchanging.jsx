@@ -1,54 +1,44 @@
-import React from 'react'
-import { Segment, Message } from 'semantic-ui-react'
-import { withRouter } from 'react-router-dom'
-import Exchange from '../components/home/header/Exchange'
-import Process from '../components/exchanging/Process'
-import CurrencyStats from '../components/exchanging/amounts/CurrencyStats'
-import NextButton from '../components/exchanging/amounts/NextButton'
+import React, { Component } from 'react'
+import { Segment } from 'semantic-ui-react'
+import ExchangeProcess from '../components/exchanging/ExchangeProcess'
+import Amounts from '../components/exchanging/Amounts'
+import Recipient from '../components/exchanging/Recipient'
+import Confirmation from '../components/exchanging/Confirmation'
 
-export default withRouter(({ history, authenticated }) => {
-  let rate = history.location.state.rate
-  console.log(rate)
-  const updateRate = newRate => (rate = newRate)
-  return (
-    <div style={{ backgroundColor: '#f5f5f5' }}>
-      <Segment
-        vertical
-        style={{ backgroundColor: '#0d141d', height: '5rem' }}
-      />
-      <Segment
-        vertical
-        style={{
-          height: '65rem',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
-        }}
-      >
-        <Process />
-        <CurrencyStats />
-        <div
+const stages = [Amounts, Recipient, Confirmation]
+export default class extends Component {
+  state = { stage: 0, maxStage: 0 }
+  pushStage = () => {
+    if (this.state.stage === this.state.maxStage)
+      this.setState(prevState => ({ maxStage: prevState.maxStage + 1 }))
+    this.setState(prevState => ({ stage: prevState.stage + 1 }))
+  }
+  render() {
+    const Stage = stages[this.state.stage]
+    return (
+      <div>
+        <Segment
+          vertical
+          style={{ backgroundColor: '#0d141d', padding: '2.5rem' }}
+        />
+        <Segment
+          vertical
           style={{
+            backgroundColor: '#f5f5f5',
+            height: '93vh',
             display: 'flex',
-            alignItems: 'center',
-            marginBottom: '2.5rem'
+            flexDirection: 'column',
+            alignItems: 'center'
           }}
         >
-          <Exchange
-            loadedFromExchanging
-            updateRate={updateRate}
-            state={history.location.state}
-            authenticated={authenticated}
-            style={{ boxShadow: '3px 3px 5px 6px #ccc' }}
+          <ExchangeProcess
+            stage={this.state.stage}
+            maxStage={this.state.maxStage}
+            gotoStage={stage => this.setState({ stage })}
           />
-          <NextButton />
-        </div>
-        <Message>
-          PLEASE NOTE: Bitcoin and Ethereum networks are heavily overloaded.
-          Transactions processing may take time.
-        </Message>
-        <div />
-      </Segment>
-    </div>
-  )
-})
+          <Stage pushStage={this.pushStage} />
+        </Segment>
+      </div>
+    )
+  }
+}

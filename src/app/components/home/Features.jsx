@@ -1,6 +1,5 @@
 import React from 'react'
-import { Segment, Image } from 'semantic-ui-react'
-import Container from 'semantic-ui-react/dist/commonjs/elements/Container/Container'
+import { Segment } from 'semantic-ui-react'
 import Feature from './features/Feature'
 export default () => (
   <Segment
@@ -24,7 +23,7 @@ export default () => (
       stable market for smaller niche currencies.
     </Feature>
     <Feature header="Asset Trading" image="/assets/images/charts.png">
-      We will be providing some unique trading opportunities apart from
+      We are providing some unique real time trading opportunities apart from
       currencies, more infomation coming soon.
     </Feature>
     <Feature header="Support" image="/assets/images/support.png">

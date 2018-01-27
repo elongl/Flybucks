@@ -6,6 +6,7 @@ class Store {
   @observable receive = { value: '', currency: undefined }
   @observable currencyList = { deposit: undefined, receive: undefined }
   @observable rate = undefined
+  @observable recipientAddress = ''
 
   changeValue(value) {
     this.deposit.value = value
