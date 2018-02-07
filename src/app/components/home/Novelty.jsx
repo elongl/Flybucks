@@ -6,7 +6,7 @@ import EntryAnimation from '../common/EntryAnimation'
 export default () => (
   <Segment style={{ padding: '2rem' }} vertical>
     <Grid centered stackable verticalAlign="middle">
-      <Grid.Row>
+      <Grid.Row style={{ padding: 0, height: 445 }}>
         <Grid.Column width={5}>
           <Header as="h3" style={{ fontSize: '2rem' }}>
             Why Flybucks?
@@ -20,11 +20,10 @@ export default () => (
           </p>
         </Grid.Column>
         <Grid.Column width={4}>
-          <div style={{ height: 445, width: 445 }}>
-            <EntryAnimation animation="fly left" duration={1500}>
-              <Image src="/assets/images/notifications.svg" />
-            </EntryAnimation>
-          </div>
+          {/* Testing Here */}
+          <EntryAnimation animation="fly left" duration={1500}>
+            <Image src="/assets/images/notifications.svg" />
+          </EntryAnimation>
         </Grid.Column>
       </Grid.Row>
 
@@ -32,13 +31,11 @@ export default () => (
         <BackToTopDivider text={'where do i start'} />
       </Grid.Row>
 
-      <Grid.Row>
+      <Grid.Row style={{ padding: 0, height: 445 }}>
         <Grid.Column width={4}>
-          <div style={{ height: 445, width: 445 }}>
-            <EntryAnimation animation="fly right" duration={1500}>
-              <Image src="/assets/images/cryptocurrencies.svg" />
-            </EntryAnimation>
-          </div>
+          <EntryAnimation animation="fly right" duration={1500}>
+            <Image src="/assets/images/cryptocurrencies.svg" />
+          </EntryAnimation>
         </Grid.Column>
         <Grid.Column width={5}>
           <Header as="h3" style={{ fontSize: '2rem', paddingTop: '1.5rem' }}>

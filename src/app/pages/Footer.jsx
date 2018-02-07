@@ -4,7 +4,7 @@ export default () => (
   <Segment
     inverted
     vertical
-    style={{ padding: '5rem', backgroundColor: '#0d141d' }}
+    style={{ padding: '5rem', backgroundColor: '#394247' }}
   >
     <Container>
       <Grid divided inverted stackable>

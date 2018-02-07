@@ -83,26 +83,30 @@ export default class extends Component {
             }}
           >
             {reviews.map(customer => (
-              <Card
-                link
-                raised
-                style={{ cursor: 'default', margin: '1em' }}
-                key={customer.header}
-                header={customer.header}
-                meta={customer.meta}
-                description={customer.description}
-                image={<Image src={customer.image} height={290} width={290} />}
-                extra={
-                  <a
-                    onClick={() =>
-                      window.scroll({ top: 0, left: 0, behavior: 'smooth' })
-                    }
-                  >
-                    <Icon name="exchange" />
-                    {customer.exchangeCount} Exchanges
-                  </a>
-                }
-              />
+              <div className="reviewCard">
+                <Card
+                  link
+                  raised
+                  style={{ cursor: 'default', margin: '1em' }}
+                  key={customer.header}
+                  header={customer.header}
+                  meta={customer.meta}
+                  description={customer.description}
+                  image={
+                    <Image src={customer.image} height={290} width={290} />
+                  }
+                  extra={
+                    <a
+                      onClick={() =>
+                        window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+                      }
+                    >
+                      <Icon name="exchange" />
+                      {customer.exchangeCount} Exchanges
+                    </a>
+                  }
+                />
+              </div>
             ))}
           </Container>
           <Icon

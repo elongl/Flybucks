@@ -11,7 +11,8 @@ const headerStyle = {
   textAlign: 'center',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center'
+  justifyContent: 'center',
+  alignItems: 'center'
 }
 
 export default () => (

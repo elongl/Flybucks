@@ -17,4 +17,30 @@ injectGlobal`
 body {
   padding-right: 0 !important;
 }
+
+@media only screen and (max-width: 900px) {
+  #headerExchange {
+      flex-direction: column;
+  }
+}
+@media only screen and (max-width: 1498px) {
+  .reviewCard {
+      flex-basis: 50%;
+      display: flex;
+      justify-content: center;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  #headerText {
+    width: 100%;
+    font-size 5vw !important;
+  }
+}
+@media only screen and (max-width: 1539px) {
+  .feature {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+  }
+}
 `

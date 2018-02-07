@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 
 export default withRouter(props => (
   <div
+    id="headerExchange"
     style={{
       marginTop: '1.5rem',
       display: 'flex',
