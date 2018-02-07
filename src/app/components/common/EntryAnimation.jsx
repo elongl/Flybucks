@@ -7,7 +7,7 @@ export default class extends Component {
     return (
       <Visibility
         once={true}
-        onTopVisible={() => this.setState({ visible: true })}
+        onBottomVisible={() => this.setState({ visible: true })}
       >
         <Transition
           visible={this.state.visible}

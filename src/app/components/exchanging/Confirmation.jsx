@@ -60,7 +60,7 @@ export default observer(({ pushStage }) => (
       ].map(section => <DetailLabel {...section} key={section.label} />)}
     </Grid>
     <Button
-      content="Conifrm Transaction"
+      content="Confirm Transaction"
       color="orange"
       size="huge"
       onClick={pushStage}

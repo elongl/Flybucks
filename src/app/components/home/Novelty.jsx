@@ -20,9 +20,11 @@ export default () => (
           </p>
         </Grid.Column>
         <Grid.Column width={4}>
-          <EntryAnimation animation="fly left" duration={1500}>
-            <Image src="/assets/images/notifications.svg" />
-          </EntryAnimation>
+          <div style={{ height: 445, width: 445 }}>
+            <EntryAnimation animation="fly left" duration={1500}>
+              <Image src="/assets/images/notifications.svg" />
+            </EntryAnimation>
+          </div>
         </Grid.Column>
       </Grid.Row>
 
@@ -32,9 +34,11 @@ export default () => (
 
       <Grid.Row>
         <Grid.Column width={4}>
-          <EntryAnimation animation="fly right" duration={1500}>
-            <Image src="/assets/images/cryptocurrencies.svg" />
-          </EntryAnimation>
+          <div style={{ height: 445, width: 445 }}>
+            <EntryAnimation animation="fly right" duration={1500}>
+              <Image src="/assets/images/cryptocurrencies.svg" />
+            </EntryAnimation>
+          </div>
         </Grid.Column>
         <Grid.Column width={5}>
           <Header as="h3" style={{ fontSize: '2rem', paddingTop: '1.5rem' }}>

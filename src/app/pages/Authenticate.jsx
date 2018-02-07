@@ -17,7 +17,7 @@ export default withRouter(props => (
         alignItems: 'center'
       }}
     >
-      <Image src="/assets/images/welcome.svg" />
+      <Image src="/assets/images/welcome.svg" width="420" height="353.7" />
       <Header as="h1">Sign up to Flybucks</Header>
     </Segment>
 
@@ -37,7 +37,7 @@ export default withRouter(props => (
         backgroundColor: '#faa61a'
       }}
     >
-      <Image src="/assets/images/account.svg" />
+      <Image src="/assets/images/account.svg" width="420" height="353.7" />
       <Header as="h1" style={{ color: 'white' }}>
         Log in to your account
       </Header>

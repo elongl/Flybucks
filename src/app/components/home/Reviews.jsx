@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, Card, Icon, Container } from 'semantic-ui-react'
+import { Segment, Card, Icon, Container, Image } from 'semantic-ui-react'
 const reviews = [
   {
     header: 'Elon Gliksberg',
@@ -82,16 +82,16 @@ export default class extends Component {
               justifyContent: 'space-between'
             }}
           >
-            {reviews.map(employee => (
+            {reviews.map(customer => (
               <Card
                 link
                 raised
                 style={{ cursor: 'default', margin: '1em' }}
-                key={employee.header}
-                header={employee.header}
-                meta={employee.meta}
-                description={employee.description}
-                image={employee.image}
+                key={customer.header}
+                header={customer.header}
+                meta={customer.meta}
+                description={customer.description}
+                image={<Image src={customer.image} height={290} width={290} />}
                 extra={
                   <a
                     onClick={() =>
@@ -99,7 +99,7 @@ export default class extends Component {
                     }
                   >
                     <Icon name="exchange" />
-                    {employee.exchangeCount} Exchanges
+                    {customer.exchangeCount} Exchanges
                   </a>
                 }
               />

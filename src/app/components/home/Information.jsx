@@ -19,15 +19,19 @@ export default () => (
             The Future Is Already Here
           </Header>
           <p style={{ fontSize: '1.33rem' }}>
-            Fair. Trustworthy. Instant. Our rates are the most competitive in
-            Israel. We support same day Wire transfers, Cash transfers, with a
-            layout of over 150 branches, operate a Bitcoin ATM and offer you to
-            purchase your Bitcoins using a Credit Card.
+            Our rates are the most competitive in Israel. We support same day
+            Wire transfers, Cash transfers, with a layout of over 150 branches,
+            operate a Bitcoin ATM and offer you to purchase your Bitcoins using
+            a Credit Card.
           </p>
         </Grid.Column>
         <Grid.Column>
           <FloatingContainer>
-            <Image src="/assets/images/globe.svg" />
+            <Image
+              src="/assets/images/globe.svg"
+              height={549.5}
+              width={549.5}
+            />
           </FloatingContainer>
         </Grid.Column>
       </Grid.Row>
