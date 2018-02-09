@@ -20,8 +20,7 @@ export default () => (
           </p>
         </Grid.Column>
         <Grid.Column width={4}>
-          {/* Testing Here */}
-          <EntryAnimation animation="fly left" duration={1500}>
+          <EntryAnimation animation="fly left">
             <Image src="/assets/images/notifications.svg" />
           </EntryAnimation>
         </Grid.Column>
@@ -33,7 +32,7 @@ export default () => (
 
       <Grid.Row style={{ padding: 0, height: 445 }}>
         <Grid.Column width={4}>
-          <EntryAnimation animation="fly right" duration={1500}>
+          <EntryAnimation animation="fly right">
             <Image src="/assets/images/cryptocurrencies.svg" />
           </EntryAnimation>
         </Grid.Column>

@@ -5,10 +5,10 @@ export default class extends Component {
   state = { visible: false }
   render() {
     return (
-      <Visibility once onBottomVisible={() => this.setState({ visible: true })}>
+      <Visibility once onOnScreen={() => this.setState({ visible: true })}>
         <Transition
           visible={this.state.visible}
-          duration={this.props.duration || 1000}
+          duration={this.props.duration || 1500}
           animation={this.props.animation}
         >
           {this.props.children}
