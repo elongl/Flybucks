@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Header } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
 import Typewriter from 'react-rotating-text'
 const coins = [
   'Bitcoin',
@@ -10,7 +10,7 @@ const coins = [
   'Ripple'
 ]
 export default () => (
-  <Container>
+  <div style={{ width: '100%' }}>
     <Header
       id="headerText"
       style={{
@@ -27,7 +27,7 @@ export default () => (
       </span>
       <span> With Flybucks!</span>
     </Header>
-    <hr width="90%" />
+    <hr width="50%" />
 
     <h2
       style={{
@@ -39,5 +39,5 @@ export default () => (
     >
       The world's local currency within your reach.
     </h2>
-  </Container>
+  </div>
 )

@@ -83,12 +83,11 @@ export default class extends Component {
             }}
           >
             {reviews.map(customer => (
-              <div className="reviewCard">
+              <div className="reviewCard" key={customer.header}>
                 <Card
                   link
                   raised
                   style={{ cursor: 'default', margin: '1em' }}
-                  key={customer.header}
                   header={customer.header}
                   meta={customer.meta}
                   description={customer.description}

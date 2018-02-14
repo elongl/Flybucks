@@ -32,7 +32,6 @@ body {
 }
 @media only screen and (max-width: 1000px) {
   #headerText {
-    width: 100%;
     font-size 5vw !important;
   }
 }

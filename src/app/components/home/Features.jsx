@@ -6,7 +6,7 @@ export default () => (
     vertical
     inverted
     style={{
-      height: '30rem',
+      minHeight: '30rem',
       backgroundColor: '#424242',
       display: 'flex',
       alignItems: 'center',
