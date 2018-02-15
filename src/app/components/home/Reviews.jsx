@@ -73,9 +73,9 @@ export default class extends Component {
             name="angle left"
             style={{ color: '#fff', cursor: 'pointer', width: '2em' }}
           />
-          <Container
+          <div
             style={{
-              width: 1300,
+              maxWidth: 1300,
               display: 'flex',
               flexWrap: 'wrap',
               alignItems: 'center',
@@ -107,7 +107,7 @@ export default class extends Component {
                 />
               </div>
             ))}
-          </Container>
+          </div>
           <Icon
             onMouseOver={() => this.setState({ hover: true })}
             onMouseOut={() => this.setState({ hover: false })}

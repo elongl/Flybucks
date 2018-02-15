@@ -6,7 +6,7 @@ import EntryAnimation from '../common/EntryAnimation'
 export default () => (
   <Segment style={{ padding: '2rem' }} vertical>
     <Grid centered stackable verticalAlign="middle">
-      <Grid.Row style={{ padding: 0, height: 445 }}>
+      <Grid.Row style={{ padding: 0, minHeight: 445 }}>
         <Grid.Column width={5}>
           <Header as="h3" style={{ fontSize: '2rem' }}>
             Why Flybucks?
@@ -30,7 +30,7 @@ export default () => (
         <BackToTopDivider text={'where do i start'} />
       </Grid.Row>
 
-      <Grid.Row style={{ padding: 0, height: 445 }}>
+      <Grid.Row style={{ padding: 0, minHeight: 445 }}>
         <Grid.Column width={4}>
           <EntryAnimation animation="fly right">
             <Image src="/assets/images/cryptocurrencies.svg" />

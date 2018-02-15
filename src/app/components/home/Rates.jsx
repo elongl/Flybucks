@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment } from 'semantic-ui-react'
+import { Segment, Transition } from 'semantic-ui-react'
 import * as exchangeRates from '../../../api/exchangeRates'
 import Loader from '../common/Loader'
 import Currency from '../home/rates/Currency'
@@ -36,9 +36,7 @@ export default class extends Component {
     const currencies = state.rates ? (
       state.rates
         .slice(0, 6)
-        .map(rate => (
-          <Currency key={rate.name} rate={rate} visible={state.visible} />
-        ))
+        .map(rate => <Currency key={rate.name} rate={rate} />)
     ) : (
       <Loader />
     )
@@ -56,7 +54,13 @@ export default class extends Component {
           flexWrap: 'wrap'
         }}
       >
-        {currencies}
+        <Transition
+          visible={this.state.visible}
+          animation="fade down"
+          duration={500}
+        >
+          <div id="rates">{currencies}</div>
+        </Transition>
       </Segment>
     )
   }
