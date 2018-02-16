@@ -3,6 +3,7 @@ import { observer } from 'mobx-react'
 import store from '../../../store'
 import { Button } from 'semantic-ui-react'
 import ThemedLabel from '../common/ThemedLabel'
+import { digitsAfterDot } from '../../../pureFunctions'
 
 const DetailLabel = ({ label, value, inputStyle }) => (
   <ThemedLabel
@@ -51,7 +52,9 @@ export default observer(({ pushStage }) => (
         },
         {
           label: 'commission included (0.5%)',
-          value: `${store.receive.value} ${store.receive.currency.symbol}`
+          value: `${digitsAfterDot(store.receive.value * 0.5 / 100, 6)} ${
+            store.receive.currency.symbol
+          }`
         },
         {
           label: 'estimated arrival',

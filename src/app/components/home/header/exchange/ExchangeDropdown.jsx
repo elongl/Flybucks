@@ -15,7 +15,7 @@ export default class extends React.Component {
 
   render() {
     const { props, state } = this
-    const { currencies } = props
+    const { currencyList } = props
     return (
       <Dropdown
         pointing="top right"
@@ -43,8 +43,8 @@ export default class extends React.Component {
             onClick={event => event.stopPropagation()}
           />
           <Dropdown.Menu scrolling>
-            {currencies !== undefined &&
-              currencies
+            {currencyList !== undefined &&
+              currencyList
                 .filter(
                   currency =>
                     currency.symbol

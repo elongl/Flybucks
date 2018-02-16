@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Segment, Transition } from 'semantic-ui-react'
-import * as exchangeRates from '../../../api/exchangeRates'
+import * as exchangeAPI from '../../../api/exchangeAPI'
 import Loader from '../common/Loader'
 import Currency from '../home/rates/Currency'
 
@@ -10,7 +10,7 @@ export default class extends Component {
     visible: true
   }
   componentDidMount = async () => {
-    this.setState({ rates: await exchangeRates.getRatesLimit(18) })
+    this.setState({ rates: await exchangeAPI.getRatesLimit(18) })
     this.rotateRatesInterval()
   }
   componentWillUnmount = () => clearInterval(this.ticker)

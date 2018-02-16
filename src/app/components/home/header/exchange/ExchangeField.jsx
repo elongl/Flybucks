@@ -47,7 +47,7 @@ export default observer(props => {
       <Label style={{ color: 'black' }}>
         <ExchangeDropdown
           type={props.type}
-          currencies={store.currencyList[props.type]}
+          currencyList={store.currencyList}
           chosenCurrency={store[props.type].currency}
           onChangeCurrency={(currencyObject, currencyType) =>
             store.changeCurrency(currencyObject, currencyType)
