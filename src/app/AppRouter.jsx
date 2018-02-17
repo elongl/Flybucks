@@ -8,6 +8,7 @@ import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Exchanging from './pages/Exchanging'
 import Authenticate from './pages/Authenticate'
+import NotFound from './pages/NotFound'
 import store from '../store'
 import '../injectGlobal'
 
@@ -44,6 +45,7 @@ export default class extends Component {
             path="/signup"
             render={() => (authenticated ? <Redirect to="/" /> : <SignUp />)}
           />
+          <Route path="/" component={NotFound} />
         </Switch>
         <Footer />
       </div>

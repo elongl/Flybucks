@@ -4,8 +4,9 @@ import ExchangeProcess from '../components/exchanging/ExchangeProcess'
 import Amounts from '../components/exchanging/Amounts'
 import Recipient from '../components/exchanging/Recipient'
 import Confirmation from '../components/exchanging/Confirmation'
+import Billing from '../components/exchanging/Billing'
 
-const stages = [Amounts, Recipient, Confirmation]
+const stages = [Amounts, Recipient, Confirmation, Billing]
 export default class extends Component {
   state = { stage: 0, maxStage: 0 }
   pushStage = () => {

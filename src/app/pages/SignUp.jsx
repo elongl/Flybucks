@@ -80,7 +80,7 @@ export default withRouter(props => {
       icon: 'repeat',
       placeholder: 'Retype Password'
     }
-  ].map(props => <Field {...props} required />)
+  ].map(props => <Field key={props.name} {...props} required />)
 
   return (
     <FullPageContainer>

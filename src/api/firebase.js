@@ -1,4 +1,5 @@
 import * as firebase from 'firebase'
+import Alert from 'sweetalert2'
 class Firebase {
   initializeApp = () => {
     const config = {
@@ -16,6 +17,33 @@ class Firebase {
 
   createUserWithEmailAndPassword = (email, pass) =>
     firebase.auth().createUserWithEmailAndPassword(email, pass)
+
+  createUserWithSocialNetwork = socialNetwork => {
+    let provider
+    switch (socialNetwork) {
+      case 'Google':
+        provider = new firebase.auth.GoogleAuthProvider()
+        break
+      case 'Facebook':
+        provider = new firebase.auth.FacebookAuthProvider()
+        break
+      case 'Twitter':
+        provider = new firebase.auth.TwitterAuthProvider()
+        break
+      default:
+        provider = undefined
+    }
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .catch(error =>
+        Alert({
+          type: 'error',
+          title: error.message,
+          text: 'Error code: ' + error.code
+        })
+      )
+  }
 
   authenticationState = (signedIn, signedOut) => {
     firebase.auth().onAuthStateChanged(user => {

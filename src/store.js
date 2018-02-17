@@ -7,6 +7,7 @@ class Store {
   @observable currencyList = undefined
   @observable rate = undefined
   @observable recipientAddress = ''
+  @observable transactionInformation = undefined
 
   changeValue(value) {
     this.deposit.value = value
@@ -26,7 +27,7 @@ class Store {
       ]
     else this[currencyType].currency = currencyObject
     await this.updateRate()
-    this.receive.value = digitsAfterDot(this.deposit.value / this.rate, 6)
+    this.receive.value = digitsAfterDot(this.deposit.value * this.rate, 6)
   }
 
   async updateRate() {
