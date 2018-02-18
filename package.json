@@ -18,15 +18,16 @@
     "react-emotion": "^8.0.11",
     "react-rotating-text": "^1.2.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.13",
-    "semantic-ui-react": "^0.74.2",
+    "react-scripts": "^1.1.1",
+    "semantic-ui-react": "^0.78.2",
     "sweetalert2": "^7.0.10"
   },
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "deploy": "yarn build && firebase deploy"
   },
   "devDependencies": {
     "husky": "^0.14.3",

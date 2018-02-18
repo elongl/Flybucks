@@ -6,7 +6,7 @@ import ThemedInput from '../common/ThemedInput'
 export default observer(({ pushStage }) => (
   <div>
     <h1 style={{ fontWeight: 300 }}>
-      Enter the recipient's {store.receive.currency.name} address
+      Enter the recipient's {store.to.currency.name} address
     </h1>
 
     <ThemedInput

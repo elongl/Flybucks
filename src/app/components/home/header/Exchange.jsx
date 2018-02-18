@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 
 export default withRouter(props => (
   <div
-    id="headerExchange"
+    id={props.id}
     style={{
       marginTop: '1.5rem',
       display: 'flex',
@@ -14,14 +14,14 @@ export default withRouter(props => (
       flexWrap: 'wrap'
     }}
   >
-    <ExchangeField type="deposit" style={props.style} />
+    <ExchangeField type="from" style={props.style} />
     <Icon
       name="exchange"
       size="big"
       color="yellow"
       style={{ margin: '0rem 1rem', marginBottom: '0.5rem' }}
     />
-    <ExchangeField type="receive" style={props.style} />
+    <ExchangeField type="to" style={props.style} />
 
     {!props.loadedFromExchanging && (
       <Button

@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 import store from '../../../../../store'
 
 export default observer(props => {
-  const isReceive = props.type === 'receive'
+  const isToField = props.type === 'to'
   return (
     <Input
       style={props.style}
@@ -24,24 +24,24 @@ export default observer(props => {
           fontSize: 17,
           display: 'flex',
           alignItems: 'center',
-          color: isReceive ? 'white' : '#faa61a',
-          backgroundColor: isReceive ? 'rgba(0, 0, 0, 0.35)' : 'white',
+          color: isToField ? 'white' : '#faa61a',
+          backgroundColor: isToField ? 'rgba(0, 0, 0, 0.35)' : 'white',
           textTransform: 'uppercase'
         }}
       >
-        {isReceive ? 'get' : 'have'}
+        {isToField ? 'get' : 'have'}
       </Label>
       <input
-        readOnly={isReceive}
+        readOnly={isToField}
         maxLength={18}
         style={{
           width: '18rem',
-          backgroundColor: isReceive && 'rgba(0, 0, 0, 0.35)',
+          backgroundColor: isToField && 'rgba(0, 0, 0, 0.35)',
           textAlign: 'right',
           fontWeight: 700,
-          color: isReceive && 'white',
+          color: isToField && 'white',
           border: 'none',
-          cursor: isReceive ? 'default' : 'auto'
+          cursor: isToField ? 'default' : 'auto'
         }}
       />
       <Label style={{ color: 'black' }}>

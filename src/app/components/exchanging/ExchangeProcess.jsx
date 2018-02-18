@@ -35,7 +35,7 @@ export default ({ stage, maxStage, gotoStage }) => (
       }
     ].map(step => (
       <Step
-        key={step.title}
+        key={step.stage}
         icon={step.icon}
         stage={step.stage}
         title={step.title}

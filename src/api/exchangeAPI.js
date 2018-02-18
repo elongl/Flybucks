@@ -4,24 +4,28 @@ export const getRatesLimit = async limit =>
     `https://api.coinmarketcap.com/v1/ticker/?convert=ILS&limit=${limit}`
   )).data
 
-export const getRate = async (depositCurrency, receiveCurrency) =>
+export const getRate = async (fromCurrency, toCurrency) =>
   (await axios.get(
-    `https://flybucks-api-zwzgisagaz.now.sh/getexchangeamount/${
-      depositCurrency.symbol
-    }/${receiveCurrency.symbol}/1`
+    `https://flybucks-api-asmjzyvayo.now.sh/exchangeAmount/${
+      fromCurrency.symbol
+    }/${toCurrency.symbol}/1`
   )).data
 
-export const getMinAmount = async (depositCurrency, receiveCurrency) =>
+export const getMinAmount = async (fromCurrency, toCurrency) =>
   (await axios.get(
-    `https://flybucks-api-zwzgisagaz.now.sh/getminamount/${depositCurrency}/${receiveCurrency}`
+    `https://flybucks-api-asmjzyvayo.now.sh/minAmount/${fromCurrency.symbol}/${
+      toCurrency.symbol
+    }`
   )).data
 
 export const createTransaction = async (
-  depositCurrency,
-  receiveCurrency,
+  fromCurrency,
+  toCurrency,
   recipientAddress,
   amount
 ) =>
   (await axios.post(
-    `https://flybucks-api-zwzgisagaz.now.sh/createtransaction/${depositCurrency}/${receiveCurrency}/${recipientAddress}/${amount}`
+    `https://flybucks-api-asmjzyvayo.now.sh/createtransaction/${
+      fromCurrency.symbol
+    }/${toCurrency.symbol}/${recipientAddress}/${amount}`
   )).data

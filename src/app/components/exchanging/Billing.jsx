@@ -15,8 +15,7 @@ export default () => (
   >
     <h3>Transaction ID: {store.transactionInformation.id}</h3>
     <h1 style={{ fontWeight: 300 }}>
-      Send {store.deposit.value} {store.deposit.currency.symbol} to the address
-      below
+      Send {store.from.value} {store.from.currency.symbol} to the address below
     </h1>
 
     <CopyToClipboard text={store.transactionInformation.payinAddress}>

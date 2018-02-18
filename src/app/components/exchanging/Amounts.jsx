@@ -14,7 +14,13 @@ export default class extends Component {
   state = { loading: false }
   render() {
     return (
-      <div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
+        }}
+      >
         <CurrencyStats />
         <div
           style={{
@@ -24,6 +30,7 @@ export default class extends Component {
           }}
         >
           <Exchange
+            id="exchangingExchange"
             loadedFromExchanging
             style={{ boxShadow: '3px 3px 5px 6px #ccc' }}
           />
@@ -31,11 +38,11 @@ export default class extends Component {
             pushStage={async () => {
               this.setState({ loading: true })
               const { result: minAmount } = await exchangeAPI.getMinAmount(
-                store.deposit.currency.symbol,
-                store.receive.currency.symbol
+                store.from.currency,
+                store.to.currency
               )
-              if (store.deposit.value < minAmount) {
-                Alert('You have to deposit at least', minAmount)
+              if (store.from.value < minAmount) {
+                Alert('You have to exchange at least', minAmount)
                 this.setState({ loading: false })
                 return
               }

@@ -9,10 +9,10 @@ export default observer(() => (
   <Grid divided style={{ margin: '2rem' }}>
     <GridSection
       leftText="exchange rate"
-      rightText={`1 ${store.deposit.currency !== undefined &&
-        store.deposit.currency.symbol} = ${store.rate !== undefined &&
-        digitsAfterDot(store.rate, 6)} ${store.receive.currency !== undefined &&
-        store.receive.currency.symbol}`}
+      rightText={`1 ${store.from.currency !== undefined &&
+        store.from.currency.symbol} = ${store.rate !== undefined &&
+        digitsAfterDot(store.rate, 6)} ${store.to.currency !== undefined &&
+        store.to.currency.symbol}`}
     />
     <GridSection leftText="estimated arrival" rightText="≈ 5-30 minutes" />
     <GridSection leftText="network fee" rightText={'0.5%'} />

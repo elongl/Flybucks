@@ -35,9 +35,15 @@ body {
     font-size 5vw !important;
   }
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 950px) {
   #headerExchange {
       flex-direction: column;
+  }
+}
+@media only screen and (max-width: 1150px) {
+  #exchangingExchange {
+      flex-direction: column;
+      padding: 3rem;
   }
 }
 @media only screen and (max-width: 1539px) {

@@ -18,6 +18,6 @@ const headerStyle = {
 export default () => (
   <Segment vertical style={headerStyle}>
     <HeaderText />
-    <Exchange />
+    <Exchange id="headerExchange" />
   </Segment>
 )

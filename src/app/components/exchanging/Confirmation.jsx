@@ -34,11 +34,11 @@ export default class extends Component {
           {[
             {
               label: 'you have',
-              value: `${store.deposit.value} ${store.deposit.currency.symbol}`
+              value: `${store.from.value} ${store.from.currency.symbol}`
             },
             {
               label: 'you get',
-              value: `${store.receive.value} ${store.receive.currency.symbol}`
+              value: `${store.to.value} ${store.to.currency.symbol}`
             },
             {
               label: 'recipient address',
@@ -52,14 +52,14 @@ export default class extends Component {
           {[
             {
               label: 'expected exchange rate',
-              value: `1 ${store.deposit.currency.symbol} = ${store.rate} ${
-                store.receive.currency.symbol
+              value: `1 ${store.from.currency.symbol} = ${store.rate} ${
+                store.to.currency.symbol
               }`
             },
             {
               label: 'commission included (0.5%)',
-              value: `${digitsAfterDot(store.receive.value * 0.5 / 100, 6)} ${
-                store.receive.currency.symbol
+              value: `${digitsAfterDot(store.to.value * 0.5 / 100, 6)} ${
+                store.to.currency.symbol
               }`
             },
             {
@@ -76,10 +76,10 @@ export default class extends Component {
           onClick={async () => {
             this.setState({ loading: true })
             const response = await exchangeAPI.createTransaction(
-              store.deposit.currency.symbol,
-              store.receive.currency.symbol,
+              store.from.currency,
+              store.to.currency,
               store.recipientAddress,
-              store.deposit.value
+              store.from.value
             )
             if (response.error) {
               this.setState({ loading: false })

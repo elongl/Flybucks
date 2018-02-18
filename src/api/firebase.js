@@ -1,5 +1,4 @@
 import * as firebase from 'firebase'
-import Alert from 'sweetalert2'
 class Firebase {
   initializeApp = () => {
     const config = {
@@ -33,16 +32,7 @@ class Firebase {
       default:
         provider = undefined
     }
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .catch(error =>
-        Alert({
-          type: 'error',
-          title: error.message,
-          text: 'Error code: ' + error.code
-        })
-      )
+    firebase.auth().signInWithPopup(provider)
   }
 
   authenticationState = (signedIn, signedOut) => {
