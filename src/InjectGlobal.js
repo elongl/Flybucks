@@ -35,32 +35,38 @@ body {
     font-size 5vw !important;
   }
 }
+
 @media only screen and (max-width: 950px) {
   #headerExchange {
       flex-direction: column;
   }
 }
+
 @media only screen and (max-width: 1150px) {
   #exchangingExchange {
       flex-direction: column;
       padding: 3rem;
   }
 }
+
 @media only screen and (max-width: 1539px) {
   .reviewCard, .feature {
     flex-basis: 50%;
   }  
 }
+
 @media only screen and (max-width: 700px) {  
   .feature {
     flex-basis: 100%;    
   }
 }
+
 @media only screen and (max-width: 841px) {
   .reviewCard {
     flex-basis: 100%;
   }  
 }
+
 @keyframes blinking-cursor {
   0%, 100% {
     opacity: 0;
@@ -69,6 +75,7 @@ body {
     opacity: 0.5;
   }
 }
+
 .react-rotating-text-cursor {
   animation: blinking-cursor 1s cubic-bezier(0.68, 0.01, 0.01, 0.99) 0s infinite;
 }

@@ -15,17 +15,21 @@ class Store {
   }
 
   async changeCurrency(currencyObject, currencyType) {
+    if (currencyObject === this[currencyType].currency) return undefined
     this.to.value = '...'
     if (
       (currencyType === 'from' && currencyObject === this.to.currency) ||
       (currencyType === 'to' && currencyObject === this.from.currency)
-    )
-      [this.from.currency, this.to.currency] = [
+    ) {
+      ;[this.from.currency, this.to.currency] = [
         this.to.currency,
         this.from.currency
       ]
-    else this[currencyType].currency = currencyObject
-    await this.updateRate()
+      this.rate = 1 / this.rate
+    } else {
+      this[currencyType].currency = currencyObject
+      await this.updateRate()
+    }
     this.to.value = digitsAfterDot(this.from.value * this.rate, 6)
   }
 

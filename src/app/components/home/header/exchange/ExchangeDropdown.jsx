@@ -5,8 +5,10 @@ export default class extends React.Component {
   state = { filter: '', open: false }
 
   closeDropdownListener = () => this.setState({ open: false })
+
   componentWillMount = () =>
     window.addEventListener('click', this.closeDropdownListener)
+
   componentWillUnmount = () =>
     window.removeEventListener('click', this.closeDropdownListener)
 

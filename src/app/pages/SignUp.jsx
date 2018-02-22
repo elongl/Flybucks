@@ -28,19 +28,9 @@ export default withRouter(props => {
     const displayName = formData.get('displayName')
     if (pass === repass) {
       try {
-        await firebase.createUserWithEmailAndPassword(email, pass)
-        await firebase.updateProfile({ displayName })
-        Alert({
-          position: 'top-right',
-          type: 'success',
-          title: 'Your are now logged in',
-          showConfirmButton: false,
-          timer: 1500
-        })
+        await firebase.createUserWithEmailAndPassword(email, pass, displayName)
         props.history.push('/')
-      } catch (error) {
-        Alert('Oops...', error.message, 'error')
-      }
+      } catch (err) {}
     } else {
       Alert('Oops...', 'Please make sure your passwords match', 'error')
     }
@@ -93,10 +83,16 @@ export default withRouter(props => {
           alignItems: 'center'
         }}
       >
-        <div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+          }}
+        >
           <h1
             style={{
-              fontSize: 66,
+              fontSize: '4.5rem',
               fontFamily: 'Roboto',
               fontWeight: 100,
               margin: 0
@@ -123,7 +119,6 @@ export default withRouter(props => {
         >
           <Form style={{ ...columnFlex }} onSubmit={signUp}>
             {fields}
-
             <Button
               content="Sign Up!"
               icon="signup"

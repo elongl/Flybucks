@@ -6,14 +6,14 @@ export const getRatesLimit = async limit =>
 
 export const getRate = async (fromCurrency, toCurrency) =>
   (await axios.get(
-    `https://flybucks-api-asmjzyvayo.now.sh/exchangeAmount/${
-      fromCurrency.symbol
-    }/${toCurrency.symbol}/1`
+    `https://flybucks-api.now.sh/exchangeAmount/${fromCurrency.symbol}/${
+      toCurrency.symbol
+    }/1`
   )).data
 
 export const getMinAmount = async (fromCurrency, toCurrency) =>
   (await axios.get(
-    `https://flybucks-api-asmjzyvayo.now.sh/minAmount/${fromCurrency.symbol}/${
+    `https://flybucks-api.now.sh/minAmount/${fromCurrency.symbol}/${
       toCurrency.symbol
     }`
   )).data
@@ -25,7 +25,7 @@ export const createTransaction = async (
   amount
 ) =>
   (await axios.post(
-    `https://flybucks-api-asmjzyvayo.now.sh/createtransaction/${
-      fromCurrency.symbol
-    }/${toCurrency.symbol}/${recipientAddress}/${amount}`
+    `https://flybucks-api.now.sh/createtransaction/${fromCurrency.symbol}/${
+      toCurrency.symbol
+    }/${recipientAddress}/${amount}`
   )).data

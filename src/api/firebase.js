@@ -1,5 +1,18 @@
 import * as firebase from 'firebase'
+import Alert from 'sweetalert2'
+
 class Firebase {
+  loggedInAlert = () =>
+    Alert({
+      position: 'top-right',
+      type: 'success',
+      title: 'Your are now logged in',
+      showConfirmButton: false,
+      timer: 1500
+    })
+
+  catchAlert = error => Alert(error.code, error.message, 'error')
+
   initializeApp = () => {
     const config = {
       apiKey: 'AIzaSyADdETym8W1dE0Bzz0XW2j5qyDtJo0qx6U',
@@ -11,13 +24,27 @@ class Firebase {
     }
     firebase.initializeApp(config)
   }
-  signInWithEmailAndPassword = (email, pass) =>
-    firebase.auth().signInWithEmailAndPassword(email, pass)
 
-  createUserWithEmailAndPassword = (email, pass) =>
-    firebase.auth().createUserWithEmailAndPassword(email, pass)
+  signInWithEmailAndPassword = async (email, pass) => {
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, pass)
+      this.loggedInAlert()
+    } catch (err) {
+      this.catchAlert(err)
+    }
+  }
 
-  createUserWithSocialNetwork = socialNetwork => {
+  createUserWithEmailAndPassword = async (email, pass, displayName) => {
+    try {
+      await firebase.auth().createUserWithEmailAndPassword(email, pass)
+      await firebase.auth().currentUser.updateProfile({ displayName })
+      this.loggedInAlert()
+    } catch (err) {
+      this.catchAlert(err)
+    }
+  }
+
+  createUserWithSocialNetwork = async socialNetwork => {
     let provider
     switch (socialNetwork) {
       case 'Google':
@@ -32,7 +59,12 @@ class Firebase {
       default:
         provider = undefined
     }
-    firebase.auth().signInWithPopup(provider)
+    try {
+      await firebase.auth().signInWithPopup(provider)
+      this.loggedInAlert()
+    } catch (err) {
+      this.catchAlert(err)
+    }
   }
 
   authenticationState = (signedIn, signedOut) => {
@@ -41,9 +73,21 @@ class Firebase {
       else signedOut()
     })
   }
+
+  resetPassword = async email => {
+    try {
+      await firebase.auth().sendPasswordResetEmail(email)
+      Alert(
+        'Password Reseted!',
+        'Your new password was sent to your email!',
+        'success'
+      )
+    } catch (err) {
+      this.catchAlert(err)
+    }
+  }
+
   getCurrentUser = () => firebase.auth().currentUser
-  updateProfile = profileObject =>
-    firebase.auth().currentUser.updateProfile(profileObject)
 
   signOut = () => firebase.auth().signOut()
 }

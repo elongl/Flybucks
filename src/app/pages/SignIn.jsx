@@ -1,7 +1,6 @@
 import React from 'react'
 import { Segment, Button, Form } from 'semantic-ui-react'
 import { Link, withRouter } from 'react-router-dom'
-import Alert from 'sweetalert2'
 import firebase from '../../api/firebase'
 import FullPageContainer from '../components/common/FullPageContainer'
 import SocialNetworkButton from '../components/user/SocialNetworkButton'
@@ -23,19 +22,8 @@ export default withRouter(props => {
     const formData = new window.FormData(event.target)
     const email = formData.get('email')
     const pass = formData.get('pass')
-    try {
-      await firebase.signInWithEmailAndPassword(email, pass)
-      Alert({
-        position: 'top-right',
-        type: 'success',
-        title: 'Your are now logged in',
-        showConfirmButton: false,
-        timer: 1500
-      })
+    if (await firebase.signInWithEmailAndPassword(email, pass))
       props.history.push('/')
-    } catch (error) {
-      Alert('Oops...', error.message, 'error')
-    }
   }
 
   const socialNetworks = ['Google', 'Facebook', 'Twitter'].map(name => (
@@ -55,12 +43,10 @@ export default withRouter(props => {
       >
         <h1
           style={{
-            fontSize: 66,
+            fontSize: '4.5rem',
             fontFamily: 'Roboto',
             fontWeight: 100,
-            margin: 0,
-            marginRight: 10,
-            textAlign: 'center'
+            margin: 0
           }}
         >
           Welcome back!

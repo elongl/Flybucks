@@ -1,4 +1,6 @@
 import React from 'react'
+import Alert from 'sweetalert2'
+import firebase from '../../../api/firebase'
 import { Input, Icon } from 'semantic-ui-react'
 const columnFlex = {
   display: 'flex',
@@ -12,7 +14,21 @@ export default props => (
     ) : (
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <label style={{ fontSize: 16 }}>{props.label}</label>
-        <a style={{ cursor: 'pointer', fontSize: 16, color: '#faa61a' }}>
+        <a
+          style={{ cursor: 'pointer', fontSize: 16, color: '#faa61a' }}
+          onClick={async () => {
+            const { value: email } = await Alert({
+              title: 'Input email address',
+              input: 'email',
+              inputPlaceholder: 'Enter your email address',
+              showCancelButton: true,
+              showCloseButton: true
+            })
+            if (email) {
+              firebase.resetPassword(email)
+            }
+          }}
+        >
           Forgot password
         </a>
       </div>
