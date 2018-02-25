@@ -18,12 +18,13 @@ const rowFlex = {
   justifyContent: 'space-around'
 }
 export default withRouter(props => {
-  const signIn = async event => {
+  const signIn = event => {
     const formData = new window.FormData(event.target)
     const email = formData.get('email')
     const pass = formData.get('pass')
-    if (await firebase.signInWithEmailAndPassword(email, pass))
-      props.history.push('/')
+    firebase
+      .signInWithEmailAndPassword(email, pass)
+      .then(() => props.history.push('/'))
   }
 
   const socialNetworks = ['Google', 'Facebook', 'Twitter'].map(name => (

@@ -25,7 +25,7 @@ export default props => (
               showCloseButton: true
             })
             if (email) {
-              firebase.resetPassword(email)
+              await firebase.resetPassword(email)
             }
           }}
         >
