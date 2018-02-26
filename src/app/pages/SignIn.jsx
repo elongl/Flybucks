@@ -18,18 +18,19 @@ const rowFlex = {
   justifyContent: 'space-around'
 }
 export default withRouter(props => {
-  const signIn = event => {
+  const signIn = async event => {
     const formData = new window.FormData(event.target)
     const email = formData.get('email')
     const pass = formData.get('pass')
-    firebase
-      .signInWithEmailAndPassword(email, pass)
-      .then(() => props.history.push('/'))
+    const user = await firebase.signInWithEmailAndPassword(email, pass)
+    if (user) props.history.push('/')
   }
 
-  const socialNetworks = ['Google', 'Facebook', 'Twitter'].map(name => (
-    <SocialNetworkButton name={name} key={name} />
-  ))
+  const socialNetworks = ['Google', 'Facebook', 'Twitter'].map(
+    socialNetwork => (
+      <SocialNetworkButton name={socialNetwork} key={socialNetwork} />
+    )
+  )
 
   return (
     <FullPageContainer>
@@ -52,14 +53,11 @@ export default withRouter(props => {
         >
           Welcome back!
         </h1>
-        <Form
-          onSubmit={signIn}
-          style={{
-            ...columnFlex,
-            width: 600
-          }}
-        >
-          <div style={{ ...columnFlex, alignItems: 'center' }}>
+        <div style={{ ...columnFlex, width: 600 }}>
+          <Form
+            onSubmit={signIn}
+            style={{ ...columnFlex, alignItems: 'center' }}
+          >
             <Field
               label="Enter your email address"
               type="email"
@@ -90,10 +88,10 @@ export default withRouter(props => {
                 marginBottom: 10
               }}
             />
-          </div>
+          </Form>
           <HorizonalLine text="or login with" style={{ marginRight: 35 }} />
           <div style={{ ...rowFlex, marginTop: 25 }}>{socialNetworks}</div>
-        </Form>
+        </div>
         <p style={{ fontSize: 20 }}>
           Not a member?{' '}
           <Link to="/signup" style={{ cursor: 'pointer', color: '#faa61a' }}>

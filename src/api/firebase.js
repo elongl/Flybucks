@@ -31,6 +31,8 @@ class Firebase {
       this.loggedInAlert()
     } catch (err) {
       this.catchAlert(err)
+    } finally {
+      return firebase.auth().currentUser
     }
   }
 
@@ -41,6 +43,8 @@ class Firebase {
       this.loggedInAlert()
     } catch (err) {
       this.catchAlert(err)
+    } finally {
+      return firebase.auth().currentUser
     }
   }
 

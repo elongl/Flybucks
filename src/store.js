@@ -11,7 +11,7 @@ class Store {
 
   changeValue(value) {
     this.from.value = value
-    this.to.value = digitsAfterDot(value * this.rate, 6)
+    this.to.value = digitsAfterDot(value * this.rate)
   }
 
   async changeCurrency(currencyObject, currencyType) {
@@ -30,7 +30,7 @@ class Store {
       this[currencyType].currency = currencyObject
       await this.updateRate()
     }
-    this.to.value = digitsAfterDot(this.from.value * this.rate, 6)
+    this.to.value = digitsAfterDot(this.from.value * this.rate)
   }
 
   async updateRate() {

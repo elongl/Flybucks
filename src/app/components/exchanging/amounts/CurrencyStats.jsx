@@ -11,7 +11,7 @@ export default observer(() => (
       leftText="exchange rate"
       rightText={`1 ${store.from.currency !== undefined &&
         store.from.currency.symbol} = ${store.rate !== undefined &&
-        digitsAfterDot(store.rate, 6)} ${store.to.currency !== undefined &&
+        digitsAfterDot(store.rate)} ${store.to.currency !== undefined &&
         store.to.currency.symbol}`}
     />
     <GridSection leftText="estimated arrival" rightText="≈ 5-30 minutes" />

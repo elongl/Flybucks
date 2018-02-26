@@ -1,4 +1,4 @@
-export const digitsAfterDot = (numString, digitsAfterDot) =>
+export const digitsAfterDot = (numString, digitsAfterDot = 6) =>
   !numString.toString().includes('.')
     ? numString
     : numString

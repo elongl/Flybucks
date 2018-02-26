@@ -20,19 +20,15 @@ body {
   justify-content: space-between;  
 }
 
-.feature {
-  display: flex;
+.rate, .feature, .reviewCard {
+  display: flex;  
   justify-content: center;
-}
-
-.reviewCard {
-  display: flex;
-  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (max-width: 1000px) {
   #headerText {
-    font-size 5vw !important;
+    font-size 5.5vw !important;
   }
 }
 
@@ -50,13 +46,13 @@ body {
 }
 
 @media only screen and (max-width: 1539px) {
-  .reviewCard, .feature {
+  .reviewCard, .feature, .rate {
     flex-basis: 50%;
   }  
 }
 
 @media only screen and (max-width: 700px) {  
-  .feature {
+  .feature, .rate {
     flex-basis: 100%;    
   }
 }

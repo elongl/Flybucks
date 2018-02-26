@@ -20,16 +20,19 @@ const rowFlex = {
 }
 
 export default withRouter(props => {
-  const signUp = event => {
+  const signUp = async event => {
     const formData = new window.FormData(event.target)
     const email = formData.get('email')
     const pass = formData.get('pass')
     const repass = formData.get('repass')
     const displayName = formData.get('displayName')
     if (pass === repass) {
-      firebase
-        .createUserWithEmailAndPassword(email, pass, displayName)
-        .then(() => props.history.push('/'))
+      const user = await firebase.createUserWithEmailAndPassword(
+        email,
+        pass,
+        displayName
+      )
+      if (user) props.history.push('/')
     } else Alert('Oops...', 'Please make sure your passwords match', 'error')
   }
 
@@ -42,6 +45,7 @@ export default withRouter(props => {
       />
     )
   )
+
   const fields = [
     {
       type: 'email',

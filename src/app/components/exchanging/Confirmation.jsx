@@ -58,7 +58,7 @@ export default class extends Component {
             },
             {
               label: 'commission included (0.5%)',
-              value: `${digitsAfterDot(store.to.value * 0.5 / 100, 6)} ${
+              value: `${digitsAfterDot(store.to.value * 0.5 / 100)} ${
                 store.to.currency.symbol
               }`
             },
