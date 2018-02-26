@@ -9,6 +9,7 @@ export default ({ children, style, ...props }) => (
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      padding: '5rem',
       ...style
     }}
     {...props}

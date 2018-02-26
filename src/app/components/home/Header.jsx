@@ -12,7 +12,9 @@ const headerStyle = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  alignItems: 'center'
+  alignItems: 'center',
+  paddingTop: '5rem',
+  paddingBottom: '5rem'
 }
 
 export default () => (

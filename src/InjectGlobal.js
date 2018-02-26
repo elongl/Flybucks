@@ -26,16 +26,13 @@ body {
   align-items: center;
 }
 
-@media only screen and (max-width: 1000px) {
-  #headerText {
-    font-size 5.5vw !important;
+@media only screen and (max-width: 1539px) {
+  .reviewCard, .feature {
+    flex-basis: 50%;
   }
-}
-
-@media only screen and (max-width: 950px) {
-  #headerExchange {
-      flex-direction: column;
-  }
+  .rate {
+    flex-basis: 33%;
+  }  
 }
 
 @media only screen and (max-width: 1150px) {
@@ -45,22 +42,31 @@ body {
   }
 }
 
-@media only screen and (max-width: 1539px) {
-  .reviewCard, .feature, .rate {
-    flex-basis: 50%;
+@media only screen and (max-width: 1000px) {
+  #headerText {
+    font-size 5.5vw !important;
   }  
 }
 
-@media only screen and (max-width: 700px) {  
-  .feature, .rate {
-    flex-basis: 100%;    
+@media only screen and (max-width: 950px) {
+  #headerExchange {
+      flex-direction: column;
   }
 }
 
 @media only screen and (max-width: 841px) {
   .reviewCard {
     flex-basis: 100%;
-  }  
+  }
+  .rate {
+    flex-basis: 50%;
+  }
+}
+
+@media only screen and (max-width: 700px) {  
+  .feature, .rate {
+    flex-basis: 100%;
+  }
 }
 
 @keyframes blinking-cursor {
