@@ -30,12 +30,22 @@ export default ({ authenticated, toggleSigninModal, toggleSignupModal }) => (
         <Link to="/signin">
           <Button
             size="big"
-            style={{ backgroundColor: '#faa61a', color: 'white' }}
             content="Log In"
+            style={{ backgroundColor: '#faa61a', color: 'white' }}
+            onClick={() =>
+              window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+            }
           />
         </Link>
         <Link to="/signup">
-          <Button size="big" secondary content="Sign Up" />
+          <Button
+            secondary
+            size="big"
+            content="Sign Up"
+            onClick={() =>
+              window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+            }
+          />
         </Link>
       </div>
     )}

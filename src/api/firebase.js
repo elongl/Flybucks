@@ -2,7 +2,7 @@ import * as firebase from 'firebase'
 import Alert from 'sweetalert2'
 
 class Firebase {
-  loggedInAlert = () =>
+  loggedInAlert() {
     Alert({
       position: 'top-right',
       type: 'success',
@@ -10,10 +10,13 @@ class Firebase {
       showConfirmButton: false,
       timer: 1500
     })
+  }
 
-  catchAlert = error => Alert(error.code, error.message, 'error')
+  catchAlert(error) {
+    Alert(error.code, error.message, 'error')
+  }
 
-  initializeApp = () => {
+  initializeApp() {
     const config = {
       apiKey: 'AIzaSyADdETym8W1dE0Bzz0XW2j5qyDtJo0qx6U',
       authDomain: 'coin-exchange-dd8dc.firebaseapp.com',
@@ -25,7 +28,7 @@ class Firebase {
     firebase.initializeApp(config)
   }
 
-  signInWithEmailAndPassword = async (email, pass) => {
+  async signInWithEmailAndPassword(email, pass) {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, pass)
       this.loggedInAlert()
@@ -36,7 +39,7 @@ class Firebase {
     }
   }
 
-  createUserWithEmailAndPassword = async (email, pass, displayName) => {
+  async createUserWithEmailAndPassword(email, pass, displayName) {
     try {
       await firebase.auth().createUserWithEmailAndPassword(email, pass)
       await firebase.auth().currentUser.updateProfile({ displayName })
@@ -48,7 +51,7 @@ class Firebase {
     }
   }
 
-  createUserWithSocialNetwork = async socialNetwork => {
+  async createUserWithSocialNetwork(socialNetwork) {
     let provider
     switch (socialNetwork) {
       case 'Google':
@@ -71,14 +74,14 @@ class Firebase {
     }
   }
 
-  authenticationState = (signedIn, signedOut) => {
+  authenticationState(signedIn, signedOut) {
     firebase.auth().onAuthStateChanged(user => {
       if (user) signedIn()
       else signedOut()
     })
   }
 
-  resetPassword = async email => {
+  async resetPassword(email) {
     try {
       await firebase.auth().sendPasswordResetEmail(email)
       Alert(
@@ -91,8 +94,12 @@ class Firebase {
     }
   }
 
-  getCurrentUser = () => firebase.auth().currentUser
+  getCurrentUser() {
+    return firebase.auth().currentUser
+  }
 
-  signOut = () => firebase.auth().signOut()
+  signOut() {
+    firebase.auth().signOut()
+  }
 }
 export default new Firebase()
