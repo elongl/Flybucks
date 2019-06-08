@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@firebase/app-types": "^0.1.0",
-    "axios": "^0.16.2",
+    "axios": "^0.18.1",
     "emotion": "^8.0.11",
     "firebase": "^4.7.0",
     "mobx": "^3.4.1",
